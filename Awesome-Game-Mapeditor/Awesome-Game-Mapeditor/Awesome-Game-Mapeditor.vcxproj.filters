@@ -29,7 +29,7 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Awesome-Game-Client.cpp">
+    <ClCompile Include="Awesome-Game-Mapeditor.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
