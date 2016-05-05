@@ -2,6 +2,7 @@
 #define CMAPPOINT_HPP
 
 #include "includes.hpp"
+#include "stdafx.h"
 #include <cstdint>
 
 enum class Resource{
@@ -10,35 +11,49 @@ enum class Resource{
     Salt,
     Food,
     Iron,
+    None,
+    Empty,
 };
 
 enum class Type{
     None,
 };
 
-enum class Error{
-    OUT_OF_BOUND,
-    NO_ERROR,
-};
-
 class CMapPoint{
 private:
-    std::uint8_t    uiLayerCount;
-    Type*           pType;
-    unsigned char*  pRGB;
-    std::uint8_t*   pHeight;
-    std::uint8_t*   pAmount;
-    Resource*       pResource;
+    Type            tType;
+    std::uint8_t    uiRGB[3];
+    std::uint8_t    uiHeight;
+    std::uint8_t    uiAmount;
+    Resource        rResource;
 
 public:
-    Error setResource(Resource, std::uint8_t);
-    Error letResource(std::uint8_t);
+    bool    setResource(Resource, bool);
+    bool    letResource(std::uint8_t, bool);
     Resource getResource();
-    Resource getResource(std::uint8_t);
 
-    Error setAmount(std::uint8_t);
-    Error letAmount(std::uint8_t);
-    std::uint8_t getAmount(std::uint8_t);
+    bool    addAmount(std::uint8_t, bool);
+    bool    setAmount(std::uint8_t);
+    bool    letAmount(std::uint8_t, bool);
+    std::uint8_t getAmount();
+
+    bool    setRGB(std::uint8_t, std::uint8_t, std::uint8_t);
+    bool    getRGB(std::uint8_t&, std::uint8_t&, std::uint8_t&);
+    bool    changeRGB(std::int16_t);
+    bool    setR(std::uint8_t);
+    bool    changeR(std::int16_t);
+    std::uint8_t getR();
+    bool    setG(std::uint8_t);
+    bool    changeG(std::int16_t);
+    std::uint8_t getG();
+    bool    setB(std::uint8_t);
+    bool    changeB(std::int16_t);
+    std::uint8_t getB();
+
+private:
+    bool setRGBComponent(std::uint8_t, std::uint8_t);
+    std::uint8_t getRGBComponent(std::uint8_t);
+    bool changeRGBComponent(std::int16_t, std::uint8_t);
 };
 
 #endif
