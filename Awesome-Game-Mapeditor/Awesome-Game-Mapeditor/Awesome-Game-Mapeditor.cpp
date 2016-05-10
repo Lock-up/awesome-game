@@ -1,7 +1,11 @@
 // Awesome-Game-Mapeditor.cpp : Definiert den Einstiegspunkt für die Konsolenanwendung.
 //
 
-#include "includes.hpp"
+#include "stdafx.h"
+#include <SFML/Graphics.hpp>
+#include <cstdint>
+
+#include "CMapPoint.hpp"
 
 sf::CircleShape shape(10.f);
 

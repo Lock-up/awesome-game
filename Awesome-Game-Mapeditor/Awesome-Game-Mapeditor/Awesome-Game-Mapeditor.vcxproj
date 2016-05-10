@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMapPoint.hpp" />
+    <ClInclude Include="CMapPointStack.hpp" />
     <ClInclude Include="includes.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

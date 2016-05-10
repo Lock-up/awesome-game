@@ -30,6 +30,9 @@
     <ClInclude Include="includes.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="CMapPointStack.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

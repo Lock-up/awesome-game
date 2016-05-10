@@ -1,4 +1,8 @@
-#include "includes.hpp"
+#include "stdafx.h"
+#include <SFML/Graphics.hpp>
+#include <cstdint>
+
+#include "CMapPoint.hpp"
 
 bool CMapPoint::setResource(Resource rNewResource, bool bForce = false)
 {
@@ -49,6 +53,7 @@ bool CMapPoint::addAmount(std::uint8_t uiAddAmount, bool bForce = false)
 bool CMapPoint::setAmount(std::uint8_t uiNewAmount)
 {
     this->uiAmount = uiNewAmount;
+    return true;
 }
 
 bool CMapPoint::letAmount(std::uint8_t uiLetAmount, bool bForce = false)
