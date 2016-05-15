@@ -1,10 +1,7 @@
 #ifndef CMAPPOINT_HPP
 #define CMAPPOINT_HPP
 
-#include "includes.hpp"
 #include "stdafx.h"
-#include <bitset>
-#include <cstdint>
 
 enum class Resource{
     Wood,
@@ -41,15 +38,6 @@ private:
     // 0x02 - isFarmland
     // 0x04 - isLight
     // 0x08 - 
-    // 0x10 -
-    // 0x20 -
-    // 0x40 -
-    // 0x80 -
-    std::bitset<8>  bsModifier;
-    // 0x01 - isDamaging
-    // 0x02 - isHealing
-    // 0x04 - isSlowing
-    // 0x08 - isHasting
     // 0x10 -
     // 0x20 -
     // 0x40 -

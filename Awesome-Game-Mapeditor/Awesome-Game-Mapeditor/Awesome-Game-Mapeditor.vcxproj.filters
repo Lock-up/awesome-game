@@ -27,10 +27,19 @@
     <ClInclude Include="CMapPoint.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="includes.hpp">
+    <ClInclude Include="CMapPointStack.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="CMapPointStack.hpp">
+    <ClInclude Include="CMapPlayerInfo.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapInfo.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CMap.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapPointStackContainer.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

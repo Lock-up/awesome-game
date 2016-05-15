@@ -1,8 +1,4 @@
 #include "stdafx.h"
-#include <SFML/Graphics.hpp>
-#include <cstdint>
-
-#include "CMapPoint.hpp"
 
 bool CMapPoint::setResource(Resource rNewResource, bool bForce = false)
 {

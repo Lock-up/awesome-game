@@ -169,9 +169,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CMap.hpp" />
+    <ClInclude Include="CMapInfo.hpp" />
+    <ClInclude Include="CMapPlayerInfo.hpp" />
     <ClInclude Include="CMapPoint.hpp" />
     <ClInclude Include="CMapPointStack.hpp" />
-    <ClInclude Include="includes.hpp" />
+    <ClInclude Include="CMapPointStackContainer.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
