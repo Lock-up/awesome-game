@@ -48,13 +48,13 @@ private:
     Resource        rResource;
 
 public:
-    bool            setResource(Resource, bool);
-    bool            letResource(std::uint8_t, bool);
+    bool            setResource(Resource, bool bForce = true);
+    bool            letResource(std::uint8_t, bool bForce = true);
     Resource        getResource();
 
-    bool            addAmount(std::uint8_t, bool);
+    bool            addAmount(std::uint8_t, bool bForce = true);
     bool            setAmount(std::uint8_t);
-    bool            letAmount(std::uint8_t, bool);
+    bool            letAmount(std::uint8_t, bool bForce = true);
     std::uint8_t    getAmount();
 
     bool            setRGB(std::uint8_t, std::uint8_t, std::uint8_t);
@@ -72,15 +72,17 @@ public:
 
     std::uint8_t    getHeight();
     bool            setHeight(std::uint8_t);
-    bool            addHeight(std::uint8_t);
-    bool            letHeight(std::uint8_t);
+    bool            addHeight(std::uint8_t, bool bForce = true);
+    bool            letHeight(std::uint8_t, bool bForce = true);
 
     //TODO: Flags
+    //TODO: Konstructor
+    //TODO: Destructor
 
 private:
     bool            setRGBComponent(std::uint8_t, std::uint8_t);
     std::uint8_t    getRGBComponent(std::uint8_t);
-    bool            changeRGBComponent(std::int16_t, std::uint8_t);
+    bool            changeRGBComponent(std::uint8_t, std::int16_t, bool bForce = true);
 
     bool            hasFlag(std::uint8_t, std::uint8_t);
 };

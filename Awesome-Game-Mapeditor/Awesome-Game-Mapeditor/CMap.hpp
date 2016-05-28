@@ -7,11 +7,11 @@ class CMap{
 private:
     CMapInfo                cMapInfo;
     CMapPlayerInfo          cMapPlayerInfo;
-    CMapPointStackContainer cMapStackContainer;
+    //CMapPointStackContainer cMapStackContainer;
 public:
     CMapInfo                getMapInfo();
     CMapPlayerInfo          getMapPlayerInfo();
-    CMapPointStackContainer getMapStackContainer();
+    //CMapPointStackContainer getMapStackContainer();
 };
 
 #endif
