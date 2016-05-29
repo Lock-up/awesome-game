@@ -181,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="Awesome-Game-Mapeditor.cpp" />
     <ClCompile Include="CMapPoint.cpp" />
+    <ClCompile Include="CMapPointStack.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

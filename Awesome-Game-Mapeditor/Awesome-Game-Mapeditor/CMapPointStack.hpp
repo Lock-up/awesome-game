@@ -14,30 +14,32 @@ private:
     // 0x20 -
     // 0x40 -
     // 0x80 -
-    std::uint8_t    uiLayerCount;
-    CMapPoint*      pMapPoints;
-    std::uint32_t   uiGUIDBuilding;
-    std::uint32_t   uiGUIDUnit;
+    std::uint8_t            uiLayerCount;
+    //CMapPoint*            pMapPoints;
+    std::list<CMapPoint>    lMapPoints;
+    std::uint32_t           uiGUIDBuilding;
+    std::uint32_t           uiGUIDUnit;
 
 public:
-    CMapPoint       getLayerPoint();
-    CMapPoint       getLayerPoint(std::uint8_t);
-
-    std::uint8_t    getLayerCount();
-    bool            setLayerCount(std::uint8_t);
-    bool            addLayer(std::uint8_t);
-    bool            letLayer(std::uint8_t);
-    bool            letLayer(std::uint8_t, bool);
+    std::uint8_t    getMapPointCount();
 
     std::uint32_t   getBuildingGUID();
-    bool            setBuildingGUID(std::uint32_t, bool);
+    bool            setBuildingGUID(std::uint32_t, bool bForce = true);
     bool            letBuildingGUID();
     bool            hasBuilding();
 
     std::uint32_t   getUnitGUID();
-    bool            setUnitGUID(std::uint32_t, bool);
+    bool            setUnitGUID(std::uint32_t, bool bForce = true);
     bool            letUnitGUID();
     bool            hasUnit();
+
+    bool            popMapPoint();
+    bool            pushMapPoint(CMapPoint);
+    std::list<CMapPoint>    getMapPoints();
+
+    //TODO: Flags
+    //TODO: Konstructor
+    //TODO: Destructor
 };
 
 #endif

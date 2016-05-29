@@ -20,6 +20,7 @@
 // STL
 #include <cstdint>
 #include <bitset>
+#include <list>
 
 // own
 #include "CMapPoint.hpp"
