@@ -184,7 +184,84 @@ bool CMapPoint::letHeight(std::uint8_t uiAmount, bool bForce)
     }
 }
 
-//TODO: Flags
+bool CMapPoint::setFlags(Flag_Type eFlagType, std::uint8_t uiFlagValue)
+{
+    switch (eFlagType)
+    {
+    case Flag_Type::FLAG_SPECIAL: this->bsSpecial |= uiFlagValue; break;
+    case Flag_Type::FLAG_TYPE: this->bsType |= uiFlagValue; break;
+    default: return false;
+    }
+    return true;
+}
+
+bool CMapPoint::testFlag(Flag_Type eFlagType, std::uint8_t uiOptID)
+{
+    switch (eFlagType)
+    {
+    case Flag_Type::FLAG_SPECIAL:   return bsSpecial.test(uiOptID); break;
+    case Flag_Type::FLAG_TYPE:      return bsType.test(uiOptID); break;
+    default:                        return false;
+    }
+}
+
+std::bitset<8> CMapPoint::getFlag(Flag_Type eFlagType)
+{
+    switch (eFlagType)
+    {
+    case Flag_Type::FLAG_SPECIAL: return bsSpecial; break;
+    case Flag_Type::FLAG_TYPE: return bsType; break;
+    default: return bsType;
+    }
+}
+
+bool CMapPoint::setFlag(Flag_Type eFlagType, std::uint8_t uiIndex)
+{
+    switch (eFlagType)
+    {
+    case Flag_Type::FLAG_SPECIAL:
+    {
+        if (bsSpecial.test(uiIndex))
+            return false;
+        
+        bsSpecial.set(uiIndex, 1);
+        return true;
+    }break;
+    case Flag_Type::FLAG_TYPE:
+    {
+        if (bsType.test(uiIndex))
+            return false;
+
+        bsType.set(uiIndex, 1);
+        return true;
+    }break;
+    default: return false;
+    }
+}
+
+bool CMapPoint::letFlag(Flag_Type eFlagType, std::uint8_t uiIndex)
+{
+    switch (eFlagType)
+    {
+    case Flag_Type::FLAG_SPECIAL:
+    {
+        if (!bsSpecial.test(uiIndex))
+            return false;
+
+        bsSpecial.set(uiIndex, 0);
+        return true;
+    }break;
+    case Flag_Type::FLAG_TYPE:
+    {
+        if (!bsType.test(uiIndex))
+            return false;
+
+        bsType.set(uiIndex, 0);
+        return true;
+    }break;
+    default: return false;
+    }
+}
 
 bool CMapPoint::setRGBComponent(std::uint8_t uiIndex, std::uint8_t uiNewValue)
 {

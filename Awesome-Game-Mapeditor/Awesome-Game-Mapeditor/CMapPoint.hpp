@@ -13,14 +13,22 @@ enum class Resource{
     Empty,
 };
 
-const std::uint8_t uiOption1 = 0x01;
-const std::uint8_t uiOption2 = 0x02;
-const std::uint8_t uiOption3 = 0x04;
-const std::uint8_t uiOption4 = 0x08;
-const std::uint8_t uiOption5 = 0x10;
-const std::uint8_t uiOption6 = 0x20;
-const std::uint8_t uiOption7 = 0x40;
-const std::uint8_t uiOption8 = 0x80;
+enum class Flag_Opt{
+    OPT1 = 0,
+    OPT2 = 1,
+    OPT3 = 2,
+    OPT4 = 3,
+    OPT5 = 4,
+    OPT6 = 5,
+    OPT7 = 6,
+    OPT8 = 7,
+};
+
+enum class Flag_Type
+{
+    FLAG_SPECIAL,
+    FLAG_TYPE,
+};
 
 class CMapPoint{
 private:
@@ -76,6 +84,11 @@ public:
     bool            letHeight(std::uint8_t, bool bForce = true);
 
     //TODO: Flags
+    bool            setFlags(Flag_Type, std::uint8_t);
+    bool            testFlag(Flag_Type, std::uint8_t);
+    std::bitset<8>  getFlag(Flag_Type);
+    bool            setFlag(Flag_Type, std::uint8_t);
+    bool            letFlag(Flag_Type, std::uint8_t);
     //TODO: Konstructor
     //TODO: Destructor
 
@@ -83,8 +96,6 @@ private:
     bool            setRGBComponent(std::uint8_t, std::uint8_t);
     std::uint8_t    getRGBComponent(std::uint8_t);
     bool            changeRGBComponent(std::uint8_t, std::int16_t, bool bForce = true);
-
-    bool            hasFlag(std::uint8_t, std::uint8_t);
 };
 
 #endif
