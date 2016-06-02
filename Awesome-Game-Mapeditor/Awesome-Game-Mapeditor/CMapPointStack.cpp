@@ -2,7 +2,7 @@
 
 std::uint8_t CMapPointStack::getMapPointCount()
 {
-    return this->lMapPoints.size();
+    return this->vMapPoints.size();
 }
 
 std::uint32_t CMapPointStack::getBuildingGUID()
@@ -61,25 +61,25 @@ bool CMapPointStack::hasUnit()
 
 bool CMapPointStack::popMapPoint()
 {
-    if (lMapPoints.size() <= 0)
+    if (vMapPoints.size() <= 0)
         return false;
 
-    lMapPoints.pop_back();
+    vMapPoints.pop_back();
     return true;
 }
 
 bool CMapPointStack::pushMapPoint(CMapPoint cMapPoint)
 {
-    if (lMapPoints.size() >= 255)
+    if (vMapPoints.size() >= 255)
         return false;
 
-    lMapPoints.push_back(cMapPoint);
+    vMapPoints.push_back(cMapPoint);
     return true;
 }
 
-std::list<CMapPoint> CMapPointStack::getMapPoints()
+std::vector<CMapPoint> CMapPointStack::getMapPoints()
 {
-    return this->lMapPoints;
+    return this->vMapPoints;
 }
 
 //TODO: Flags

@@ -21,6 +21,7 @@
 #include <cstdint>
 #include <bitset>
 #include <list>
+#include <vector>
 
 // own
 #include "CMapPoint.hpp"

@@ -16,7 +16,8 @@ private:
     // 0x80 -
     std::uint8_t            uiLayerCount;
     //CMapPoint*            pMapPoints;
-    std::list<CMapPoint>    lMapPoints;
+    //std::list<CMapPoint>    lMapPoints;
+    std::vector<CMapPoint>  vMapPoints;
     std::uint32_t           uiGUIDBuilding;
     std::uint32_t           uiGUIDUnit;
 
@@ -35,7 +36,7 @@ public:
 
     bool            popMapPoint();
     bool            pushMapPoint(CMapPoint);
-    std::list<CMapPoint>    getMapPoints();
+    std::vector<CMapPoint>  getMapPoints();
 
     //TODO: Flags
     //TODO: Konstructor
