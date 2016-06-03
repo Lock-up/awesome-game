@@ -7,12 +7,19 @@ class CMapPointStackContainer{
 private:
     //std::uint32_t   uiStacksCount;
     //CMapPointStack* pStacks;
-    std::list<CMapPointStack>    lMapPointsStacks;
+    std::vector<CMapPointStack>    vMapPointsStacks;
 public:
     bool            setStack(CMapPointStack, std::uint32_t);
-    bool            setStack(CMapPointStack, std::uint8_t, std::uint8_t);
+    bool            pushStack(CMapPointStack);
+    bool            popStack();
+    //cant pass x and y as we dont know mapsizes here
+    //bool            setStack(CMapPointStack, std::uint8_t, std::uint8_t);
     CMapPointStack  getStack(std::uint32_t);
-    CMapPointStack  getStack(std::uint8_t, std::uint8_t);
+    //cant pass x and y as we dont know mapsizes here
+    //CMapPointStack  getStack(std::uint8_t, std::uint8_t);
+
+    // TODO: Konstructor
+    // TODO: Destructor
 };
 
 #endif
