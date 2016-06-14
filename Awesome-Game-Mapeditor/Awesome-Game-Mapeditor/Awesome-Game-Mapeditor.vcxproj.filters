@@ -59,5 +59,8 @@
     <ClCompile Include="CMapPointStackContainer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="CMapPlayerInfo.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

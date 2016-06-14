@@ -22,7 +22,7 @@
 #include <bitset>
 #include <list>
 #include <vector>
-
+#include <algorithm>
 // own
 #include "CMapPoint.hpp"
 #include "CMapPointStack.hpp"
