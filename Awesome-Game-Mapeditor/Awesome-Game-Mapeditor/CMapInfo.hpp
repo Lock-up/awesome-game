@@ -7,6 +7,7 @@ class CMapInfo{
 private:
     std::string     strMapname;
     std::uint16_t   uiSize[2];
+    std::uint16_t   uiVersion;
 
 public:
     std::string     getMapName();
@@ -16,6 +17,9 @@ public:
     std::uint16_t   getMapSizeY();
     bool            getMapSizes(std::uint16_t&, std::uint16_t&);
     //bool            getMapSizes(std::uint16_t*);
+    bool            setVersion(std::uint16_t, bool bForce = true);
+    std::uint16_t   getVersion();
+    bool            hasVersion();
 
 private:
     bool            setMapSize(std::uint8_t, std::uint16_t);

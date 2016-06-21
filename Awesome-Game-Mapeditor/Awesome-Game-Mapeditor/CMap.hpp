@@ -2,16 +2,17 @@
 #define CMAP_HPP
 
 #include "stdafx.h"
+#include "CMapPointStackContainer.hpp"
 
 class CMap{
 private:
     CMapInfo                cMapInfo;
     CMapPlayerInfo          cMapPlayerInfo;
-    //CMapPointStackContainer cMapStackContainer;
+    CMapPointStackContainer cMapStackContainer;
 public:
-    CMapInfo                getMapInfo();
-    CMapPlayerInfo          getMapPlayerInfo();
-    //CMapPointStackContainer getMapStackContainer();
+    CMapInfo*                getMapInfo();
+    CMapPlayerInfo*          getMapPlayerInfo();
+    CMapPointStackContainer* getMapStackContainer();
 };
 
 #endif

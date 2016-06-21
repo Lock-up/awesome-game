@@ -50,3 +50,25 @@ std::uint16_t CMapInfo::getMapSize(std::uint8_t uiIndex)
 
     return this->uiSize[uiIndex];
 }
+
+bool CMapInfo::setVersion(std::uint16_t uiNewVersion, bool bForce)
+{
+    if (this->hasVersion() && !bForce)
+        return false;
+
+    this->uiVersion = uiNewVersion;
+    return true;
+}
+
+std::uint16_t CMapInfo::getVersion()
+{
+    return this->uiVersion;
+}
+
+bool CMapInfo::hasVersion()
+{
+    if (this->getVersion() == 0)
+        return false;
+
+    return true;
+}
