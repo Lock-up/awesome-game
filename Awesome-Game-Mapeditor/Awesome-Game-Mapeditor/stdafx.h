@@ -23,6 +23,9 @@
 #include <list>
 #include <vector>
 #include <algorithm>
+#include <iostream>
+#include <fstream>
+
 // own
 #include "CMapPoint.hpp"
 #include "CMapPointStack.hpp"

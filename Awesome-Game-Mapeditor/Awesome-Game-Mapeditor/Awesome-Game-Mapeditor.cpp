@@ -36,6 +36,10 @@ void right()
 
 int main()
 {
+    CMap *map = new CMap();
+    map->loadFromFile("w1.awf");
+
+
 	sf::VideoMode mode;
 	sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
 

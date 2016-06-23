@@ -6,13 +6,14 @@
 
 class CMap{
 private:
-    CMapInfo                cMapInfo;
-    CMapPlayerInfo          cMapPlayerInfo;
-    CMapPointStackContainer cMapStackContainer;
+    CMapInfo                *cMapInfo;
+    CMapPlayerInfo          *cMapPlayerInfo;
+    CMapPointStackContainer *cMapStackContainer;
 public:
-    CMapInfo*                getMapInfo();
-    CMapPlayerInfo*          getMapPlayerInfo();
-    CMapPointStackContainer* getMapStackContainer();
+    CMapInfo*                   getMapInfo();
+    CMapPlayerInfo*             getMapPlayerInfo();
+    CMapPointStackContainer*    getMapStackContainer();
+    bool                        loadFromFile(std::string);
 };
 
 #endif

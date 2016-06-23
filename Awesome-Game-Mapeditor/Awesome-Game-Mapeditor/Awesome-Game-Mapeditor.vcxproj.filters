@@ -65,5 +65,8 @@
     <ClCompile Include="CMapInfo.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="CMap.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

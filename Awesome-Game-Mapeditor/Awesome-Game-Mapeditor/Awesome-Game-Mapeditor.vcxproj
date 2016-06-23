@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Awesome-Game-Mapeditor.cpp" />
+    <ClCompile Include="CMap.cpp" />
     <ClCompile Include="CMapInfo.cpp" />
     <ClCompile Include="CMapPlayerInfo.cpp" />
     <ClCompile Include="CMapPoint.cpp" />
