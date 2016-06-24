@@ -21,13 +21,28 @@ bool CMap::loadFromFile(std::string strFileName)
         return false;
 
     const char* pFileName = strFileName.c_str();
-    //char* pFileName = new char[strFileName.length() + 1];
-    //std::copy(strFileName.begin(), strFileName.end(), pFileName);
 
-    //std::ifstream file("w1.awf", std::ifstream::binary | std::ifstream::ate);
+    std::ifstream file(pFileName, std::ifstream::binary);
 
-    std::ifstream file(pFileName, std::ifstream::binary | std::ifstream::ate);
     std::cout << "loaded" << std::endl;
+
+    std::uint64_t uiFileLength = 0;
+
+    file.seekg(0, file.end);
+    uiFileLength = file.tellg();
+    file.seekg(0, file.beg);
+
+    std::cout << "Bytes: " << uiFileLength << std::endl;
+
+    char* pTempFile = new char[(unsigned int)uiFileLength];
+
+    file.read(pTempFile, uiFileLength);
         
+    std::cout << "FileVersion: " << ((((int)pTempFile[0]) << 8) + (int)pTempFile[1]) << std::endl;
+
+    this->cMapInfo = new CMapInfo();
+    this->getMapInfo()->setVersion((std::uint16_t)((((int)pTempFile[0]) << 8) + (int)pTempFile[1]));
+
+    file.close();
     return true;
 }

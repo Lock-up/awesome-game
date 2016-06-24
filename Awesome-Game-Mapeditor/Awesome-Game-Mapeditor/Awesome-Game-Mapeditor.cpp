@@ -37,13 +37,16 @@ void right()
 int main()
 {
     CMap *map = new CMap();
-    map->loadFromFile("w1.awf");
+    //TODO: find out where the .exe is located
+    map->loadFromFile("C:\\Users\\fvv1\\Desktop\\w1.awf");
 
+    std::cout << map->getMapInfo()->getVersion() << std::endl;
 
-	sf::VideoMode mode;
-	sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
+	//sf::VideoMode mode;
+	//sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(320, 240), "SFML works!");
 
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(10);
 
 	shape.setFillColor(sf::Color::Red);
 
