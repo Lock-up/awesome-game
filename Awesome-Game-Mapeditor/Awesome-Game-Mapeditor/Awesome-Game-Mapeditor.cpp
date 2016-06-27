@@ -40,7 +40,13 @@ int main()
     //TODO: find out where the .exe is located
     map->loadFromFile("C:\\Users\\fvv1\\Desktop\\w1.awf");
 
-    std::cout << map->getMapInfo()->getVersion() << std::endl;
+    std::cout << "Version: " << map->getMapInfo()->getVersion() << std::endl;
+
+    std::cout << "X: " << map->getMapInfo()->getMapSizeX() << " Y: " << map->getMapInfo()->getMapSizeY() << std::endl;
+
+    std::cout << "Name: " << map->getMapInfo()->getMapName() << std::endl;
+
+    std::cout << "Players: " << (int)map->getMapPlayerInfo()->getPlayerCount() << std::endl;
 
 	//sf::VideoMode mode;
 	//sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
