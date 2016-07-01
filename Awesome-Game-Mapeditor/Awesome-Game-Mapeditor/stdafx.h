@@ -31,5 +31,5 @@
 #include "CMapPointStack.hpp"
 #include "CMapPlayerInfo.hpp"
 #include "CMapInfo.hpp"
-#include "CMap.hpp"
 #include "CMapPointStackContainer.hpp"
+#include "CMap.hpp"

@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "CMapPointStackContainer.hpp"
 
 CMapInfo* CMap::getMapInfo()
 {
@@ -198,7 +197,7 @@ bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegi
 
         cTempPoint->setResource(pData[uiBegin + 7]);
 
-        //cMapStackContainer->getStack(uiStackID)->pushBack(cTempPoint);
+        this->getMapStackContainer()->getStack(uiStackID)->pushBack(cTempPoint);
 
         std::cout << "Long point inserted" << std::endl;
         uiBegin += 8;
@@ -222,7 +221,8 @@ bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegi
 
         cTempPoint->setRGB((std::uint8_t)pData[uiBegin + 3], (std::uint8_t)pData[uiBegin + 4], (std::uint8_t)pData[uiBegin + 5]);
 
-        //this->getMapStackContainer()->getStack(uiStackID)->pushMapPoint(cTempPoint);
+        this->getMapStackContainer()->getStack(uiStackID)->pushMapPoint(cTempPoint);
+        //cMapStackContainer->getStack(uiStackID)->pushMapPoint(cTempPoint);
 
         std::cout << "Short point inserted" << std::endl;
     default: return false; break;
