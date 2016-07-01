@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
-bool CMapPoint::setResource(Resource rNewResource, bool bForce)
+bool CMapPoint::setResource(std::uint8_t uiNewResource, bool bForce)
 {
-    if (this->rResource != Resource::None && !bForce)
+    if (this->uiResource != 0 && !bForce)
         return false;
 
-    this->rResource = rNewResource;
+    this->uiResource = uiNewResource;
     return true;
 }
 
@@ -25,9 +25,9 @@ bool CMapPoint::letResource(std::uint8_t uiLetAmount, bool bForce)
     }
 }
 
-Resource CMapPoint::getResource()
+std::uint8_t CMapPoint::getResource()
 {
-    return this->rResource;
+    return this->uiResource;
 }
 
 bool CMapPoint::addAmount(std::uint8_t uiAddAmount, bool bForce)

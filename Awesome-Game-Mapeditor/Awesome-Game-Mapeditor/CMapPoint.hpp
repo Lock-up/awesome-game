@@ -53,12 +53,12 @@ private:
     std::uint8_t    uiRGB[3];
     std::uint8_t    uiHeight;
     std::uint8_t    uiAmount;
-    Resource        rResource;
+    std::uint8_t    uiResource;
 
 public:
-    bool            setResource(Resource, bool bForce = true);
+    bool            setResource(std::uint8_t, bool bForce = true);
     bool            letResource(std::uint8_t, bool bForce = true);
-    Resource        getResource();
+    std::uint8_t    getResource();
 
     bool            addAmount(std::uint8_t, bool bForce = true);
     bool            setAmount(std::uint8_t);

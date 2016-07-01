@@ -16,7 +16,6 @@ public:
     std::uint16_t   getMapSizeX();
     std::uint16_t   getMapSizeY();
     bool            getMapSizes(std::uint16_t&, std::uint16_t&);
-    //bool            getMapSizes(std::uint16_t*);
     bool            setVersion(std::uint16_t, bool bForce = true);
     std::uint16_t   getVersion();
     bool            hasVersion();

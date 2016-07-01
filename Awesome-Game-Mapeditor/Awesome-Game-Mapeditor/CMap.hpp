@@ -18,6 +18,8 @@ public:
 
 private:
     bool                        readHeader_1(int*, std::uint16_t);
+    bool                        readData_1(int*, std::uint64_t);
+    bool                        readPoint_1(int*, std::uint64_t, std::uint64_t, std::uint64_t);
 };
 
 #endif

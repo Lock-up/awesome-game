@@ -15,8 +15,6 @@ private:
     // 0x40 -
     // 0x80 -
     std::uint8_t            uiLayerCount;
-    //CMapPoint*            pMapPoints;
-    //std::list<CMapPoint>    lMapPoints;
     std::vector<CMapPoint>  vMapPoints;
     std::uint32_t           uiGUIDBuilding;
     std::uint32_t           uiGUIDUnit;
