@@ -160,6 +160,9 @@ bool CMap::readData_1(int* pData, std::uint64_t uiDataLength)
             //woopsie, cant store flags yet
             //this->cMapStackContainer.getStack(uiStackID)->set
 
+            CMapPointStack *cTempStack = new CMapPointStack();
+            this->getMapStackContainer()->pushStack(*cTempStack);
+
             //1 Byte is Stack Modifier
             this->readPoint_1(pData, uiStackID, uiOffset + 2, i);
             uiStackID += 1;
@@ -172,6 +175,8 @@ bool CMap::readData_1(int* pData, std::uint64_t uiDataLength)
 
 bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegin, std::uint64_t uiEnd)
 {
+    std::cout << "Begin: " << uiBegin << " End: " << uiEnd << std::endl;
+
     if (pData == nullptr)
         return false;
 
@@ -197,7 +202,7 @@ bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegi
 
         cTempPoint->setResource(pData[uiBegin + 7]);
 
-        this->getMapStackContainer()->getStack(uiStackID)->pushBack(cTempPoint);
+        this->getMapStackContainer()->getStack(uiStackID).pushMapPoint(*cTempPoint);
 
         std::cout << "Long point inserted" << std::endl;
         uiBegin += 8;
@@ -221,7 +226,7 @@ bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegi
 
         cTempPoint->setRGB((std::uint8_t)pData[uiBegin + 3], (std::uint8_t)pData[uiBegin + 4], (std::uint8_t)pData[uiBegin + 5]);
 
-        this->getMapStackContainer()->getStack(uiStackID)->pushMapPoint(cTempPoint);
+        this->getMapStackContainer()->getStack(uiStackID).pushMapPoint(*cTempPoint);
         //cMapStackContainer->getStack(uiStackID)->pushMapPoint(cTempPoint);
 
         std::cout << "Short point inserted" << std::endl;
