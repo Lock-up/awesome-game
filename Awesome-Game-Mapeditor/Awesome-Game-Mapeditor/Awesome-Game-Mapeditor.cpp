@@ -37,10 +37,17 @@ void right()
 int main()
 {
     CMap *map = new CMap();
-    //TODO: find out where the .exe is located
-    //not workinf, wolo
-    //map->loadFromFile("Maps\\w1.awf");
-    map->loadFromFile("C:\\Users\\fvv1\\Desktop\\w1.awf");
+    
+	// Code to find working directory
+	//char cCurrentPath[FILENAME_MAX];
+	//if (!_getcwd_dbg(cCurrentPath, sizeof(cCurrentPath), _NORMAL_BLOCK, NULL, NULL))
+	//{
+	//	return errno;
+	//}
+	//cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
+	//printf("The current working directory is %s\n", cCurrentPath);
+
+    map->loadFromFile("Maps\\w1.awf");
 
     std::cout << "Version: " << map->getMapInfo()->getVersion() << std::endl;
 
