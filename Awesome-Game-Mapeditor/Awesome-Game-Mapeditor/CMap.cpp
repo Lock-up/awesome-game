@@ -164,9 +164,9 @@ bool CMap::readData_1(int* pData, std::uint64_t uiDataLength)
             this->getMapStackContainer()->pushStack(*cTempStack);
 
             //1 Byte is Stack Modifier
-            this->readPoint_1(pData, uiStackID, uiOffset + 2, i);
+            this->readPoint_1(pData, uiStackID, uiOffset, i - 1);
             uiStackID += 1;
-            uiOffset = i;
+            uiOffset = i + 1;
         }
     }
 
@@ -187,8 +187,8 @@ bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegi
     if ((uiEnd - uiBegin) < 6)
         return false;
 
-    do
-    {
+    //do
+    while ((uiEnd - uiBegin) > 8) {
         CMapPoint *cTempPoint = new CMapPoint();
 
         cTempPoint->setFlag(Flag_Type::FLAG_SPECIAL, (std::uint8_t)pData[uiBegin]);
@@ -208,7 +208,7 @@ bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegi
         uiBegin += 8;
 
     //Full point is 8 long
-    } while ((uiEnd - uiBegin) < 8);
+    } //while ((uiEnd - uiBegin) < 8);
 
     CMapPoint *cTempPoint = new CMapPoint();
 

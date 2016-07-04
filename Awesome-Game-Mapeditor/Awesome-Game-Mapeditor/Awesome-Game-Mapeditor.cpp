@@ -38,7 +38,9 @@ int main()
 {
     CMap *map = new CMap();
     //TODO: find out where the .exe is located
-    map->loadFromFile("Maps\\w1.awf");
+    //not workinf, wolo
+    //map->loadFromFile("Maps\\w1.awf");
+    map->loadFromFile("C:\\Users\\fvv1\\Desktop\\w1.awf");
 
     std::cout << "Version: " << map->getMapInfo()->getVersion() << std::endl;
 
