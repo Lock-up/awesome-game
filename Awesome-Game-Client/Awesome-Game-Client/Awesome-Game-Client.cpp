@@ -21,7 +21,8 @@ int main()
 
 	while (window.isOpen())
 	{
-		//window.clear();
+		//window.clear(sf::Color::Black);
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -38,8 +39,8 @@ int main()
 			}
 		}
 
-		//window.draw(shape);
-		
+
+		//window.display();
 	}
 
 	return 0;
