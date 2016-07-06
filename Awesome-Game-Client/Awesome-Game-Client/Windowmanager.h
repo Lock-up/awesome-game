@@ -1,4 +1,10 @@
 #pragma once
+
+#define BorderWidth 4
+#define ControlBarHeight 28
+#define ControlBarMargin 4
+#define ControlMargin 12
+
 class Windowmanager
 {
 public:
@@ -18,8 +24,7 @@ public:
 	{
 		_window = window;
 	}
-	void CreateWindow();
-	void xyz() {};
+	void CreateWindow(float width = 400, float height = 280);
 
 private:
 	sf::RenderWindow* _window;
