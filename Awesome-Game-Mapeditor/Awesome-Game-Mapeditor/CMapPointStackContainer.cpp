@@ -30,7 +30,7 @@ bool CMapPointStackContainer::popStack()
     }
 }
 
-CMapPointStack CMapPointStackContainer::getStack(std::uint32_t uiIndex)
+CMapPointStack CMapPointStackContainer::getStack(std::uint64_t uiIndex)
 {
     // TODO: check if we read out of bounds
     //if (this->vMapPointsStacks.size() < uiIndex)

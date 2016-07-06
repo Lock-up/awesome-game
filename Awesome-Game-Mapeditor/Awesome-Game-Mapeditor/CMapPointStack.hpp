@@ -35,6 +35,7 @@ public:
     bool            popMapPoint();
     bool            pushMapPoint(CMapPoint);
     std::vector<CMapPoint>  getMapPoints();
+    CMapPoint       getLastMapPoint();
 
     //TODO: Flags
     //TODO: Konstructor

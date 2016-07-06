@@ -75,6 +75,8 @@ bool CMap::loadFromFile(std::string strFileName)
     default: return false; break;
     }
 
+    this->createPixels();
+
     delete[] pTempHeader;
     delete[] pTempFile;
     delete[] pTempData;
@@ -233,5 +235,61 @@ bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegi
     default: return false; break;
     }
 
+    return true;
+}
+
+sf::Uint8* CMap::getPixels()
+{
+    return this->pPixels;
+}
+
+bool CMap::updatePixel(std::uint64_t uiID)
+{
+    if (uiID > this->cMapInfo->getMapSizeX() * this->cMapInfo->getMapSizeY())
+        return false;
+
+    std::uint8_t uiNewR, uiNewG, uiNewB, uiNewA;
+
+    this->cMapStackContainer->getStack(uiID).getLastMapPoint().getRGB(uiNewR, uiNewG, uiNewB);
+    //TODO
+    //uiNewA = this->cMapStackContainer->getStack(uiID).getLastMapPoint().getAlpha();
+    uiNewA = 255;
+
+    return this->setPixel(uiID, uiNewR, uiNewG, uiNewB, uiNewA);
+}
+
+bool CMap::updatePixels(std::uint64_t uiPixelUpdates)
+{
+    if (uiPixelUpdates == 0)
+    {
+        for (std::uint64_t i = 0; i < (cMapInfo->getMapSizeX() * cMapInfo->getMapSizeY()); i++)
+            this->updatePixel(i);
+    }
+    //TODO
+    else
+    {
+
+    }
+    return true;
+}
+
+bool CMap::setPixel(std::uint64_t uiID, std::uint8_t uiR, std::uint8_t uiG, std::uint8_t uiB, std::uint8_t uiA)
+{
+    if (uiID > this->cMapInfo->getMapSizeX() * this->cMapInfo->getMapSizeY())
+        return false;
+
+    std::uint64_t uiOffset = uiID * 4;
+
+    this->pPixels[uiOffset] = uiR;
+    this->pPixels[uiOffset + 1] = uiG;
+    this->pPixels[uiOffset + 2] = uiR;
+    this->pPixels[uiOffset + 3] = uiA;
+
+    return true;
+}
+
+bool CMap::createPixels()
+{
+    this->pPixels = new sf::Uint8[(unsigned int)(this->cMapInfo->getMapSizeX() * this->cMapInfo->getMapSizeY() * 4)];
     return true;
 }

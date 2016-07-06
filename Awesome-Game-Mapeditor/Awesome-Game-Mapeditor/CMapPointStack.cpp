@@ -82,6 +82,11 @@ std::vector<CMapPoint> CMapPointStack::getMapPoints()
     return this->vMapPoints;
 }
 
+CMapPoint CMapPointStack::getLastMapPoint()
+{
+    return this->vMapPoints.at(vMapPoints.size() - 1);
+}
+
 //TODO: Flags
 //TODO: Konstructor
 //TODO: Destructor

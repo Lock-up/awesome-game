@@ -10,7 +10,7 @@ public:
     bool            setStack(CMapPointStack, std::uint32_t);
     bool            pushStack(CMapPointStack);
     bool            popStack();
-    CMapPointStack  getStack(std::uint32_t);
+    CMapPointStack  getStack(std::uint64_t);
 };
 
 #endif

@@ -57,6 +57,18 @@ int main()
 
     std::cout << "Players: " << (int)map->getMapPlayerInfo()->getPlayerCount() << std::endl;
 
+    sf::Texture tex;
+    tex.create(map->getMapInfo()->getMapSizeX(),map->getMapInfo()->getMapSizeY());
+
+    sf::Uint8* pPix = map->getPixels();
+
+    tex.update(pPix);
+
+    sf::Sprite spr;
+    spr.scale(sf::Vector2f(16.f, 16.f));
+    spr.setTexture(tex);
+
+
 	//sf::VideoMode mode;
 	//sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
     sf::RenderWindow window(sf::VideoMode(320, 240), "SFML works!");
@@ -97,7 +109,8 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+		//window.draw(shape);
+        window.draw(spr);
 		window.display();
 	}
 
