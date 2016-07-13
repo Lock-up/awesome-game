@@ -30,6 +30,7 @@ bool CMap::loadFromFile(std::string strFileName)
 
     file.seekg(0, file.end);
     uiFileLength = file.tellg();
+    uiFileLength -= 1;
     file.seekg(0, file.beg);
 
     std::cout << "Bytes: " << uiFileLength << std::endl;
@@ -47,7 +48,7 @@ bool CMap::loadFromFile(std::string strFileName)
     std::uint16_t uiTempHeader = (((int)pTempFile[2]) << 8);
     uiTempHeader += (int)pTempFile[3];
 
-    std::cout << uiTempHeader << std::endl;
+    std::cout << "Header Bytes: " << uiTempHeader << std::endl;
 
     int* pTempHeader = new int[(unsigned int)uiTempHeader];
 
@@ -57,6 +58,8 @@ bool CMap::loadFromFile(std::string strFileName)
     }
 
     this->cMapStackContainer = new CMapPointStackContainer();
+
+    std::cout << "Data Bytes: " << (uiFileLength - uiTempHeader) << std::endl;
 
     int* pTempData = new int[(unsigned int)(uiFileLength - uiTempHeader)];
 
@@ -148,91 +151,88 @@ bool CMap::readHeader_1(int* pHeader, std::uint16_t uiDataLength)
 
 bool CMap::readData_1(int* pData, std::uint64_t uiDataLength)
 {
-    if (pData == nullptr)
-        return false;
+    // 1
+    // PointsCount
+    // 1
+    // StackFlags
+    //
+    // PointFlags1
+    // PointSlags2
+    // R
+    // G
+    // B
+    // Height
+    // Resource
+    // Amount
 
     std::uint64_t uiOffset = 0;
-    std::uint64_t uiStackID = 0;
 
-    for (std::uint64_t i = 0; i < uiDataLength; i++)
+    while (uiOffset < uiDataLength)
     {
-        //Stack ends, now we have both offsets
-        if (pData[i] == 0)
-        {
-            //woopsie, cant store flags yet
-            //this->cMapStackContainer.getStack(uiStackID)->set
+        CMapPointStack *cTempStack = new CMapPointStack();
 
-            CMapPointStack *cTempStack = new CMapPointStack();
-            this->getMapStackContainer()->pushStack(*cTempStack);
+        std::cout << "Inserting stack" << std::endl;
 
-            //1 Byte is Stack Modifier
-            this->readPoint_1(pData, uiStackID, uiOffset, i - 1);
-            uiStackID += 1;
-            uiOffset = i + 1;
-        }
+        std::uint8_t uiPoints = pData[uiOffset];
+        uiOffset += 1;
+
+        std::cout << "With " << (int)uiPoints << " points" << std::endl;
+
+        //cTempStack->setStackFlag(pData[uiOffset + 1]);
+        uiOffset += 1;
+
+        this->cMapStackContainer->pushStack(*cTempStack);
+
+        this->readPoints_1(pData, uiPoints, uiOffset);
+
+        uiOffset += (uiPoints * MAX_POINT_LENGTH);
+        std::cout << "Offset is set to " << uiOffset << std::endl;
     }
+    
 
     return true;
 }
 
-bool CMap::readPoint_1(int* pData, std::uint64_t uiStackID, std::uint64_t uiBegin, std::uint64_t uiEnd)
+bool CMap::readPoints_1(int* pData, std::uint8_t uiPoints, std::uint64_t uiOffset)
 {
-    std::cout << "Begin: " << uiBegin << " End: " << uiEnd << std::endl;
-
-    if (pData == nullptr)
-        return false;
-
-    if (uiBegin >= uiEnd)
-        return false;
-
-    // length needs to be at least 6
-    if ((uiEnd - uiBegin) < 6)
-        return false;
-
-    //do
-    while ((uiEnd - uiBegin) > 8) {
-        CMapPoint *cTempPoint = new CMapPoint();
-
-        cTempPoint->setFlag(Flag_Type::FLAG_SPECIAL, (std::uint8_t)pData[uiBegin]);
-        cTempPoint->setFlag(Flag_Type::FLAG_TYPE, (std::uint8_t)pData[uiBegin + 1]);
-
-        cTempPoint->setHeight((std::uint8_t)pData[uiBegin + 2]);
-
-        cTempPoint->setRGB((std::uint8_t)pData[uiBegin + 3], (std::uint8_t)pData[uiBegin + 4], (std::uint8_t)pData[uiBegin + 5]);
-
-        cTempPoint->setAmount(pData[uiBegin + 6]);
-
-        cTempPoint->setResource(pData[uiBegin + 7]);
-
-        this->getMapStackContainer()->getStack(uiStackID).pushMapPoint(*cTempPoint);
-
-        std::cout << "Long point inserted" << std::endl;
-        uiBegin += 8;
-
-    //Full point is 8 long
-    } //while ((uiEnd - uiBegin) < 8);
-
-    CMapPoint *cTempPoint = new CMapPoint();
-
-    switch (uiEnd - uiBegin)
+    for (std::uint64_t i = 0; i < uiPoints; i++)
     {
-    case 8:
-        cTempPoint->setResource(pData[uiBegin + 7]);
-    case 7:
-        cTempPoint->setAmount(pData[uiBegin + 6]);
-    case 6:
-        cTempPoint->setFlag(Flag_Type::FLAG_SPECIAL, (std::uint8_t)pData[uiBegin]);
-        cTempPoint->setFlag(Flag_Type::FLAG_TYPE, (std::uint8_t)pData[uiBegin + 1]);
+        std::cout << "i: " << (int)i << "     Max" << (int)(uiPoints * MAX_POINT_LENGTH) << std::endl;
+        CMapPoint *cTempPoint = new CMapPoint();
+        std::cout << "Inserting point for stack" << std::endl;
+        cTempPoint->setFlags(Flag_Type::FLAG_TYPE, pData[uiOffset]);
+        std::cout << "Flag type: " << pData[uiOffset] << std::endl;
+        uiOffset += 1;
 
-        cTempPoint->setHeight((std::uint8_t)pData[uiBegin + 2]);
+        cTempPoint->setFlags(Flag_Type::FLAG_SPECIAL, pData[uiOffset]);
+        std::cout << "Flag special: " << pData[uiOffset] << std::endl;
+        uiOffset += 1;
 
-        cTempPoint->setRGB((std::uint8_t)pData[uiBegin + 3], (std::uint8_t)pData[uiBegin + 4], (std::uint8_t)pData[uiBegin + 5]);
+        cTempPoint->setR(pData[uiOffset]);
+        std::cout << "RGB: " << pData[uiOffset] << pData[uiOffset + 1] << pData[uiOffset+2] << std::endl;
+        uiOffset += 1;
 
-        this->getMapStackContainer()->getStack(uiStackID).pushMapPoint(*cTempPoint);
-        //cMapStackContainer->getStack(uiStackID)->pushMapPoint(cTempPoint);
+        cTempPoint->setG(pData[uiOffset]);
+        uiOffset += 1;
 
-        std::cout << "Short point inserted" << std::endl;
-    default: return false; break;
+        cTempPoint->setB(pData[uiOffset]);
+        uiOffset += 1;
+
+        cTempPoint->setHeight(pData[uiOffset]);
+        std::cout << "Height: " << pData[uiOffset] << std::endl;
+        uiOffset += 1;
+
+        cTempPoint->setResource(pData[uiOffset]);
+        std::cout << "Resource: " << pData[uiOffset] << std::endl;
+        uiOffset += 1;
+
+        cTempPoint->setAmount(pData[uiOffset]);
+        std::cout << "Amount: " << pData[uiOffset] << std::endl;
+        uiOffset += 1;
+
+        std::cout << "Offset is: " << uiOffset << std::endl;
+
+        this->cMapStackContainer->getLastStack().pushMapPoint(cTempPoint);
     }
 
     return true;
@@ -250,7 +250,7 @@ bool CMap::updatePixel(std::uint64_t uiID)
 
     std::uint8_t uiNewR, uiNewG, uiNewB, uiNewA;
 
-    this->cMapStackContainer->getStack(uiID).getLastMapPoint().getRGB(uiNewR, uiNewG, uiNewB);
+    this->cMapStackContainer->getLastStackPoint(uiID).getRGB(uiNewR, uiNewG, uiNewB);
     //TODO
     //uiNewA = this->cMapStackContainer->getStack(uiID).getLastMapPoint().getAlpha();
     uiNewA = 255;
@@ -291,5 +291,8 @@ bool CMap::setPixel(std::uint64_t uiID, std::uint8_t uiR, std::uint8_t uiG, std:
 bool CMap::createPixels()
 {
     this->pPixels = new sf::Uint8[(unsigned int)(this->cMapInfo->getMapSizeX() * this->cMapInfo->getMapSizeY() * 4)];
+    
+    this->updatePixels(0);
+    
     return true;
 }

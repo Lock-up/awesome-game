@@ -41,5 +41,24 @@ CMapPointStack CMapPointStackContainer::getStack(std::uint64_t uiIndex)
     }
 }
 
+CMapPoint CMapPointStackContainer::getLastStackPoint(std::uint64_t uiIndex)
+{
+    // TODO: check if we read out of bounds
+    //if (this->vMapPointsStacks.size() < uiIndex)
+    //    return nullptr;
+    //else
+    {
+        std::cout << "Stacks: " << (int) this->vMapPointsStacks.size() << std::endl;
+        std::cout << "At index: " << (int) uiIndex << std::endl;
+        std::cout << "Points in stack: " << (int) this->vMapPointsStacks.at(uiIndex).getMapPointCount() << std::endl;
+        return this->vMapPointsStacks.at(uiIndex).getLastMapPoint();
+    }
+}
+
+CMapPointStack CMapPointStackContainer::getLastStack()
+{
+    return this->vMapPointsStacks.back();
+}
+
 // TODO: Konstructor
 // TODO: Destructor

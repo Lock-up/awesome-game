@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 
+const std::uint64_t MAX_POINT_LENGTH = 8;
+
 class CMap{
 private:
     CMapInfo                *cMapInfo;
@@ -21,7 +23,7 @@ public:
 private:
     bool                        readHeader_1(int*, std::uint16_t);
     bool                        readData_1(int*, std::uint64_t);
-    bool                        readPoint_1(int*, std::uint64_t, std::uint64_t, std::uint64_t);
+    bool                        readPoints_1(int*, std::uint8_t, std::uint64_t);
     bool                        setPixel(std::uint64_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t);
     bool                        createPixels();
 };

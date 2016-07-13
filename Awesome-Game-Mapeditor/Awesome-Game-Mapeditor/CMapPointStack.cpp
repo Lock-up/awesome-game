@@ -68,7 +68,7 @@ bool CMapPointStack::popMapPoint()
     return true;
 }
 
-bool CMapPointStack::pushMapPoint(CMapPoint cMapPoint)
+bool CMapPointStack::pushMapPoint(CMapPoint *cMapPoint)
 {
     if (vMapPoints.size() >= 255)
         return false;
@@ -84,7 +84,7 @@ std::vector<CMapPoint> CMapPointStack::getMapPoints()
 
 CMapPoint CMapPointStack::getLastMapPoint()
 {
-    return this->vMapPoints.at(vMapPoints.size() - 1);
+    return this->vMapPoints.back();
 }
 
 //TODO: Flags

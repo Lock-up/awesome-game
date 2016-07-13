@@ -89,6 +89,8 @@ public:
     std::bitset<8>  getFlag(Flag_Type);
     bool            setFlag(Flag_Type, std::uint8_t);
     bool            letFlag(Flag_Type, std::uint8_t);
+
+    void            showInfo();
     //TODO: Konstructor
     //TODO: Destructor
 

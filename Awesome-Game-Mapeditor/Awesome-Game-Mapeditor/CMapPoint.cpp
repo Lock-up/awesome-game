@@ -316,3 +316,8 @@ bool CMapPoint::changeRGBComponent(std::uint8_t uiIndex, std::int16_t iValue, bo
         }
     }
 }
+
+void CMapPoint::showInfo()
+{
+    std::cout << std::endl;
+}
