@@ -181,7 +181,7 @@ bool CMap::readData_1(int* pData, std::uint64_t uiDataLength)
         //cTempStack->setStackFlag(pData[uiOffset + 1]);
         uiOffset += 1;
 
-        this->cMapStackContainer->pushStack(*cTempStack);
+        this->cMapStackContainer->pushStack(cTempStack);
 
         this->readPoints_1(pData, uiPoints, uiOffset);
 
@@ -232,7 +232,7 @@ bool CMap::readPoints_1(int* pData, std::uint8_t uiPoints, std::uint64_t uiOffse
 
         std::cout << "Offset is: " << uiOffset << std::endl;
 
-        this->cMapStackContainer->getLastStack().pushMapPoint(cTempPoint);
+        this->cMapStackContainer->getLastStack()->pushMapPoint(cTempPoint);
     }
 
     return true;
@@ -250,7 +250,7 @@ bool CMap::updatePixel(std::uint64_t uiID)
 
     std::uint8_t uiNewR, uiNewG, uiNewB, uiNewA;
 
-    this->cMapStackContainer->getLastStackPoint(uiID).getRGB(uiNewR, uiNewG, uiNewB);
+    this->cMapStackContainer->getLastStackPoint(uiID)->getRGB(uiNewR, uiNewG, uiNewB);
     //TODO
     //uiNewA = this->cMapStackContainer->getStack(uiID).getLastMapPoint().getAlpha();
     uiNewA = 255;

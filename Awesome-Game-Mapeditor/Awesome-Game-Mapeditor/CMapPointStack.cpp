@@ -77,12 +77,12 @@ bool CMapPointStack::pushMapPoint(CMapPoint *cMapPoint)
     return true;
 }
 
-std::vector<CMapPoint> CMapPointStack::getMapPoints()
+std::vector<CMapPoint*> CMapPointStack::getMapPoints()
 {
     return this->vMapPoints;
 }
 
-CMapPoint CMapPointStack::getLastMapPoint()
+CMapPoint* CMapPointStack::getLastMapPoint()
 {
     return this->vMapPoints.back();
 }

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-bool CMapPointStackContainer::setStack(CMapPointStack cNewPointStack, std::uint32_t uiIndex)
+bool CMapPointStackContainer::setStack(CMapPointStack* cNewPointStack, std::uint32_t uiIndex)
 {
     if (uiIndex > this->vMapPointsStacks.size())
         return false;
@@ -11,7 +11,7 @@ bool CMapPointStackContainer::setStack(CMapPointStack cNewPointStack, std::uint3
     }
 }
 
-bool CMapPointStackContainer::pushStack(CMapPointStack cNewPointStack)
+bool CMapPointStackContainer::pushStack(CMapPointStack* cNewPointStack)
 {
     // TODO: check if we add more stacks than maximum map size
     //if (this->vMapPointsStacks.size())
@@ -30,7 +30,7 @@ bool CMapPointStackContainer::popStack()
     }
 }
 
-CMapPointStack CMapPointStackContainer::getStack(std::uint64_t uiIndex)
+CMapPointStack* CMapPointStackContainer::getStack(std::uint64_t uiIndex)
 {
     // TODO: check if we read out of bounds
     //if (this->vMapPointsStacks.size() < uiIndex)
@@ -41,7 +41,7 @@ CMapPointStack CMapPointStackContainer::getStack(std::uint64_t uiIndex)
     }
 }
 
-CMapPoint CMapPointStackContainer::getLastStackPoint(std::uint64_t uiIndex)
+CMapPoint* CMapPointStackContainer::getLastStackPoint(std::uint64_t uiIndex)
 {
     // TODO: check if we read out of bounds
     //if (this->vMapPointsStacks.size() < uiIndex)
@@ -50,12 +50,12 @@ CMapPoint CMapPointStackContainer::getLastStackPoint(std::uint64_t uiIndex)
     {
         std::cout << "Stacks: " << (int) this->vMapPointsStacks.size() << std::endl;
         std::cout << "At index: " << (int) uiIndex << std::endl;
-        std::cout << "Points in stack: " << (int) this->vMapPointsStacks.at(uiIndex).getMapPointCount() << std::endl;
-        return this->vMapPointsStacks.at(uiIndex).getLastMapPoint();
+        std::cout << "Points in stack: " << (int) this->vMapPointsStacks.at(uiIndex)->getMapPointCount() << std::endl;
+        return this->vMapPointsStacks.at(uiIndex)->getLastMapPoint();
     }
 }
 
-CMapPointStack CMapPointStackContainer::getLastStack()
+CMapPointStack* CMapPointStackContainer::getLastStack()
 {
     return this->vMapPointsStacks.back();
 }
