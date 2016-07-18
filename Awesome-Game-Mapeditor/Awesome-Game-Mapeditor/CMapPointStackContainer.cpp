@@ -13,8 +13,9 @@ bool CMapPointStackContainer::setStack(CMapPointStack* cNewPointStack, std::uint
 
 bool CMapPointStackContainer::pushStack(CMapPointStack* cNewPointStack)
 {
-    // TODO: check if we add more stacks than maximum map size
-    //if (this->vMapPointsStacks.size())
+    if (this->vMapPointsStacks.size() >= sizeof(std::uint64_t))
+        return false;
+
     this->vMapPointsStacks.push_back(cNewPointStack);
     return true;
 }
@@ -32,27 +33,20 @@ bool CMapPointStackContainer::popStack()
 
 CMapPointStack* CMapPointStackContainer::getStack(std::uint64_t uiIndex)
 {
-    // TODO: check if we read out of bounds
-    //if (this->vMapPointsStacks.size() < uiIndex)
-    //    return nullptr;
-    //else
+    if (this->vMapPointsStacks.size() < uiIndex)
+        return new CMapPointStack();
+    else
     {
-        return this->vMapPointsStacks.at(uiIndex);
+        return this->vMapPointsStacks.at((unsigned int)uiIndex);
     }
 }
 
 CMapPoint* CMapPointStackContainer::getLastStackPoint(std::uint64_t uiIndex)
 {
-    // TODO: check if we read out of bounds
-    //if (this->vMapPointsStacks.size() < uiIndex)
-    //    return nullptr;
-    //else
-    {
-        std::cout << "Stacks: " << (int) this->vMapPointsStacks.size() << std::endl;
-        std::cout << "At index: " << (int) uiIndex << std::endl;
-        std::cout << "Points in stack: " << (int) this->vMapPointsStacks.at(uiIndex)->getMapPointCount() << std::endl;
-        return this->vMapPointsStacks.at(uiIndex)->getLastMapPoint();
-    }
+    if (this->vMapPointsStacks.size() < uiIndex)
+        return new CMapPoint();
+    else
+        return this->vMapPointsStacks.at((unsigned int)uiIndex)->getLastMapPoint();
 }
 
 CMapPointStack* CMapPointStackContainer::getLastStack()

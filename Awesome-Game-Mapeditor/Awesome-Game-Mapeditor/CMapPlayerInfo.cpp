@@ -26,7 +26,6 @@ bool CMapPlayerInfo::popPlayer(std::uint16_t uiPosX, std::uint16_t uiPosY)
         return false;
     else
     {
-        //std::distance(it,this->vPositions.begin());
         this->vPositions.erase(it);
         return true;
     }

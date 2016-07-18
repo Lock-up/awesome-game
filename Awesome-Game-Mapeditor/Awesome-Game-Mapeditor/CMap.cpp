@@ -24,7 +24,7 @@ bool CMap::loadFromFile(std::string strFileName)
 
     std::ifstream file(pFileName, std::ifstream::binary);
 
-    std::cout << "loaded" << std::endl;
+    std::cout << "Loading map '" << strFileName << "' ..." << std::endl;
 
     std::uint64_t uiFileLength = 0;
 
@@ -32,8 +32,6 @@ bool CMap::loadFromFile(std::string strFileName)
     uiFileLength = file.tellg();
     uiFileLength -= 1;
     file.seekg(0, file.beg);
-
-    std::cout << "Bytes: " << uiFileLength << std::endl;
 
     char* pTempFile = new char[(unsigned int)uiFileLength];
 
@@ -48,8 +46,6 @@ bool CMap::loadFromFile(std::string strFileName)
     std::uint16_t uiTempHeader = (((int)pTempFile[2]) << 8);
     uiTempHeader += (int)pTempFile[3];
 
-    std::cout << "Header Bytes: " << uiTempHeader << std::endl;
-
     int* pTempHeader = new int[(unsigned int)uiTempHeader];
 
     for (std::uint8_t i = 0; i < uiTempHeader; i++)
@@ -58,8 +54,6 @@ bool CMap::loadFromFile(std::string strFileName)
     }
 
     this->cMapStackContainer = new CMapPointStackContainer();
-
-    std::cout << "Data Bytes: " << (uiFileLength - uiTempHeader) << std::endl;
 
     int* pTempData = new int[(unsigned int)(uiFileLength - uiTempHeader)];
 
@@ -85,6 +79,9 @@ bool CMap::loadFromFile(std::string strFileName)
     delete[] pTempData;
 
     file.close();
+
+    std::cout << "Map '" << strFileName << "' has been loaded!" << std::endl;
+
     return true;
 }
 
@@ -171,12 +168,8 @@ bool CMap::readData_1(int* pData, std::uint64_t uiDataLength)
     {
         CMapPointStack *cTempStack = new CMapPointStack();
 
-        std::cout << "Inserting stack" << std::endl;
-
         std::uint8_t uiPoints = pData[uiOffset];
         uiOffset += 1;
-
-        std::cout << "With " << (int)uiPoints << " points" << std::endl;
 
         //cTempStack->setStackFlag(pData[uiOffset + 1]);
         uiOffset += 1;
@@ -186,9 +179,7 @@ bool CMap::readData_1(int* pData, std::uint64_t uiDataLength)
         this->readPoints_1(pData, uiPoints, uiOffset);
 
         uiOffset += (uiPoints * MAX_POINT_LENGTH);
-        std::cout << "Offset is set to " << uiOffset << std::endl;
     }
-    
 
     return true;
 }
@@ -197,19 +188,15 @@ bool CMap::readPoints_1(int* pData, std::uint8_t uiPoints, std::uint64_t uiOffse
 {
     for (std::uint64_t i = 0; i < uiPoints; i++)
     {
-        std::cout << "i: " << (int)i << "     Max" << (int)(uiPoints * MAX_POINT_LENGTH) << std::endl;
         CMapPoint *cTempPoint = new CMapPoint();
-        std::cout << "Inserting point for stack" << std::endl;
+
         cTempPoint->setFlags(Flag_Type::FLAG_TYPE, pData[uiOffset]);
-        std::cout << "Flag type: " << pData[uiOffset] << std::endl;
         uiOffset += 1;
 
         cTempPoint->setFlags(Flag_Type::FLAG_SPECIAL, pData[uiOffset]);
-        std::cout << "Flag special: " << pData[uiOffset] << std::endl;
         uiOffset += 1;
 
         cTempPoint->setR(pData[uiOffset]);
-        std::cout << "RGB: " << pData[uiOffset] << pData[uiOffset + 1] << pData[uiOffset+2] << std::endl;
         uiOffset += 1;
 
         cTempPoint->setG(pData[uiOffset]);
@@ -219,18 +206,13 @@ bool CMap::readPoints_1(int* pData, std::uint8_t uiPoints, std::uint64_t uiOffse
         uiOffset += 1;
 
         cTempPoint->setHeight(pData[uiOffset]);
-        std::cout << "Height: " << pData[uiOffset] << std::endl;
         uiOffset += 1;
 
         cTempPoint->setResource(pData[uiOffset]);
-        std::cout << "Resource: " << pData[uiOffset] << std::endl;
         uiOffset += 1;
 
         cTempPoint->setAmount(pData[uiOffset]);
-        std::cout << "Amount: " << pData[uiOffset] << std::endl;
         uiOffset += 1;
-
-        std::cout << "Offset is: " << uiOffset << std::endl;
 
         this->cMapStackContainer->getLastStack()->pushMapPoint(cTempPoint);
     }

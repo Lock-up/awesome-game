@@ -49,14 +49,6 @@ int main()
 
     map->loadFromFile("Maps\\w1.awf");
 
-    std::cout << "Version: " << map->getMapInfo()->getVersion() << std::endl;
-
-    std::cout << "X: " << map->getMapInfo()->getMapSizeX() << " Y: " << map->getMapInfo()->getMapSizeY() << std::endl;
-
-    std::cout << "Name: " << map->getMapInfo()->getMapName() << std::endl;
-
-    std::cout << "Players: " << (int)map->getMapPlayerInfo()->getPlayerCount() << std::endl;
-
     sf::Texture tex;
     tex.create(map->getMapInfo()->getMapSizeX(),map->getMapInfo()->getMapSizeY());
 
@@ -65,7 +57,7 @@ int main()
     tex.update(pPix);
 
     sf::Sprite spr;
-    spr.scale(sf::Vector2f(16.f, 16.f));
+    spr.scale(16.f, 16.f);
     spr.setTexture(tex);
 
 
@@ -105,6 +97,20 @@ int main()
 					sf::Thread thread(&right);
 					thread.launch();
 				}
+                else if (event.key.code == sf::Keyboard::Key::Add || event.key.code == sf::Keyboard::Key::Equal)
+                {
+                    spr.scale(2.f, 2.f);
+                    std::cout << "Scale up to: " << spr.getScale().x << std::endl;
+                }
+                else if (event.key.code == sf::Keyboard::Key::Subtract || event.key.code == sf::Keyboard::Key::Dash)
+                {
+                    spr.scale(0.5f, 0.5f);
+                    std::cout << "Scale down to: " << spr.getScale().x << std::endl;
+                }
+                else
+                {
+                    std::cout << "Key '" << event.key.code << "' was pressed but has no function!" << std::endl;
+                }
 			}
 		}
 
