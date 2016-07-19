@@ -49,6 +49,8 @@ int main()
 
     map->loadFromFile("Maps\\w1.awf");
 
+    map->getMapPlayerInfo()->createPlayerMarkerPixels(*map->getMapInfo());
+
     sf::Texture tex;
     tex.create(map->getMapInfo()->getMapSizeX(),map->getMapInfo()->getMapSizeY());
 
@@ -60,6 +62,16 @@ int main()
     spr.scale(16.f, 16.f);
     spr.setTexture(tex);
 
+    sf::Texture tex2;
+    tex2.create(map->getMapInfo()->getMapSizeX(), map->getMapInfo()->getMapSizeY());
+
+    sf::Uint8* pPix2 = map->getMapPlayerInfo()->getPlayerMarker();
+
+    tex2.update(pPix2);
+
+    sf::Sprite spr2;
+    spr2.scale(16.f, 16.f);
+    spr2.setTexture(tex2);
 
 	//sf::VideoMode mode;
 	//sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
@@ -100,12 +112,19 @@ int main()
                 else if (event.key.code == sf::Keyboard::Key::Add || event.key.code == sf::Keyboard::Key::Equal)
                 {
                     spr.scale(2.f, 2.f);
+                    spr2.scale(2.f, 2.f);
+
                     std::cout << "Scale up to: " << spr.getScale().x << std::endl;
                 }
                 else if (event.key.code == sf::Keyboard::Key::Subtract || event.key.code == sf::Keyboard::Key::Dash)
                 {
                     spr.scale(0.5f, 0.5f);
+                    spr2.scale(0.5f, 0.5f);
                     std::cout << "Scale down to: " << spr.getScale().x << std::endl;
+                }
+                else if (event.key.code == sf::Keyboard::Key::P)
+                {
+                    map->toggleShowPlayers();
                 }
                 else
                 {
@@ -117,6 +136,9 @@ int main()
 		window.clear();
 		//window.draw(shape);
         window.draw(spr);
+        if (map->getShowPlayers())
+            window.draw(spr2);
+
 		window.display();
 	}
 

@@ -11,6 +11,7 @@ private:
     CMapPlayerInfo          *cMapPlayerInfo;
     CMapPointStackContainer *cMapStackContainer;
     sf::Uint8*              pPixels;
+    bool                    showPlayers;
 public:
     CMapInfo*                   getMapInfo();
     CMapPlayerInfo*             getMapPlayerInfo();
@@ -19,6 +20,10 @@ public:
     sf::Uint8*                  getPixels();
     bool                        updatePixel(std::uint64_t);
     bool                        updatePixels(std::uint64_t);
+
+    void                        toggleShowPlayers();
+    bool                        getShowPlayers();
+    void                        setShowPlayers(bool);
 
 private:
     bool                        readHeader_1(int*, std::uint16_t);

@@ -2,6 +2,7 @@
 #define CMAPPLAYERINFO_HPP
 
 #include "stdafx.h"
+#include "CMapInfo.hpp"
 
 struct SPosition
 {
@@ -16,9 +17,8 @@ struct SPosition
 
 class CMapPlayerInfo{
 private:
-    //std::uint8_t            uiPlayerCount;
-    //sPosition*      pPositions;
     std::vector<SPosition>  vPositions;
+    sf::Uint8*              pPlayerMarkerPixels;
 
 public:
     std::uint8_t    getPlayerCount();
@@ -29,6 +29,13 @@ public:
     SPosition       getPlayerPosition(std::uint8_t);
     bool            pushPlayer(SPosition);
     bool            pushPlayer(std::uint16_t, std::uint16_t);
+
+    bool            createPlayerMarkerPixels(CMapInfo);
+    bool            createPlayerMarkerPixels(CMapInfo, std::uint32_t, std::uint32_t);
+    bool            updatePlayerMarkerPixels(CMapInfo, std::uint32_t, std::uint32_t, bool);
+    bool            updatePlayerMarkerPixels(CMapInfo, SPosition, bool);
+    sf::Uint8*      getPlayerMarker();
+
 };
 
 #endif

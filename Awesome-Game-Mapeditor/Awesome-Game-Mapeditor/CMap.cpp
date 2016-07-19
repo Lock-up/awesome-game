@@ -20,6 +20,9 @@ bool CMap::loadFromFile(std::string strFileName)
     if (strFileName == "")
         return false;
 
+    //TODO: constructor
+    this->showPlayers = false;
+    
     const char* pFileName = strFileName.c_str();
 
     std::ifstream file(pFileName, std::ifstream::binary);
@@ -277,4 +280,18 @@ bool CMap::createPixels()
     this->updatePixels(0);
     
     return true;
+}
+
+void CMap::toggleShowPlayers()
+{
+    this->showPlayers = !this->showPlayers;
+}
+
+bool CMap::getShowPlayers()
+{
+    return this->showPlayers;
+}
+void CMap::setShowPlayers(bool bValue)
+{
+    this->showPlayers = bValue;
 }
