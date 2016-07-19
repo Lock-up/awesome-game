@@ -64,12 +64,6 @@ SPosition CMapPlayerInfo::getPlayerPosition(std::uint8_t uiPlayerID)
         return SPosition{ 0, 0 };
     else
         return this->vPositions.at(uiPlayerID);
-    //auto it = std::find(this->vPositions.begin(), this->vPositions.end(), posTemp);
-
-    //if (it == this->vPositions.end())
-    //    return posTemp;
-    //else
-    //    return this->vPositions.at(std::distance(it, this->vPositions.begin()));
 }
 
 bool CMapPlayerInfo::pushPlayer(SPosition posNewPlayer)
@@ -80,9 +74,7 @@ bool CMapPlayerInfo::pushPlayer(SPosition posNewPlayer)
         return false;
     else
     {
-        std::cout << "adding player at " << posNewPlayer.uiX << ":" << posNewPlayer.uiY << std::endl;
         this->vPositions.push_back(posNewPlayer);
-        std::cout << "added player at " << this->vPositions.back().uiX << ":" << this->vPositions.back().uiY << std::endl;
         return true;
     }
 }
@@ -99,7 +91,6 @@ bool CMapPlayerInfo::createPlayerMarkerPixels(CMapInfo cMapInfo)
 
     for (std::uint64_t j = 0; j < (4 * cMapInfo.getMapSizeX() * cMapInfo.getMapSizeY()); j+=4)
     {
-        //std::cout << "pixel added at " << (int)j << std::endl;
         pPlayerMarkerPixels[j] = 255;
         pPlayerMarkerPixels[j + 1] = 0;
         pPlayerMarkerPixels[j + 2] = 0;
@@ -107,13 +98,7 @@ bool CMapPlayerInfo::createPlayerMarkerPixels(CMapInfo cMapInfo)
     }
 
     for (std::uint8_t i = 0; i < this->getPlayerCount(); i++)
-    {
-        //std::cout << this->getPlayerPosition(i).uiX << " " << this->getPlayerPosition(i).uiY << std::endl;
         this->updatePlayerMarkerPixels(cMapInfo, this->getPlayerPosition(i), false);
-    }
-
-    //for (std::uint64_t k = 0; k < (4 * cMapInfo.getMapSizeX() * cMapInfo.getMapSizeY()); k+=4)
-    //    std::cout << (int)pPlayerMarkerPixels[k] << " " << (int)pPlayerMarkerPixels[k + 1] << " " << (int)pPlayerMarkerPixels[k + 2] << " " << (int)pPlayerMarkerPixels[k + 3] << std::endl;
 
     return true;
 }
@@ -127,9 +112,6 @@ bool CMapPlayerInfo::updatePlayerMarkerPixels(CMapInfo cMapInfo, std::uint32_t u
         return false;
 
     std::uint64_t uiOffset = 4 * (cMapInfo.getMapSizeX() * uiPosY + uiPosX);
-
-    std::cout << "called with PosX: " << uiPosX << " and PosY: " << uiPosY << std::endl;
-    std::cout << "player pixel added at " << (int)uiOffset << std::endl;
 
     pPlayerMarkerPixels[uiOffset] = 255;
     pPlayerMarkerPixels[uiOffset + 1] = 0;
@@ -145,7 +127,6 @@ bool CMapPlayerInfo::updatePlayerMarkerPixels(CMapInfo cMapInfo, std::uint32_t u
 
 bool CMapPlayerInfo::updatePlayerMarkerPixels(CMapInfo cMapInfo, SPosition sPlayerPos, bool doRemove)
 {
-    std::cout << "PlayerX: " << sPlayerPos.uiX << " PlayerY: " << sPlayerPos.uiY << std::endl;
     return this->updatePlayerMarkerPixels(cMapInfo, sPlayerPos.uiX, sPlayerPos.uiY, doRemove);
 }
 
