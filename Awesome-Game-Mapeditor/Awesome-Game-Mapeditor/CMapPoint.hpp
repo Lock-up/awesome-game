@@ -14,56 +14,72 @@ enum class Resource{
 };
 
 enum class Flag_Opt{
-    OPT1 = 0,
-    OPT2 = 1,
-    OPT3 = 2,
-    OPT4 = 3,
-    OPT5 = 4,
-    OPT6 = 5,
-    OPT7 = 6,
-    OPT8 = 7,
+    OPT1 = 1,
+    OPT2 = 2,
+    OPT3 = 4,
+    OPT4 = 8,
+    OPT5 = 16,
+    OPT6 = 32,
+    OPT7 = 64,
+    OPT8 = 128,
 };
 
 enum class Flag_Type
 {
     FLAG_SPECIAL,
     FLAG_TYPE,
+    FLAG_RESOURCE,
+};
+
+enum class Height_Type
+{
+    HEIGHT_MIN = 0,
+    HEIGHT_ACT = 1,
+    HEIGHT_MAX = 2,
 };
 
 class CMapPoint{
 private:
     std::bitset<8>  bsSpecial;
-    // 0x01 - isTransparent
-    // 0x02 - isStandalone
-    // 0x04 - isAnimated
-    // 0x08 - canBurn
-    // 0x10 -
-    // 0x20 -
-    // 0x40 -
-    // 0x80 -
-    std::bitset<8>  bsType;
-    // 0x01 - isFluid
-    // 0x02 - isFarmland
-    // 0x04 - isLight
-    // 0x08 - 
+    // 0x01 - canBurn 
+    // 0x02 - isBurning
+    // 0x04 - 
+    // 0x08 -
     // 0x10 -
     // 0x20 -
     // 0x40 -
     // 0x80 -
     std::uint8_t    uiRGB[3];
     std::uint8_t    uiHeight;
-    std::uint8_t    uiAmount;
-    std::uint8_t    uiResource;
+    std::uint8_t    uiResource[2];
+    std::uint8_t    uiAmount[2];
+    std::uint8_t    uiResourceTextureID;
+
+    std::uint64_t   GUIDBuilding;
+    std::uint64_t   GUIDUnit;
 
 public:
+    // TODO NEW
     bool            setResource(std::uint8_t, bool bForce = true);
-    bool            letResource(std::uint8_t, bool bForce = true);
     std::uint8_t    getResource();
 
+    bool            setMineralResource(std::uint8_t, bool bForce = true);
+    std::uint8_t    getMineralResource();
+
+    // TODO IMPLEMENT
+    bool            setResourceTextureID(std::uint8_t, bool bForce = true);
+    std::uint8_t    getResourceTextureID();
+
+    // TODO NEW
     bool            addAmount(std::uint8_t, bool bForce = true);
     bool            setAmount(std::uint8_t);
     bool            letAmount(std::uint8_t, bool bForce = true);
     std::uint8_t    getAmount();
+
+    bool            addMineralAmount(std::uint8_t, bool bForce = true);
+    bool            setMineralAmount(std::uint8_t);
+    bool            letMineralAmount(std::uint8_t, bool bForce = true);
+    std::uint8_t    getMineralAmount();
 
     bool            setRGB(std::uint8_t, std::uint8_t, std::uint8_t);
     bool            getRGB(std::uint8_t&, std::uint8_t&, std::uint8_t&);
@@ -78,10 +94,10 @@ public:
     bool            changeB(std::int16_t);
     std::uint8_t    getB();
 
-    std::uint8_t    getHeight();
-    bool            setHeight(std::uint8_t);
-    bool            addHeight(std::uint8_t, bool bForce = true);
-    bool            letHeight(std::uint8_t, bool bForce = true);
+    std::uint8_t    getHeight(Height_Type);
+    bool            setHeight(std::uint8_t, Height_Type);
+    bool            addHeight(std::uint8_t, Height_Type, bool bForce = true);
+    bool            letHeight(std::uint8_t, Height_Type, bool bForce = true);
 
     //TODO: Flags
     bool            setFlags(Flag_Type, std::uint8_t);
@@ -95,6 +111,19 @@ public:
     //TODO: Destructor
 
 private:
+    bool            setResource(std::uint8_t, std::uint8_t);
+
+    // internal amount functions
+    bool            addAmount(std::uint8_t, std::uint8_t, bool bForce = true);
+    bool            setAmount(std::uint8_t, std::uint8_t);
+    bool            letAmount(std::uint8_t, std::uint8_t, bool bForce = true);
+    std::uint8_t    getAmount(std::uint8_t);
+
+    // internal resource functions
+    bool            setResource(std::uint8_t, std::uint8_t, bool bForce = true);
+    std::uint8_t    getResource(std::uint8_t);
+
+    // internal RGB functions
     bool            setRGBComponent(std::uint8_t, std::uint8_t);
     std::uint8_t    getRGBComponent(std::uint8_t);
     bool            changeRGBComponent(std::uint8_t, std::int16_t, bool bForce = true);

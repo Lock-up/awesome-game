@@ -75,7 +75,7 @@ int main()
 
 	//sf::VideoMode mode;
 	//sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
-    sf::RenderWindow window(sf::VideoMode(320, 240), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(320, 240), "Awesome-World-Editor!");
 
 	window.setFramerateLimit(10);
 
