@@ -221,3 +221,187 @@ std::uint8_t CMapPoint::getResource(std::uint8_t uiIndex)
 
     return this->uiResource[uiIndex];
 }
+
+bool CMapPoint::addAmount(std::uint8_t uiAmount, std::uint8_t uiIndex, bool bForce = true)
+{
+    if (uiIndex > 1)
+        return false;
+
+    if (this->getAmount(uiIndex) + uiAmount > 255 && !bForce)
+        return false;
+    else if (this->getAmount(uiIndex) + uiAmount > 255 && bForce)
+    { 
+        this->uiAmount[uiIndex] = 255;
+        return true;
+    }
+
+    this->uiAmount[uiIndex] += uiAmount;
+    return true;
+}
+
+bool CMapPoint::setAmount(std::uint8_t uiNewAmount, std::uint8_t uiIndex)
+{
+    if (uiIndex > 1)
+        return false;
+
+    this->uiAmount[uiIndex] = uiNewAmount;
+    return true;
+}
+
+bool CMapPoint::letAmount(std::uint8_t uiAmount, std::uint8_t uiIndex, bool bForce = true)
+{
+    if (uiIndex > 1)
+        return false;
+
+    if (this->getAmount(uiIndex) - uiAmount < 0 && !bForce)
+        return false;
+    else if (this->getAmount(uiIndex) - uiAmount < 0 && bForce)
+    {
+        this->uiAmount[uiIndex] = 0;
+        return true;
+    }
+
+    this->uiAmount[uiIndex] -= uiAmount;
+    return true;
+}
+
+std::uint8_t CMapPoint::getAmount(std::uint8_t uiIndex)
+{
+    if (uiIndex > 1)
+        return 0;
+    else
+        return this->uiAmount[uiIndex];
+}
+
+std::uint8_t CMapPoint::getHeight()
+{
+    return this->uiHeight;
+}
+
+bool CMapPoint::setHeight(std::uint8_t uiNewHeight)
+{
+    this->uiHeight = uiNewHeight;
+}
+
+bool CMapPoint::addHeight(std::uint8_t uiHeight, bool bForce = true)
+{
+    if (this->getHeight() + uiHeight > 255 && !bForce)
+        return false;
+    else if (this->getHeight() + uiHeight > 255 && bForce)
+        return this->setHeight(255);
+
+    return this->setHeight(this->getHeight() + uiHeight);
+}
+
+bool CMapPoint::letHeight(std::uint8_t, bool bForce = true)
+{
+    if (this->getHeight() - uiHeight < 0 && !bForce)
+        return false;
+    else if (this->getHeight() - uiHeight < 0 && bForce)
+        return this->setHeight(0);
+
+    return this->setHeight(this->getHeight() - uiHeight);
+}
+
+bool CMapPoint::addAmount(std::uint8_t uiAmount, bool bForce = true)
+{
+    return this->addAmount(uiAmount, 0, bForce);
+}
+
+bool CMapPoint::setAmount(std::uint8_t uiAmount)
+{
+    return this->setAmount(uiAmount, 0);
+}
+
+bool CMapPoint::letAmount(std::uint8_t uiAmount, bool bForce = true)
+{
+    return this->letAmount(uiAmount, 0, bForce);
+}
+
+std::uint8_t CMapPoint::getAmount()
+{
+    return this->getAmount(0);
+}
+
+bool CMapPoint::addMineralAmount(std::uint8_t uiAmount, bool bForce = true)
+{
+    return this->addAmount(uiAmount, 1, bForce);
+}
+
+bool CMapPoint::setMineralAmount(std::uint8_t uiAmount)
+{
+    return this->setAmount(uiAmount, 1);
+}
+
+bool CMapPoint::letMineralAmount(std::uint8_t uiAmount, bool bForce = true)
+{
+    return this->letAmount(uiAmount, 1, bForce);
+}
+
+std::uint8_t CMapPoint::getMineralAmount()
+{
+    return this->getAmount(1);
+}
+
+bool CMapPoint::setResourceTextureID(std::uint8_t uiNewResourceTextureID, bool bForce = true)
+{
+    if (this->getResourceTextureID() != 0 && !bForce)
+        return false;
+    else if (this->getResourceTextureID() != 0 && !bForce)
+    {
+        this->uiResourceTextureID = uiNewResourceTextureID;
+        return true;
+    }
+
+    this->uiResourceTextureID = uiNewResourceTextureID;
+    return true;
+}
+
+std::uint8_t CMapPoint::getResourceTextureID()
+{
+    return this->uiResourceTextureID;
+}
+
+CMapPoint::CMapPoint()
+{
+    this->bsSpecial.reset();
+
+    this->uiRGB[0] = 0;
+    this->uiRGB[1] = 0;
+    this->uiRGB[2] = 0;
+
+    this->uiHeight = 0;
+
+    this->uiResource[0] = 0;
+    this->uiResource[1] = 0;
+
+    this->uiAmount[0] = 0;
+    this->uiAmount[1] = 0;
+
+    this->uiResourceTextureID = 0;
+
+    this->GUIDBuilding = 0;
+    this->GUIDUnit = 0;
+}
+
+CMapPoint::CMapPoint(std::uint8_t uiFlag, std::uint8_t uiR, std::uint8_t uiG, std::uint8_t uiB, std::uint8_t uiHeight, std::uint8_t uiResource, std::uint8_t uiMineralResource, std::uint8_t uiAmount, std::uint8_t uiMineralAmount, std::uint8_t uiResourceID, std::uint64_t GUIDBuilding, std::uint64_t GUIDUnit)
+{
+    this->setFlags(Flag_Type::FLAG_SPECIAL, uiFlag);
+
+    this->uiRGB[0] = uiR;
+    this->uiRGB[1] = uiG;
+    this->uiRGB[2] = uiB;
+
+    this->uiHeight = uiHeight;
+
+    this->uiResource[0] = uiResource;
+    this->uiResource[1] = uiMineralResource;
+
+    this->uiAmount[0] = uiAmount;
+    this->uiAmount[1] = uiMineralAmount;
+
+    this->uiResourceTextureID = uiResourceTextureID;
+
+    this->GUIDBuilding = GUIDBuilding;
+    this->GUIDUnit = GUIDUnit;
+}

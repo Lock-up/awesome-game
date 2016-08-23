@@ -31,24 +31,17 @@ enum class Flag_Type
     FLAG_RESOURCE,
 };
 
-enum class Height_Type
-{
-    HEIGHT_MIN = 0,
-    HEIGHT_ACT = 1,
-    HEIGHT_MAX = 2,
-};
-
 class CMapPoint{
 private:
     std::bitset<8>  bsSpecial;
     // 0x01 - canBurn 
     // 0x02 - isBurning
     // 0x04 - 
-    // 0x08 -
-    // 0x10 -
-    // 0x20 -
-    // 0x40 -
-    // 0x80 -
+    // 0x08 - 
+    // 0x10 - 
+    // 0x20 - 
+    // 0x40 - 
+    // 0x80 - 
     std::uint8_t    uiRGB[3];
     std::uint8_t    uiHeight;
     std::uint8_t    uiResource[2];
@@ -59,18 +52,15 @@ private:
     std::uint64_t   GUIDUnit;
 
 public:
-    // TODO NEW
     bool            setResource(std::uint8_t, bool bForce = true);
     std::uint8_t    getResource();
 
     bool            setMineralResource(std::uint8_t, bool bForce = true);
     std::uint8_t    getMineralResource();
 
-    // TODO IMPLEMENT
     bool            setResourceTextureID(std::uint8_t, bool bForce = true);
     std::uint8_t    getResourceTextureID();
 
-    // TODO NEW
     bool            addAmount(std::uint8_t, bool bForce = true);
     bool            setAmount(std::uint8_t);
     bool            letAmount(std::uint8_t, bool bForce = true);
@@ -94,20 +84,21 @@ public:
     bool            changeB(std::int16_t);
     std::uint8_t    getB();
 
-    std::uint8_t    getHeight(Height_Type);
-    bool            setHeight(std::uint8_t, Height_Type);
-    bool            addHeight(std::uint8_t, Height_Type, bool bForce = true);
-    bool            letHeight(std::uint8_t, Height_Type, bool bForce = true);
+    std::uint8_t    getHeight();
+    bool            setHeight(std::uint8_t);
+    bool            addHeight(std::uint8_t, bool bForce = true);
+    bool            letHeight(std::uint8_t, bool bForce = true);
 
-    //TODO: Flags
     bool            setFlags(Flag_Type, std::uint8_t);
     bool            testFlag(Flag_Type, std::uint8_t);
     std::bitset<8>  getFlag(Flag_Type);
     bool            setFlag(Flag_Type, std::uint8_t);
     bool            letFlag(Flag_Type, std::uint8_t);
 
-    void            showInfo();
     //TODO: Konstructor
+                    CMapPoint();
+                    CMapPoint(std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint64_t, std::uint64_t);
+
     //TODO: Destructor
 
 private:
