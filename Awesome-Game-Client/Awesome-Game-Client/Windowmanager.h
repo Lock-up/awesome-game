@@ -1,9 +1,5 @@
 #pragma once
-
-#define BorderWidth 4
-#define ControlBarHeight 28
-#define ControlBarMargin 4
-#define ControlMargin 12
+#include "AwesomeWindow.h"
 
 class Windowmanager
 {
@@ -25,17 +21,19 @@ public:
 		_window = window;
 	}
 	void CreateWindow(float width = 400, float height = 280);
+	void MouseClick(float x, float y, sf::Mouse::Button button);
 
 private:
 	sf::RenderWindow* _window;
+	std::vector<AwesomeWindow*> _windows;
 	
 #pragma region Singleton
 
-	Windowmanager() { } 	/* verhindert, dass ein Objekt von außerhalb von N erzeugt wird. */
+	Windowmanager() { } 								/* verhindert, dass ein Objekt von außerhalb von N erzeugt wird. */
 														// protected, wenn man von der Klasse noch erben möchte
-	Windowmanager(const Windowmanager&);	/* verhindert, dass eine weitere Instanz via
-														Kopie-Konstruktor erstellt werden kann */
-	Windowmanager & operator = (const Windowmanager &);
+	Windowmanager(const Windowmanager&);				/* verhindert, dass eine weitere Instanz via
+														   Kopie-Konstruktor erstellt werden kann */
+	Windowmanager &operator = (const Windowmanager &);
 #pragma endregion Singleton
 };
 

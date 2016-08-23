@@ -37,6 +37,11 @@ int main()
 					Windowmanager::instance().CreateWindow();
 				}
 			}
+			if (event.type == sf::Event::MouseButtonReleased) {
+				if (event.mouseButton.button == sf::Mouse::Button::Left) {
+					Windowmanager::instance().CreateWindow();
+				}
+			}
 		}
 
 
