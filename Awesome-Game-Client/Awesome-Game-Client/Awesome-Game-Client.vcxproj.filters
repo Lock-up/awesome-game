@@ -33,6 +33,9 @@
     <ClInclude Include="Windowmanager.h">
       <Filter>Headerdateien\Windowmanagement</Filter>
     </ClInclude>
+    <ClInclude Include="AwesomeWindow.h">
+      <Filter>Headerdateien\Windowmanagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,6 +45,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Windowmanager.cpp">
+      <Filter>Quelldateien\Windowmanagement</Filter>
+    </ClCompile>
+    <ClCompile Include="AwesomeWindow.cpp">
       <Filter>Quelldateien\Windowmanagement</Filter>
     </ClCompile>
   </ItemGroup>
