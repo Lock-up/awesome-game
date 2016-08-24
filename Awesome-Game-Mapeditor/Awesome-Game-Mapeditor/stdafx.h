@@ -28,7 +28,7 @@
 
 // own
 #include "CMapPoint.hpp"
-#include "CMapPointStack.hpp"
+#include "CAwesomeChunk.hpp"
 #include "CMapPlayerInfo.hpp"
 #include "CMapInfo.hpp"
 #include "CMapPointStackContainer.hpp"

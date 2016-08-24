@@ -27,9 +27,6 @@
     <ClInclude Include="CMapPoint.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="CMapPointStack.hpp">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="CMapPlayerInfo.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -40,6 +37,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="CMapPointStackContainer.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CAwesomeChunk.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,9 +53,6 @@
     <ClCompile Include="CMapPoint.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="CMapPointStack.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="CMapPointStackContainer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -66,6 +63,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="CMap.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="CAwesomeChunk.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
