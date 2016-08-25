@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-bool CMapPointStackContainer::setStack(CMapPointStack* cNewPointStack, std::uint32_t uiIndex)
+/*bool CMapPointStackContainer::setStack(CMapPointStack* cNewPointStack, std::uint32_t uiIndex)
 {
     if (uiIndex > this->vMapPointsStacks.size())
         return false;
@@ -52,7 +52,7 @@ CMapPoint* CMapPointStackContainer::getLastStackPoint(std::uint64_t uiIndex)
 CMapPointStack* CMapPointStackContainer::getLastStack()
 {
     return this->vMapPointsStacks.back();
-}
+}*/
 
 // TODO: Konstructor
 // TODO: Destructor

@@ -202,7 +202,7 @@ bool CMapPoint::changeRGBComponent(std::uint8_t uiIndex, std::int16_t iValue, bo
     }
 }
 
-bool CMapPoint::setResource(std::uint8_t uiNewResource, std::uint8_t uiIndex, bool bForce = true)
+bool CMapPoint::setResource(std::uint8_t uiNewResource, std::uint8_t uiIndex, bool bForce)
 {
     if (uiIndex > 1)
         return false;
@@ -222,7 +222,7 @@ std::uint8_t CMapPoint::getResource(std::uint8_t uiIndex)
     return this->uiResource[uiIndex];
 }
 
-bool CMapPoint::addAmount(std::uint8_t uiAmount, std::uint8_t uiIndex, bool bForce = true)
+bool CMapPoint::addAmount(std::uint8_t uiAmount, std::uint8_t uiIndex, bool bForce)
 {
     if (uiIndex > 1)
         return false;
@@ -248,7 +248,7 @@ bool CMapPoint::setAmount(std::uint8_t uiNewAmount, std::uint8_t uiIndex)
     return true;
 }
 
-bool CMapPoint::letAmount(std::uint8_t uiAmount, std::uint8_t uiIndex, bool bForce = true)
+bool CMapPoint::letAmount(std::uint8_t uiAmount, std::uint8_t uiIndex, bool bForce)
 {
     if (uiIndex > 1)
         return false;
@@ -281,9 +281,10 @@ std::uint8_t CMapPoint::getHeight()
 bool CMapPoint::setHeight(std::uint8_t uiNewHeight)
 {
     this->uiHeight = uiNewHeight;
+    return true;
 }
 
-bool CMapPoint::addHeight(std::uint8_t uiHeight, bool bForce = true)
+bool CMapPoint::addHeight(std::uint8_t uiHeight, bool bForce)
 {
     if (this->getHeight() + uiHeight > 255 && !bForce)
         return false;
@@ -293,7 +294,7 @@ bool CMapPoint::addHeight(std::uint8_t uiHeight, bool bForce = true)
     return this->setHeight(this->getHeight() + uiHeight);
 }
 
-bool CMapPoint::letHeight(std::uint8_t, bool bForce = true)
+bool CMapPoint::letHeight(std::uint8_t, bool bForce)
 {
     if (this->getHeight() - uiHeight < 0 && !bForce)
         return false;
@@ -303,7 +304,7 @@ bool CMapPoint::letHeight(std::uint8_t, bool bForce = true)
     return this->setHeight(this->getHeight() - uiHeight);
 }
 
-bool CMapPoint::addAmount(std::uint8_t uiAmount, bool bForce = true)
+bool CMapPoint::addAmount(std::uint8_t uiAmount, bool bForce)
 {
     return this->addAmount(uiAmount, 0, bForce);
 }
@@ -313,7 +314,7 @@ bool CMapPoint::setAmount(std::uint8_t uiAmount)
     return this->setAmount(uiAmount, 0);
 }
 
-bool CMapPoint::letAmount(std::uint8_t uiAmount, bool bForce = true)
+bool CMapPoint::letAmount(std::uint8_t uiAmount, bool bForce)
 {
     return this->letAmount(uiAmount, 0, bForce);
 }
@@ -323,7 +324,7 @@ std::uint8_t CMapPoint::getAmount()
     return this->getAmount(0);
 }
 
-bool CMapPoint::addMineralAmount(std::uint8_t uiAmount, bool bForce = true)
+bool CMapPoint::addMineralAmount(std::uint8_t uiAmount, bool bForce)
 {
     return this->addAmount(uiAmount, 1, bForce);
 }
@@ -333,7 +334,7 @@ bool CMapPoint::setMineralAmount(std::uint8_t uiAmount)
     return this->setAmount(uiAmount, 1);
 }
 
-bool CMapPoint::letMineralAmount(std::uint8_t uiAmount, bool bForce = true)
+bool CMapPoint::letMineralAmount(std::uint8_t uiAmount, bool bForce)
 {
     return this->letAmount(uiAmount, 1, bForce);
 }
@@ -343,7 +344,7 @@ std::uint8_t CMapPoint::getMineralAmount()
     return this->getAmount(1);
 }
 
-bool CMapPoint::setResourceTextureID(std::uint8_t uiNewResourceTextureID, bool bForce = true)
+bool CMapPoint::setResourceTextureID(std::uint8_t uiNewResourceTextureID, bool bForce)
 {
     if (this->getResourceTextureID() != 0 && !bForce)
         return false;
