@@ -3,19 +3,15 @@
 
 #include "stdafx.h"
 
-const std::uint64_t MAX_POINT_LENGTH = 8;
-
 class CMap{
 private:
     CMapInfo                *cMapInfo;
     CMapPlayerInfo          *cMapPlayerInfo;
-    CMapPointStackContainer *cMapStackContainer;
-    sf::Uint8*              pPixels;
-    bool                    showPlayers;
+    CAwesomeChunkContainer  *cAwesomeChunkContainer;
 public:
     CMapInfo*                   getMapInfo();
     CMapPlayerInfo*             getMapPlayerInfo();
-    //CMapPointStackContainer*    getMapStackContainer();
+    CAwesomeChunkContainer*    getCAwesomeChunkContainer();
 };
 
 #endif

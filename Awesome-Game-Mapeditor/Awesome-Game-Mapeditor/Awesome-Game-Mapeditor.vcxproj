@@ -178,7 +178,7 @@ xcopy ..\Maps\*.awf $(OutputPath)\Maps\ /i /d /y</Command>
     <ClInclude Include="CMapPlayerInfo.hpp" />
     <ClInclude Include="CMapPoint.hpp" />
     <ClInclude Include="CAwesomeChunk.hpp" />
-    <ClInclude Include="CMapPointStackContainer.hpp" />
+    <ClInclude Include="CAwesomeChunkContainer.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -189,7 +189,7 @@ xcopy ..\Maps\*.awf $(OutputPath)\Maps\ /i /d /y</Command>
     <ClCompile Include="CMapPlayerInfo.cpp" />
     <ClCompile Include="CMapPoint.cpp" />
     <ClCompile Include="CAwesomeChunk.cpp" />
-    <ClCompile Include="CMapPointStackContainer.cpp" />
+    <ClCompile Include="CAwesomeChunkContainer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

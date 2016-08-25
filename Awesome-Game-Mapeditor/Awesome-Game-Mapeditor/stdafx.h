@@ -31,5 +31,5 @@
 #include "CAwesomeChunk.hpp"
 #include "CMapPlayerInfo.hpp"
 #include "CMapInfo.hpp"
-#include "CMapPointStackContainer.hpp"
+#include "CAwesomeChunkContainer.hpp"
 #include "CMap.hpp"
