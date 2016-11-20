@@ -5,7 +5,7 @@
 
 int main()
 {
-    CMap *map = new CMap();
+    
     
 	// Code to find working directory
 	//char cCurrentPath[FILENAME_MAX];
@@ -22,6 +22,9 @@ int main()
     sf::RenderWindow window(sf::VideoMode(320, 240), "Awesome-World-Editor!");
 
 	window.setFramerateLimit(10);
+
+    CMap *map = new CMap(2, 2);
+    std::cout << "Chunks in Container: " << map->getCAwesomeChunkContainer()->getChunkCount() << std::endl;
 
 	while (window.isOpen())
 	{

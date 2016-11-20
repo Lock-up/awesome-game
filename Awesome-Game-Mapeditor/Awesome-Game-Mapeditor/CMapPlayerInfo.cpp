@@ -2,7 +2,7 @@
 
 std::uint8_t CMapPlayerInfo::getPlayerCount()
 {
-    return this->vPositions.size();
+    return (std::uint8_t)this->vPositions.size();
 }
 
 bool CMapPlayerInfo::popPlayer(std::uint8_t uiIndex)
@@ -40,7 +40,7 @@ std::uint8_t CMapPlayerInfo::getPlayerID(std::uint16_t uiPosX, std::uint16_t uiP
         return 0;
     else
     {
-        std::uint8_t uiDist = std::distance(it,this->vPositions.begin());
+        std::uint8_t uiDist = (std::uint8_t)std::distance(it, this->vPositions.begin());
         return uiDist;
     }
 }
@@ -53,7 +53,7 @@ std::uint8_t CMapPlayerInfo::getPlayerID(SPosition posTemp)
         return 0;
     else
     {
-        std::uint8_t uiDist = std::distance(it, this->vPositions.begin());
+        std::uint8_t uiDist = (std::uint8_t)std::distance(it, this->vPositions.begin());
         return uiDist;
     }
 }

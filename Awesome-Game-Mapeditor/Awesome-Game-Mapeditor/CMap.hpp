@@ -11,7 +11,12 @@ private:
 public:
     CMapInfo*                   getMapInfo();
     CMapPlayerInfo*             getMapPlayerInfo();
-    CAwesomeChunkContainer*    getCAwesomeChunkContainer();
+    CAwesomeChunkContainer*     getCAwesomeChunkContainer();
+    //Constructor
+                                CMap();
+                                CMap(std::uint64_t, std::uint64_t);
+                                CMap(std::string);
+
 };
 
 #endif

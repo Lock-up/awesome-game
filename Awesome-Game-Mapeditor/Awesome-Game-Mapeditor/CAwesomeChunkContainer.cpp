@@ -56,3 +56,40 @@ CMapPointStack* CMapPointStackContainer::getLastStack()
 
 // TODO: Konstructor
 // TODO: Destructor
+
+bool CAwesomeChunkContainer::setChunk(CAwesomeChunk* cNewChunk, std::uint16_t uiChunkID)
+{
+    this->vChunks.at(uiChunkID) = cNewChunk;
+    return true;
+}
+
+bool CAwesomeChunkContainer::pushChunk(CAwesomeChunk* cNewChunk)
+{
+    this->vChunks.push_back(cNewChunk);
+    return true;
+}
+
+bool CAwesomeChunkContainer::popChunk()
+{
+    this->vChunks.pop_back();
+    return true;
+}
+
+bool CAwesomeChunkContainer::popChunk(std::uint64_t uiChunkID)
+{
+    this->vChunks.erase(this->vChunks.begin() + uiChunkID);
+    return true;
+}
+
+CAwesomeChunk* CAwesomeChunkContainer::getChunk(std::uint64_t uiChunkID)
+{
+    return this->vChunks.at(uiChunkID);
+}
+
+std::uint64_t CAwesomeChunkContainer::getChunkCount()
+{
+    return (std::uint64_t)this->vChunks.size();
+}
+
+// TODO: Konstructor
+// TODO: Destructor

@@ -56,6 +56,8 @@ bool CAwesomeChunk::delMapPointData(std::uint16_t uiPosChunk)
 //TODO: Konstructor
 CAwesomeChunk::CAwesomeChunk()
 {
+    std::cout << "CAwesomeChunk::CAwesomeChunk()" << std::endl;
+
     for (std::uint16_t i = 0; i < (std::uint16_t)(CHUNK_SIZE * CHUNK_SIZE); i++)
         this->vMapPoints.push_back(&CMapPoint());
 }
