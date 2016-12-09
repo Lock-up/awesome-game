@@ -10,7 +10,9 @@ public:
     bool            setChunk(CAwesomeChunk*, std::uint16_t);
     bool            pushChunk(CAwesomeChunk*);
     bool            popChunk();
+    bool            popChunk(std::uint64_t);
     CAwesomeChunk*  getChunk(std::uint64_t);
+    std::uint64_t   getChunkCount();
 
 
 };
