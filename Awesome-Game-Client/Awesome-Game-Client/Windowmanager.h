@@ -20,7 +20,8 @@ public:
 	{
 		_window = window;
 	}
-	void CreateWindow(float width = 400, float height = 280);
+	void CreateWindow(float width = 400, float height = 280, float left = -1, float top = -1);
+	void RedrawWindows();
 	void MouseClick(float x, float y, sf::Mouse::Button button);
 
 private:

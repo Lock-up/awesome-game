@@ -11,7 +11,7 @@ int main()
 	sf::VideoMode mode;
 	sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
 
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(10);
 
 	shape.setFillColor(sf::Color::Red);
 
@@ -43,7 +43,10 @@ int main()
 				}
 			}
 		}
+		
+		//window.clear();
 
+		//Windowmanager::instance().RedrawWindows();
 
 		//window.display();
 	}
