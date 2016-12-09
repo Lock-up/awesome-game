@@ -3,6 +3,17 @@
 
 #include "stdafx.h"
 
+
+namespace Textures
+{
+    enum ID
+    {
+        DESERT_01,
+        GREENLAND_01,
+        SNOW_01,
+    };
+}
+
 int main()
 {
     
@@ -19,9 +30,50 @@ int main()
 
 	//sf::VideoMode mode;
 	//sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
-    sf::RenderWindow window(sf::VideoMode(320, 240), "Awesome-World-Editor!");
+    sf::RenderWindow window(sf::VideoMode(640, 480), "Awesome-World-Editor!");
 
 	window.setFramerateLimit(10);
+
+    // Try to load resources
+    ResourceHolder<sf::Texture, Textures::ID> textures;
+    try
+    {
+        textures.load(Textures::DESERT_01, "Media/Textures/DESERT_01.png");
+        textures.load(Textures::GREENLAND_01, "Media/Textures/GREENLAND_01.png");
+        textures.load(Textures::SNOW_01, "Media/Textures/SNOW_01.png");
+    }
+    catch (std::runtime_error& e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+        return 1;
+    }
+
+    sf::Texture tmpTest(textures.get(Textures::GREENLAND_01));
+    sf::Image tmpImage = tmpTest.copyToImage();
+    for (int i = 0; i < 32; i++)
+    {
+        for (int j = 0; j < 32; j++)
+        {
+            if (std::rand() % 2)
+                tmpImage.setPixel(i, j, sf::Color(0, 0, 0, 0));
+        }
+    }
+    tmpTest.loadFromImage(tmpImage);
+
+    sf::Sprite desert(textures.get(Textures::DESERT_01));
+    sf::Sprite greenland(textures.get(Textures::GREENLAND_01));
+    sf::Sprite snow(textures.get(Textures::SNOW_01));
+    greenland.setPosition(128.f, 128.f);
+    snow.setPosition(256.f, 256.f);
+    desert.setPosition(0.f, 0.f);
+
+    sf::Sprite transgreen(tmpTest);
+    transgreen.setPosition(0.f, 0.f);
+
+    greenland.scale(4.f, 4.f);
+    snow.scale(4.f, 4.f);
+    desert.scale(4.f, 4.f);
+    transgreen.scale(4.f, 4.f);
 
     CMap *map = new CMap(2, 2);
     std::cout << "Chunks in Container: " << map->getCAwesomeChunkContainer()->getChunkCount() << std::endl;
@@ -73,6 +125,11 @@ int main()
 		}
 
 		window.clear();
+
+        window.draw(desert);
+        window.draw(greenland);
+        window.draw(snow);
+        window.draw(transgreen);
 
 		window.display();
 	}

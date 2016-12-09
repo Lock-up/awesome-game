@@ -10,8 +10,6 @@
 #include <stdio.h>
 #include <tchar.h>
 
-
-
 // TODO: Hier auf zusätzliche Header, die das Programm erfordert, verweisen.
 
 // SFML
@@ -25,6 +23,11 @@
 #include <algorithm>
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <string>
+#include <memory>
+#include <stdexcept>
+#include <cassert>
 
 // own
 #include "CMapPoint.hpp"
@@ -33,3 +36,4 @@
 #include "CMapInfo.hpp"
 #include "CAwesomeChunkContainer.hpp"
 #include "CMap.hpp"
+#include "ResourceManager.hpp"
