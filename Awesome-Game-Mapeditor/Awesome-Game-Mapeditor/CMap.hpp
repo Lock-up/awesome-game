@@ -9,8 +9,8 @@ private:
     CMapPlayerInfo          *cMapPlayerInfo;
     CAwesomeChunkContainer  *cAwesomeChunkContainer;
 public:
-    CMapInfo*                   getMapInfo();
-    CMapPlayerInfo*             getMapPlayerInfo();
+    CMapInfo*                  getMapInfo();
+    CMapPlayerInfo*            getMapPlayerInfo();
     CAwesomeChunkContainer*    getCAwesomeChunkContainer();
 };
 
