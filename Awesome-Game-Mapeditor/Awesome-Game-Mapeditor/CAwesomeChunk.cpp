@@ -51,7 +51,7 @@ bool CAwesomeChunk::delMapPointData(std::uint16_t uiPosChunk)
     if (uiPosChunk > (CHUNK_SIZE * CHUNK_SIZE))
         return false;
 
-    return this->setMapPoint(uiPosChunk, &CMapPoint());
+    return this->setMapPoint(uiPosChunk, new CMapPoint());
 }
 
 //TODO: Konstructor
@@ -61,18 +61,14 @@ CAwesomeChunk::CAwesomeChunk()
 
     for (std::uint16_t i = 0; i < (std::uint16_t)(CHUNK_SIZE * CHUNK_SIZE); i++)
     {
-        this->vMapPoints.push_back(&CMapPoint());
-
-        //int texid = int(this->vMapPoints.back()->getTexture(Texture_Type::TEXTURE_WORLD));
-        //std::cout << "Latest point WorldtextureID: " << texid << std::end;
-        //std::cout << "LatestPoint: " << texid << std::endl;
-
-        //also seems correct here
+        CMapPoint *tmpPoint = new CMapPoint();
+        this->vMapPoints.push_back(tmpPoint);
     }
 }
 //TODO: Destructor
 CAwesomeChunk::~CAwesomeChunk()
 {
+    std::cout << "CAwesomeChunk::~CAwesomeChunk()" << std::endl;
     for (std::uint16_t i = 0; i < (std::uint16_t)(CHUNK_SIZE * CHUNK_SIZE); i++)
         this->vMapPoints.at(i)->~CMapPoint();
 }

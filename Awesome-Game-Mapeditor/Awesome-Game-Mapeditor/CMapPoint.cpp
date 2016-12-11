@@ -272,14 +272,15 @@ CMapPoint::CMapPoint()
 {
     this->bsSpecial.reset();
 
-    std::cout << "CMapPoint::CMapPoint()" << std::endl;
+    //std::cout << "CMapPoint::CMapPoint()" << std::endl;
 
     // Testing, should be default 0
-    this->uiTextureIDs[0] = 0;//std::rand() % 3;
-    this->uiTextureIDs[1] = 0;//std::rand() % 3;
+    this->uiTextureIDs[0] = std::rand() % 3;
+    this->uiTextureIDs[1] = std::rand() % 3;
 
+    // std::cout << "My Textures are: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
     // looks like it working at this point
-    //std::cout << "Mappoint Textures: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
+    // std::cout << "Mappoint Textures: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
 
     this->uiHeight = 0;
 
