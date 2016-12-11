@@ -20,6 +20,8 @@ public:
     std::uint16_t   getVersion();
     bool            hasVersion();
 
+                    CMapInfo();
+
 private:
     bool            setMapSize(std::uint8_t, std::uint16_t);
     std::uint16_t   getMapSize(std::uint8_t);

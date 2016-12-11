@@ -72,3 +72,11 @@ bool CMapInfo::hasVersion()
 
     return true;
 }
+
+CMapInfo::CMapInfo()
+{
+    this->strMapname = "New World";
+    this->uiSize[0] = 0;
+    this->uiSize[1] = 0;
+    this->uiVersion = 0;
+}

@@ -5,11 +5,11 @@ bool CAwesomeChunk::pushMapPoint(CMapPoint *cMapPoint)
     if (vMapPoints.size() >= (CHUNK_SIZE * CHUNK_SIZE))
         return false;
 
-    vMapPoints.push_back(cMapPoint);
+    this->vMapPoints.push_back(cMapPoint);
     return true;
 }
 
-std::vector<CMapPoint*> CAwesomeChunk::getChunk()
+std::vector<CMapPoint*> CAwesomeChunk::getPoints()
 {
     return this->vMapPoints;
 }
@@ -17,6 +17,7 @@ std::vector<CMapPoint*> CAwesomeChunk::getChunk()
 CMapPoint* CAwesomeChunk::getMapPoint(std::uint8_t uiPosX, std::uint8_t uiPosY)
 {
     return this->getMapPoint(uiPosY * CHUNK_SIZE + uiPosX);
+    //return this->getMapPoint(uiPosX * CHUNK_SIZE + uiPosY);
 }
 
 CMapPoint* CAwesomeChunk::getMapPoint(std::uint16_t uiPosChunk)
@@ -59,7 +60,15 @@ CAwesomeChunk::CAwesomeChunk()
     std::cout << "CAwesomeChunk::CAwesomeChunk()" << std::endl;
 
     for (std::uint16_t i = 0; i < (std::uint16_t)(CHUNK_SIZE * CHUNK_SIZE); i++)
+    {
         this->vMapPoints.push_back(&CMapPoint());
+
+        //int texid = int(this->vMapPoints.back()->getTexture(Texture_Type::TEXTURE_WORLD));
+        //std::cout << "Latest point WorldtextureID: " << texid << std::end;
+        //std::cout << "LatestPoint: " << texid << std::endl;
+
+        //also seems correct here
+    }
 }
 //TODO: Destructor
 CAwesomeChunk::~CAwesomeChunk()

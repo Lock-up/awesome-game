@@ -3,6 +3,16 @@
 
 #include "stdafx.h"
 
+namespace Textures
+{
+    enum ID
+    {
+        GREENLAND_01,
+        DESERT_01,
+        SNOW_01,
+    };
+}
+
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {

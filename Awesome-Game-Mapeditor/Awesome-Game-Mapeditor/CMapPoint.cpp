@@ -1,74 +1,5 @@
 #include "stdafx.h"
 
-bool CMapPoint::setRGB(std::uint8_t uiRValue, std::uint8_t uiGValue, std::uint8_t uiBValue)
-{
-    this->setRGBComponent(0, uiRValue);
-    this->setRGBComponent(1, uiGValue);
-    this->setRGBComponent(2, uiBValue);
-    return true;
-}
-
-bool CMapPoint::getRGB(std::uint8_t& uiTargetR, std::uint8_t& uiTargetG, std::uint8_t& uiTargetB)
-{
-    uiTargetR = this->getRGBComponent(0);
-    uiTargetG = this->getRGBComponent(1);
-    uiTargetB = this->getRGBComponent(2);
-    return true;
-}
-
-bool CMapPoint::changeRGB(std::int16_t iByValue)
-{
-    this->changeRGBComponent(0, iByValue);
-    this->changeRGBComponent(1, iByValue);
-    this->changeRGBComponent(2, iByValue);
-    return true;
-}
-
-bool CMapPoint::setR(std::uint8_t uiNewValue)
-{
-    return this->setRGBComponent(0, uiNewValue);
-}
-
-bool CMapPoint::changeR(std::int16_t iByValue)
-{
-    return this->changeRGBComponent(0, iByValue);
-}
-
-std::uint8_t CMapPoint::getR()
-{
-    return this->getRGBComponent(0);
-}
-
-bool CMapPoint::setG(std::uint8_t uiNewValue)
-{
-    return this->setRGBComponent(1, uiNewValue);
-}
-
-bool CMapPoint::changeG(std::int16_t iByValue)
-{
-    return this->changeRGBComponent(1, iByValue);
-}
-
-std::uint8_t CMapPoint::getG()
-{
-    return this->getRGBComponent(1);
-}
-
-bool CMapPoint::setB(std::uint8_t uiNewValue)
-{
-    return this->setRGBComponent(2, uiNewValue);
-}
-
-bool CMapPoint::changeB(std::int16_t iByValue)
-{
-    return this->changeRGBComponent(2, iByValue);
-}
-
-std::uint8_t CMapPoint::getB()
-{
-    return this->getRGBComponent(2);
-}
-
 bool CMapPoint::setFlags(Flag_Type eFlagType, std::uint8_t uiFlagValue)
 {
     switch (eFlagType)
@@ -145,60 +76,6 @@ bool CMapPoint::letFlag(Flag_Type eFlagType, std::uint8_t uiIndex)
     //    return true;
     //}break;
     default: return false;
-    }
-}
-
-bool CMapPoint::setRGBComponent(std::uint8_t uiIndex, std::uint8_t uiNewValue)
-{
-    if (uiIndex > 3)
-        return false;
-
-    uiRGB[uiIndex] = uiNewValue;
-    return true;
-}
-
-std::uint8_t CMapPoint::getRGBComponent(std::uint8_t uiIndex)
-{
-    if (uiIndex > 3)
-        return 0;
-
-    return uiRGB[uiIndex];
-}
-
-bool CMapPoint::changeRGBComponent(std::uint8_t uiIndex, std::int16_t iValue, bool bForce)
-{
-    if (uiIndex > 3)
-        return false;
-
-    if (iValue < 0)
-    {
-        if (uiRGB[uiIndex] + iValue < 0 && !bForce)
-            return false;
-        else if (uiRGB[uiIndex] + iValue < 0 && bForce)
-        {
-            uiRGB[uiIndex] = 0;
-            return true;
-        }
-        else
-        {
-            uiRGB[uiIndex] += iValue;
-            return true;
-        }
-    }
-    else
-    {
-        if (uiRGB[uiIndex] + iValue > 0 && !bForce)
-            return false;
-        else if (uiRGB[uiIndex] + iValue > 0 && bForce)
-        {
-            uiRGB[uiIndex] = 255;
-            return true;
-        }
-        else
-        {
-            this->uiRGB[uiIndex] += iValue;
-            return true;
-        }
     }
 }
 
@@ -344,32 +221,65 @@ std::uint8_t CMapPoint::getMineralAmount()
     return this->getAmount(1);
 }
 
-bool CMapPoint::setResourceTextureID(std::uint8_t uiNewResourceTextureID, bool bForce)
+bool CMapPoint::setTexture(Texture_Type eTextureType, std::uint8_t uiTextureID)
 {
-    if (this->getResourceTextureID() != 0 && !bForce)
-        return false;
-    else if (this->getResourceTextureID() != 0 && !bForce)
+    switch (eTextureType)
     {
-        this->uiResourceTextureID = uiNewResourceTextureID;
+    case Texture_Type::TEXTURE_WORLD:
+    {
+        this->uiTextureIDs[0] = uiTextureID;
         return true;
+    }break;
+    case Texture_Type::TEXTURE_RESOURCE:
+    {
+        this->uiTextureIDs[1] = uiTextureID;
+        return true;
+    }break;
+    default:
+    {
+        return false;
+    }break;
     }
-
-    this->uiResourceTextureID = uiNewResourceTextureID;
-    return true;
 }
 
-std::uint8_t CMapPoint::getResourceTextureID()
+bool CMapPoint::setTextures(std::uint8_t uiTextureID_World, std::uint8_t uiTextureID_Resource)
 {
-    return this->uiResourceTextureID;
+    return(this->setTexture(Texture_Type::TEXTURE_WORLD, uiTextureID_World) && this->setTexture(Texture_Type::TEXTURE_RESOURCE, uiTextureID_Resource));
+}
+
+std::uint8_t CMapPoint::getTexture(Texture_Type eTextureType)
+{
+    //std::cout << "My Textures are: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
+
+    switch (eTextureType)
+    {
+    case Texture_Type::TEXTURE_WORLD:
+    {
+        return this->uiTextureIDs[0];
+    }break;
+    case Texture_Type::TEXTURE_RESOURCE:
+    {
+        return this->uiTextureIDs[1];
+    }break;
+    default:
+    {
+        return 0;
+    }break;
+    }
 }
 
 CMapPoint::CMapPoint()
 {
     this->bsSpecial.reset();
 
-    this->uiRGB[0] = 0;
-    this->uiRGB[1] = 0;
-    this->uiRGB[2] = 0;
+    std::cout << "CMapPoint::CMapPoint()" << std::endl;
+
+    // Testing, should be default 0
+    this->uiTextureIDs[0] = 0;//std::rand() % 3;
+    this->uiTextureIDs[1] = 0;//std::rand() % 3;
+
+    // looks like it working at this point
+    //std::cout << "Mappoint Textures: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
 
     this->uiHeight = 0;
 
@@ -379,19 +289,16 @@ CMapPoint::CMapPoint()
     this->uiAmount[0] = 0;
     this->uiAmount[1] = 0;
 
-    this->uiResourceTextureID = 0;
-
     this->GUIDBuilding = 0;
     this->GUIDUnit = 0;
 }
 
-CMapPoint::CMapPoint(std::uint8_t uiFlag, std::uint8_t uiR, std::uint8_t uiG, std::uint8_t uiB, std::uint8_t uiHeight, std::uint8_t uiResource, std::uint8_t uiMineralResource, std::uint8_t uiAmount, std::uint8_t uiMineralAmount, std::uint8_t uiResourceID, std::uint64_t GUIDBuilding, std::uint64_t GUIDUnit)
+CMapPoint::CMapPoint(std::uint8_t uiFlag, std::uint8_t uiTextureID_World, std::uint8_t uiTextureID_Resource, std::uint8_t uiHeight, std::uint8_t uiResource, std::uint8_t uiMineralResource, std::uint8_t uiAmount, std::uint8_t uiMineralAmount, std::uint8_t uiResourceID, std::uint64_t GUIDBuilding, std::uint64_t GUIDUnit)
 {
     this->setFlags(Flag_Type::FLAG_SPECIAL, uiFlag);
 
-    this->uiRGB[0] = uiR;
-    this->uiRGB[1] = uiG;
-    this->uiRGB[2] = uiB;
+    this->uiTextureIDs[0] = uiTextureID_World;
+    this->uiTextureIDs[1] = uiTextureID_Resource;
 
     this->uiHeight = uiHeight;
 
@@ -400,8 +307,6 @@ CMapPoint::CMapPoint(std::uint8_t uiFlag, std::uint8_t uiR, std::uint8_t uiG, st
 
     this->uiAmount[0] = uiAmount;
     this->uiAmount[1] = uiMineralAmount;
-
-    this->uiResourceTextureID = uiResourceTextureID;
 
     this->GUIDBuilding = GUIDBuilding;
     this->GUIDUnit = GUIDUnit;

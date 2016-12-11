@@ -11,7 +11,7 @@ private:
 
 public:
 
-    std::vector<CMapPoint*> getChunk();
+    std::vector<CMapPoint*> getPoints();
 
     CMapPoint*              getMapPoint(std::uint8_t, std::uint8_t);
     CMapPoint*              getMapPoint(std::uint16_t);
