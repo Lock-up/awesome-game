@@ -73,6 +73,8 @@ int main()
     texture.loadFromImage(map->getImage());
     sf::Sprite mapTextured(texture);
 
+    mapTextured.scale(4.f, 4.f);
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -102,11 +104,13 @@ int main()
 				}
                 else if (event.key.code == sf::Keyboard::Key::Add || event.key.code == sf::Keyboard::Key::Equal)
                 {
-
+                    std::cout << "Scale up" << std::endl;
+                    mapTextured.scale(2.0f, 2.0f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::Subtract || event.key.code == sf::Keyboard::Key::Dash)
                 {
-
+                    std::cout << "Scale down" << std::endl;
+                    mapTextured.scale(0.5f, 0.5f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::P)
                 {
@@ -120,11 +124,6 @@ int main()
 		}
 
 		window.clear();
-
-        //window.draw(desert);
-        //window.draw(greenland);
-        //window.draw(snow);
-        //window.draw(transgreen);
 
         // Wow, this works, I'm amazed
         window.draw(mapTextured);
