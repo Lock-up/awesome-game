@@ -8,22 +8,22 @@ private:
     CMapInfo                *cMapInfo;
     CMapPlayerInfo          *cMapPlayerInfo;
     CAwesomeChunkContainer  *cAwesomeChunkContainer;
-    sf::Image               *cMapImage;
-    sf::Texture             *cMapTexture;
+    //sf::Image               *cMapImage;
+    //sf::Texture             *cMapTexture;
 public:
     CMapInfo*                   getMapInfo();
     CMapPlayerInfo*             getMapPlayerInfo();
     CAwesomeChunkContainer*     getCAwesomeChunkContainer();
     
-    bool                        generateImage(ResourceHolder<sf::Image, Textures::ID>&);
-    bool                        generateTexture();
-    sf::Image                   getImage();
-    sf::Texture                 getTexture();
+    //bool                        generateImage(ResourceHolder<sf::Image, Textures::ID>&);
+    //bool                        generateTexture();
+    //sf::Image                   getImage();
+    //sf::Texture                 getTexture();
 
 
     //Constructor
                                 CMap();
-                                CMap(std::uint64_t, std::uint64_t);
+                                CMap(std::uint64_t, std::uint64_t, ResourceHolder<sf::Image, Textures::ID>&);
                                 CMap(std::string);
 };
 

@@ -13,8 +13,6 @@ public:
     bool            popChunk(std::uint64_t);
     CAwesomeChunk*  getChunk(std::uint64_t);
     std::uint64_t   getChunkCount();
-
-
 };
 
 #endif

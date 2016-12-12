@@ -16,16 +16,29 @@ public:
     CMapPoint*              getMapPoint(std::uint8_t, std::uint8_t);
     CMapPoint*              getMapPoint(std::uint16_t);
 
+    sf::Image               *cChunkImage;
+    sf::Texture             *cChunkTexture;
+
     bool                    setMapPoint(std::uint8_t, std::uint8_t, CMapPoint*);
     bool                    setMapPoint(std::uint16_t, CMapPoint*);
 
     bool                    delMapPointData(std::uint8_t, std::uint8_t);
     bool                    delMapPointData(std::uint16_t);
 
+    bool                    generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>&);
+
+    bool                    generateImage(ResourceHolder<sf::Image, Textures::ID>&);
+    bool                    generateTexture();
+
+    sf::Image               getImage(){ return *this->cChunkImage; };
+    sf::Texture             getTexture() { return *this->cChunkTexture; };
+
+    bool                    getTexture(sf::Texture&);
+
     //TODO: Konstructor
-                            CAwesomeChunk();
+    CAwesomeChunk();
     //TODO: Destructor
-                            ~CAwesomeChunk();
+    ~CAwesomeChunk();
 private:
     bool                    pushMapPoint(CMapPoint*);
 };

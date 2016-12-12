@@ -31,9 +31,9 @@
 
 // own
 #include "CMapPoint.hpp"
+#include "ResourceManager.hpp"
 #include "CAwesomeChunk.hpp"
 #include "CMapPlayerInfo.hpp"
 #include "CMapInfo.hpp"
 #include "CAwesomeChunkContainer.hpp"
-#include "ResourceManager.hpp"
 #include "CMap.hpp"

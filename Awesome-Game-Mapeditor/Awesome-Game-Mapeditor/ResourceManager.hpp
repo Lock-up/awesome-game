@@ -13,6 +13,14 @@ namespace Textures
     };
 }
 
+const Textures::ID aIDToTexture[] =
+{
+    Textures::ID::GREENLAND_01,
+    Textures::ID::DESERT_01,
+    Textures::ID::SNOW_01,
+};
+
+
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {

@@ -64,16 +64,39 @@ int main()
     //desert.scale(4.f, 4.f);
     //transgreen.scale(4.f, 4.f);
 
-    CMap *map = new CMap(2, 2);
+    CMap *map = new CMap(2, 2, rhImages);
     std::cout << "Chunks in Container: " << map->getCAwesomeChunkContainer()->getChunkCount() << std::endl;
 
-    map->generateImage(rhImages);
+    //map->generateImage(rhImages);
 
-    sf::Texture texture;
-    texture.loadFromImage(map->getImage());
-    sf::Sprite mapTextured(texture);
+    //sf::Texture texture;
+    //texture.loadFromImage(map->getImage());
+    //sf::Sprite mapTextured(texture);
 
-    mapTextured.scale(4.f, 4.f);
+
+    sf::Texture texture2 = map->getCAwesomeChunkContainer()->getChunk(0)->getTexture();
+    sf::Sprite chunk(texture2);
+    chunk.setPosition(256.f, 256.f);
+
+    /*
+    // Not working:
+    sf::Sprite chunk(map->getCAwesomeChunkContainer()->getChunk(0)->getTexture());
+    chunk.setPosition(256.f, 256.f);
+
+    // Working:
+    sf::Texture texture2 = map->getCAwesomeChunkContainer()->getChunk(0)->getTexture();
+    sf::Sprite chunk(texture2);
+    chunk.setPosition(256.f, 256.f);
+
+    */
+
+    sf::Texture tex3;
+    map->getCAwesomeChunkContainer()->getChunk(0)->getTexture(tex3);
+    sf::Sprite chunk2(tex3);
+    chunk2.setPosition(288.f, 288.f);
+
+
+    //mapTextured.scale(4.f, 4.f);
 
 	while (window.isOpen())
 	{
@@ -105,12 +128,12 @@ int main()
                 else if (event.key.code == sf::Keyboard::Key::Add || event.key.code == sf::Keyboard::Key::Equal)
                 {
                     std::cout << "Scale up" << std::endl;
-                    mapTextured.scale(2.0f, 2.0f);
+                    //mapTextured.scale(2.0f, 2.0f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::Subtract || event.key.code == sf::Keyboard::Key::Dash)
                 {
                     std::cout << "Scale down" << std::endl;
-                    mapTextured.scale(0.5f, 0.5f);
+                    //mapTextured.scale(0.5f, 0.5f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::P)
                 {
@@ -126,7 +149,13 @@ int main()
 		window.clear();
 
         // Wow, this works, I'm amazed
-        window.draw(mapTextured);
+        //window.draw(mapTextured);
+
+        // Is this also working? -> Nope, gives white square problem
+        window.draw(chunk);
+
+        // Okay, this is working as well
+        window.draw(chunk2);
 
 		window.display();
 	}

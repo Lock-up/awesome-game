@@ -37,7 +37,7 @@ bool CAwesomeChunk::setMapPoint(std::uint16_t uiPosChunk, CMapPoint* cNewMapPoin
 {
     if (uiPosChunk > (CHUNK_SIZE * CHUNK_SIZE))
         return false;
-    
+
     this->vMapPoints.at(uiPosChunk) = cNewMapPoint;
     return true;
 }
@@ -71,4 +71,56 @@ CAwesomeChunk::~CAwesomeChunk()
     std::cout << "CAwesomeChunk::~CAwesomeChunk()" << std::endl;
     for (std::uint16_t i = 0; i < (std::uint16_t)(CHUNK_SIZE * CHUNK_SIZE); i++)
         this->vMapPoints.at(i)->~CMapPoint();
+}
+
+bool CAwesomeChunk::generateTexture()
+{
+    this->cChunkTexture = new sf::Texture;
+
+    std::cout << "CAwesomeChunk::generateTexture" << std::endl;
+
+    if (this->cChunkImage != nullptr)
+    {
+        this->cChunkTexture->loadFromImage(*this->cChunkImage);
+        return true;
+    }
+
+    return false;
+}
+
+bool CAwesomeChunk::generateImage(ResourceHolder<sf::Image, Textures::ID>& rhImages)
+{
+    std::cout << "CAwesomeChunk::generateImage" << std::endl;
+
+    // loop through all mappoints
+    this->cChunkImage = new sf::Image;
+    this->cChunkImage->create(unsigned int(CHUNK_SIZE), unsigned int(CHUNK_SIZE));
+
+    for (int pointx = 0; pointx < CHUNK_SIZE; pointx++)
+    {
+        for (int pointy = 0; pointy < CHUNK_SIZE; pointy++)
+        {
+            CMapPoint* cTempMapPoint = this->getMapPoint(pointx, pointy);
+
+            int uiTextureID = int(cTempMapPoint->getTexture(Texture_Type::TEXTURE_WORLD));
+
+            this->cChunkImage->setPixel(pointx, pointy, rhImages.get(aIDToTexture[uiTextureID]).getPixel(pointx, pointy));
+        }
+    }
+
+    return true;
+}
+
+bool CAwesomeChunk::generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>& rhImages)
+{
+    std::cout << "CAwesomeChunk::generateImageAndTexture" << std::endl;
+    this->generateImage(rhImages);
+    this->generateTexture();
+    return true;
+}
+
+bool CAwesomeChunk::getTexture(sf::Texture& pTexture)
+{
+    pTexture = *this->cChunkTexture;
+    return true;
 }

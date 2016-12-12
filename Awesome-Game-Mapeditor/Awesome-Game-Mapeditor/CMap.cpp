@@ -20,7 +20,7 @@ CMap::CMap()
     std::cout << "CMap::CMap()" << std::endl;
 }
 
-CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY)
+CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Image, Textures::ID>& rhImages)
 {
     std::cout << "CMap::CMap(uint64_t, uint64_t)" << std::endl;
     this->cAwesomeChunkContainer = new CAwesomeChunkContainer();
@@ -28,13 +28,14 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY)
     for (std::uint64_t i = 0; i < uiSizeX*uiSizeY; i++)
     {
         CAwesomeChunk *tmpChunk = new CAwesomeChunk();
+        tmpChunk->generateImageAndTexture(rhImages);
         this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
     }
 
     this->cMapInfo = new CMapInfo();
     this->cMapInfo->setMapSizes(std::uint16_t(uiSizeX), std::uint16_t(uiSizeY));
 
-    this->cMapImage = new sf::Image();
+    //this->cMapImage = new sf::Image();
 }
 
 CMap::CMap(std::string strMapName)
@@ -42,6 +43,7 @@ CMap::CMap(std::string strMapName)
     std::cout << "CMap::CMap(string)" << std::endl;
 }
 
+/*
 static const Textures::ID aIDtoTexture[] =
 {
     Textures::GREENLAND_01,
@@ -116,3 +118,4 @@ sf::Image CMap::getImage()
 {
     return *this->cMapImage;
 }
+*/
