@@ -37,6 +37,17 @@ int main()
         return 1;
     }
 
+    ResourceHolder<sf::Texture, Buildings::ID> rhBuildings;
+    try
+    {
+        rhBuildings.load(Buildings::BLD_LUMBERJACK, "Media/Buildings/bld_lumberjack.png");
+    }
+    catch (std::runtime_error& e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+        return 1;
+    }
+
     //sf::Texture tmpTest(textures.get(Textures::GREENLAND_01));
     //sf::Image tmpImage = tmpTest.copyToImage();
     //for (int i = 0; i < 32; i++)
@@ -76,7 +87,7 @@ int main()
 
     sf::Texture texture2 = map->getCAwesomeChunkContainer()->getChunk(0)->getTexture();
     sf::Sprite chunk(texture2);
-    chunk.setPosition(256.f, 256.f);
+    chunk.setPosition(0.f, 0.f);
 
     /*
     // Not working:
@@ -93,9 +104,15 @@ int main()
     sf::Texture tex3;
     map->getCAwesomeChunkContainer()->getChunk(0)->getTexture(tex3);
     sf::Sprite chunk2(tex3);
-    chunk2.setPosition(288.f, 288.f);
+    chunk2.setPosition(128.f, 0.f);
+
+    sf::Sprite bldlumber(rhBuildings.get(Buildings::BLD_LUMBERJACK));
+    bldlumber.setPosition(5.f, 10.f);
 
 
+    //bldlumber.scale(4.f, 4.f);
+    //chunk2.scale(4.f, 4.f);
+    //chunk.scale(4.f, 4.f);
     //mapTextured.scale(4.f, 4.f);
 
 	while (window.isOpen())
@@ -129,11 +146,17 @@ int main()
                 {
                     std::cout << "Scale up" << std::endl;
                     //mapTextured.scale(2.0f, 2.0f);
+                    bldlumber.scale(2.0f, 2.0f);
+                    chunk2.scale(2.0f, 2.0f);
+                    chunk.scale(2.0f, 2.0f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::Subtract || event.key.code == sf::Keyboard::Key::Dash)
                 {
                     std::cout << "Scale down" << std::endl;
                     //mapTextured.scale(0.5f, 0.5f);
+                    bldlumber.scale(0.5f, 0.5f);
+                    chunk2.scale(0.5f, 0.5f);
+                    chunk.scale(0.5f, 0.5f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::P)
                 {
@@ -156,6 +179,9 @@ int main()
 
         // Okay, this is working as well
         window.draw(chunk2);
+
+        // Buildings?
+        window.draw(bldlumber);
 
 		window.display();
 	}

@@ -20,6 +20,13 @@ const Textures::ID aIDToTexture[] =
     Textures::ID::SNOW_01,
 };
 
+namespace Buildings
+{
+    enum ID
+    {
+        BLD_LUMBERJACK,
+    };
+}
 
 template <typename Resource, typename Identifier>
 class ResourceHolder
