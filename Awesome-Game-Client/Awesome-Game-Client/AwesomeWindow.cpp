@@ -36,12 +36,12 @@ void AwesomeWindow::Render()
 	f.loadFromFile("Fonts\\arial.ttf");
 
 	Text close(String("X"), f, 20);
-	close.setColor(Color::Black);
+	close.setFillColor(Color::Black);
 	close.setPosition(Vector2f{ _left + _width - BorderWidth / 2 - ControlBarMargin - close.getGlobalBounds().width, ControlBarMargin + _top });
 
 	// minimize control
 	Text minimize(String("_"), f, 20);
-	minimize.setColor(Color::Black);
+	minimize.setFillColor(Color::Black);
 	minimize.setPosition(Vector2f{ _left + _width - BorderWidth / 2 - ControlBarMargin - close.getGlobalBounds().width - ControlMargin - minimize.getGlobalBounds().width, _top });
 
 	_window->draw(shape);
