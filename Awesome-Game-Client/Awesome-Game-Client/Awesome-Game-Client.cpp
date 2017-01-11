@@ -2,10 +2,55 @@
 //
 
 #include "stdafx.h"
-#include "Windowmanager.h"
 
 int main()
 {
+	//Start the SFML display window
+	sf::RenderWindow Splash(sf::VideoMode(1024, 768, 32), "", sf::Style::None);
+	Splash.setMouseCursorVisible(false);
+	
+
+	//Load the images for each individual screen (only one for now)
+	// Load a sprite to display
+	sf::Texture texture;
+	if (!texture.loadFromFile("splash.jpg"))
+		return EXIT_FAILURE;
+	sf::Sprite sprite(texture);
+	sf::Sprite OpenALSprite(texture);
+
+	sf::Clock splash_clock;
+
+	while (Splash.isOpen())
+	{
+		auto elapsedTime = splash_clock.getElapsedTime();
+		if (elapsedTime.asSeconds() > 5) 
+		{
+			Splash.close();
+		}
+
+		sf::Event event;
+		while (Splash.pollEvent(event))
+		{
+			// Close window : exit
+			if (event.type == sf::Event::Closed) {
+				Splash.close();
+			}
+
+			if (event.type == sf::Event::KeyPressed)
+			{
+				// Escape key : exit
+				if (event.key.code == sf::Keyboard::Escape)
+					Splash.close();
+			}
+
+			Splash.clear();
+			Splash.draw(OpenALSprite);
+			Splash.display();
+		}
+	}
+
+
+
 	sf::VideoMode mode;
 	sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
 	//render_window.setFramerateLimit(60);
@@ -21,19 +66,11 @@ int main()
 	c_window->setResizable(true);
 	c_window->setTitleButtons((tgui::ChildWindow::TitleButtons)(tgui::ChildWindow::TitleButtons::Minimize | tgui::ChildWindow::TitleButtons::Close));
 	gui.add(c_window);
-
-	// Init window manager
-	/*Windowmanager::instance().Init(&render_window);
-	render_window.display();*/
-
-
+	
 	sf::Event event;
-	sf::Clock clock;
 
 	while (window.isOpen())
 	{
-		//window.clear(sf::Color::Black);
-
 		while (window.pollEvent(event))
 		{
 			if (gui.handleEvent(event))
@@ -50,12 +87,12 @@ int main()
 			}
 			if (event.type == sf::Event::KeyPressed) {
 				if (event.key.code == sf::Keyboard::Key::W) {
-					Windowmanager::instance().CreateWindow();
+					
 				}
 			}
 			if (event.type == sf::Event::MouseButtonReleased) {
 				if (event.mouseButton.button == sf::Mouse::Button::Left) {
-					//Windowmanager::instance().CreateWindow();
+					
 				}
 			}
 		}
@@ -63,10 +100,6 @@ int main()
 		window.clear();
 		gui.draw();
 		window.display();
-		
-		//Windowmanager::instance().RedrawWindows();
-
-		//window.display();
 	}
 
 	return 0;

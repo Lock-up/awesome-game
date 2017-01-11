@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Quelldateien\Windowmanagement">
-      <UniqueIdentifier>{c93221a0-529c-4aef-9bd4-121870aee5c4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Windowmanagement">
-      <UniqueIdentifier>{8fd4336f-07f6-4f06-8fe0-96975232e3e7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,12 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Windowmanager.h">
-      <Filter>Headerdateien\Windowmanagement</Filter>
-    </ClInclude>
-    <ClInclude Include="AwesomeWindow.h">
-      <Filter>Headerdateien\Windowmanagement</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -43,12 +31,6 @@
     </ClCompile>
     <ClCompile Include="Awesome-Game-Client.cpp">
       <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Windowmanager.cpp">
-      <Filter>Quelldateien\Windowmanagement</Filter>
-    </ClCompile>
-    <ClCompile Include="AwesomeWindow.cpp">
-      <Filter>Quelldateien\Windowmanagement</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
