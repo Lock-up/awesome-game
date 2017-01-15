@@ -13,7 +13,7 @@ int main()
 	//Load the images for each individual screen (only one for now)
 	// Load a sprite to display
 	sf::Texture texture;
-	if (!texture.loadFromFile("splash.jpg"))
+	if (!texture.loadFromFile("assets/splash.png"))
 		return EXIT_FAILURE;
 	sf::Sprite sprite(texture);
 	sf::Sprite OpenALSprite(texture);

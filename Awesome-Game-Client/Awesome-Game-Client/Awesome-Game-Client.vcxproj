@@ -99,7 +99,8 @@
     <PostBuildEvent>
       <Command>xcopy $(SolutionDir)SFML-2.4.1_x86\binaries\* $(OutputPath)  /i /d /y
 xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
-xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui-d.dll $(OutputPath)  /i /d /y</Command>
+xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui-d.dll $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,7 +121,8 @@ xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui-d.dll $(OutputPath)  /i /d /y</Command
     <PostBuildEvent>
       <Command>xcopy $(SolutionDir)SFML-2.4.1\binaries\* $(OutputPath)  /i /d /y
 xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
-xcopy $(SolutionDir)tgui-0.7\lib\tgui-d.dll $(OutputPath)  /i /d /y</Command>
+xcopy $(SolutionDir)tgui-0.7\lib\tgui-d.dll $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,7 +147,8 @@ xcopy $(SolutionDir)tgui-0.7\lib\tgui-d.dll $(OutputPath)  /i /d /y</Command>
     <PostBuildEvent>
       <Command>xcopy $(SolutionDir)SFML-2.4.1_x86\binaries\* $(OutputPath)  /i /d /y
 xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
-xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui.dll $(OutputPath)  /i /d /y</Command>
+xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui.dll $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -170,7 +173,8 @@ xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui.dll $(OutputPath)  /i /d /y</Command>
     <PostBuildEvent>
       <Command>xcopy $(SolutionDir)SFML-2.4.1\binaries\* $(OutputPath)  /i /d /y
 xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
-xcopy $(SolutionDir)tgui-0.7\lib\tgui.dll $(OutputPath)  /i /d /y</Command>
+xcopy $(SolutionDir)tgui-0.7\lib\tgui.dll $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
