@@ -1,6 +1,9 @@
 #ifndef CMAPINFO_HPP
 #define CMAPINFO_HPP
 
+#define MAP_MAJOR_VERSION = 1
+#define MAP_MINOR_VERSION = 1
+
 #include "stdafx.h"
 
 class CMapInfo{
@@ -19,6 +22,7 @@ public:
     bool            setVersion(std::uint16_t, bool bForce = true);
     std::uint16_t   getVersion();
     bool            hasVersion();
+    std::uint8_t*   serialize();
 
                     CMapInfo();
 

@@ -76,6 +76,7 @@ int main()
     //CMap *map = new CMap(2, 2, rhImages);
     CMap *map = new CMap(2, 2, rhImages, Textures::DESERT_01);
     std::cout << "Chunks in Container: " << map->getCAwesomeChunkContainer()->getChunkCount() << std::endl;
+    map->getMapInfo()->serialize();
 
     //map->generateImage(rhImages);
 

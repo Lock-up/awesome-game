@@ -78,5 +78,17 @@ CMapInfo::CMapInfo()
     this->strMapname = "New World";
     this->uiSize[0] = 0;
     this->uiSize[1] = 0;
-    this->uiVersion = 0;
+    
+
+    this->uiVersion = 1;
+}
+
+std::uint8_t* CMapInfo::serialize()
+{
+    unsigned long int ulData = 0;
+
+    ulData += sizeof(this->uiSize[0]);
+    std::cout << "Data: " << ulData << std::endl;
+
+    return nullptr;
 }
