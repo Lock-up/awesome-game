@@ -100,10 +100,11 @@ int main()
 
     */
 
-    sf::Texture tex3;
-    map->getCAwesomeChunkContainer()->getChunk(0)->getTexture(tex3);
-    sf::Sprite chunk2(tex3);
-    chunk2.setPosition(128.f, 0.f);
+    //also working
+    //sf::Texture tex3;
+    //map->getCAwesomeChunkContainer()->getChunk(1)->getTexture(tex3);
+    //sf::Sprite chunk2(tex3);
+    //chunk2.setPosition(32.f, 0.f);
 
     sf::Sprite bldlumber(rhBuildings.get(Buildings::BLD_LUMBERJACK));
     bldlumber.setPosition(5.f, 10.f);
@@ -146,16 +147,19 @@ int main()
                     std::cout << "Scale up" << std::endl;
                     //mapTextured.scale(2.0f, 2.0f);
                     bldlumber.scale(2.0f, 2.0f);
-                    chunk2.scale(2.0f, 2.0f);
                     chunk.scale(2.0f, 2.0f);
+
+                    
+                    bldlumber.setPosition(bldlumber.getPosition().x * 2.f, bldlumber.getPosition().y * 2.f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::Subtract || event.key.code == sf::Keyboard::Key::Dash)
                 {
                     std::cout << "Scale down" << std::endl;
                     //mapTextured.scale(0.5f, 0.5f);
                     bldlumber.scale(0.5f, 0.5f);
-                    chunk2.scale(0.5f, 0.5f);
                     chunk.scale(0.5f, 0.5f);
+
+                    bldlumber.setPosition(bldlumber.getPosition().x * 0.5f, bldlumber.getPosition().y * 0.5f);
                 }
                 else if (event.key.code == sf::Keyboard::Key::P)
                 {
@@ -173,11 +177,7 @@ int main()
         // Wow, this works, I'm amazed
         //window.draw(mapTextured);
 
-        // Is this also working? -> Nope, gives white square problem
         window.draw(chunk);
-
-        // Okay, this is working as well
-        window.draw(chunk2);
 
         // Buildings?
         window.draw(bldlumber);
