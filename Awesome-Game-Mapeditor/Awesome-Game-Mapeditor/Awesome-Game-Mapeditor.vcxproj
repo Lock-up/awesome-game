@@ -98,7 +98,9 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy ..\SFML-2.3.2_x86\binaries\* $(OutputPath) /i /d /y
-xcopy ..\Maps\*.awf $(OutputPath)\Maps\ /i /d /y</Command>
+xcopy ..\Maps\*.awf $(OutputPath)\Maps\ /i /d /y
+xcopy ..\Media\Textures\*.png $(OutputPath)\Media\Textures\ /i /d /y
+xcopy ..\Media\Buildings\*.png $(OutputPath)\Media\Buildings\ /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
