@@ -30,8 +30,8 @@
 #include <cassert>
 
 // own
-#include "CMapPoint.hpp"
 #include "ResourceManager.hpp"
+#include "CMapPoint.hpp"
 #include "CAwesomeChunk.hpp"
 #include "CMapPlayerInfo.hpp"
 #include "CMapInfo.hpp"

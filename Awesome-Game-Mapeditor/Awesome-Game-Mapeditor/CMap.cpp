@@ -38,6 +38,22 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
     //this->cMapImage = new sf::Image();
 }
 
+CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Image, Textures::ID>& rhImages, Textures::ID texID)
+{
+    std::cout << "CMap::CMap(uint64_t, uint64_t, Texture)" << std::endl;
+    this->cAwesomeChunkContainer = new CAwesomeChunkContainer();
+
+    for (std::uint64_t i = 0; i < uiSizeX*uiSizeY; i++)
+    {
+        CAwesomeChunk *tmpChunk = new CAwesomeChunk(texID);
+        tmpChunk->generateImageAndTexture(rhImages);
+        this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
+    }
+
+    this->cMapInfo = new CMapInfo();
+    this->cMapInfo->setMapSizes(std::uint16_t(uiSizeX), std::uint16_t(uiSizeY));
+}
+
 CMap::CMap(std::string strMapName)
 {
     std::cout << "CMap::CMap(string)" << std::endl;

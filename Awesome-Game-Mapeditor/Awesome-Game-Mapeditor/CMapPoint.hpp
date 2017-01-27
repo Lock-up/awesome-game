@@ -90,6 +90,7 @@ public:
 
     //TODO: Konstructor
                     CMapPoint();
+                    CMapPoint(Textures::ID);
                     CMapPoint(std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t, std::uint64_t, std::uint64_t);
 
     //TODO: Destructor

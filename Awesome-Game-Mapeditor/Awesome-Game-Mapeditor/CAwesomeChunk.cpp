@@ -65,6 +65,17 @@ CAwesomeChunk::CAwesomeChunk()
         this->vMapPoints.push_back(tmpPoint);
     }
 }
+
+CAwesomeChunk::CAwesomeChunk(Textures::ID texID)
+{
+    std::cout << "CAwesomeChunk::CAwesomeChunk(Textures::ID)" << std::endl;
+
+    for (std::uint16_t i = 0; i < (std::uint16_t)(CHUNK_SIZE * CHUNK_SIZE); i++)
+    {
+        CMapPoint *tmpPoint = new CMapPoint(texID);
+        this->vMapPoints.push_back(tmpPoint);
+    }
+}
 //TODO: Destructor
 CAwesomeChunk::~CAwesomeChunk()
 {
@@ -118,6 +129,14 @@ bool CAwesomeChunk::generateImageAndTexture(ResourceHolder<sf::Image, Textures::
     this->generateTexture();
     return true;
 }
+
+//bool CAwesomeChunk::generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>& rhImages, Textures::ID texID)
+//{
+//    std::cout << "CAwesomeChunk::generateImageAndTexture" << std::endl;
+//    this->generateImage(rhImages, texID);
+//    this->generateTexture();
+//    return true;
+//}
 
 bool CAwesomeChunk::getTexture(sf::Texture& pTexture)
 {

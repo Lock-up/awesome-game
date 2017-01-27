@@ -294,6 +294,32 @@ CMapPoint::CMapPoint()
     this->GUIDUnit = 0;
 }
 
+CMapPoint::CMapPoint(Textures::ID texID)
+{
+    this->bsSpecial.reset();
+
+    //std::cout << "CMapPoint::CMapPoint()" << std::endl;
+
+    // Testing, should be default 0
+    this->uiTextureIDs[0] = texID;//std::rand() % 3;
+    this->uiTextureIDs[1] = 0;//std::rand() % 3;
+
+    // std::cout << "My Textures are: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
+    // looks like it working at this point
+    // std::cout << "Mappoint Textures: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
+
+    this->uiHeight = 0;
+
+    this->uiResource[0] = 0;
+    this->uiResource[1] = 0;
+
+    this->uiAmount[0] = 0;
+    this->uiAmount[1] = 0;
+
+    this->GUIDBuilding = 0;
+    this->GUIDUnit = 0;
+}
+
 CMapPoint::CMapPoint(std::uint8_t uiFlag, std::uint8_t uiTextureID_World, std::uint8_t uiTextureID_Resource, std::uint8_t uiHeight, std::uint8_t uiResource, std::uint8_t uiMineralResource, std::uint8_t uiAmount, std::uint8_t uiMineralAmount, std::uint8_t uiResourceID, std::uint64_t GUIDBuilding, std::uint64_t GUIDUnit)
 {
     this->setFlags(Flag_Type::FLAG_SPECIAL, uiFlag);

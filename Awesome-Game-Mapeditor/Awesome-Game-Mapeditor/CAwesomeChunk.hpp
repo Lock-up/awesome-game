@@ -26,8 +26,10 @@ public:
     bool                    delMapPointData(std::uint16_t);
 
     bool                    generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>&);
+    //bool                    generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>&, Textures::ID);
 
     bool                    generateImage(ResourceHolder<sf::Image, Textures::ID>&);
+    //bool                    generateImage(ResourceHolder<sf::Image, Textures::ID>&, Textures::ID);
     bool                    generateTexture();
 
     sf::Image               getImage(){ return *this->cChunkImage; };
@@ -37,6 +39,7 @@ public:
 
     //TODO: Konstructor
     CAwesomeChunk();
+    CAwesomeChunk(Textures::ID);
     //TODO: Destructor
     ~CAwesomeChunk();
 private:

@@ -4,9 +4,7 @@
 #include "stdafx.h"
 
 int main()
-{
-    
-    
+{   
 	// Code to find working directory
 	//char cCurrentPath[FILENAME_MAX];
 	//if (!_getcwd_dbg(cCurrentPath, sizeof(cCurrentPath), _NORMAL_BLOCK, NULL, NULL))
@@ -75,7 +73,8 @@ int main()
     //desert.scale(4.f, 4.f);
     //transgreen.scale(4.f, 4.f);
 
-    CMap *map = new CMap(2, 2, rhImages);
+    //CMap *map = new CMap(2, 2, rhImages);
+    CMap *map = new CMap(2, 2, rhImages, Textures::DESERT_01);
     std::cout << "Chunks in Container: " << map->getCAwesomeChunkContainer()->getChunkCount() << std::endl;
 
     //map->generateImage(rhImages);
