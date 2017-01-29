@@ -112,6 +112,11 @@ std::uint8_t* CMapInfo::serialize()
     ucData[ulOffset + 1] = ulData - ((int)ulData / 256) * 256;
     ulOffset += 2;
 
+    //Version
+    ucData[ulOffset] = (int)this->uiVersion / 256;
+    ucData[ulOffset + 1] = this->uiVersion - ((int)this->uiVersion / 256) * 256;
+    ulOffset += 2;
+
     // SizeX
     ucData[ulOffset] = (int)this->uiSize[0] / 256;
     ucData[ulOffset + 1] = this->uiSize[0] - ((int)this->uiSize[0] / 256) * 256;
@@ -120,11 +125,6 @@ std::uint8_t* CMapInfo::serialize()
     // SizeY
     ucData[ulOffset] = (int)this->uiSize[1] / 256;
     ucData[ulOffset + 1] = this->uiSize[1] - ((int)this->uiSize[1] / 256) * 256;
-    ulOffset += 2;
-
-    //Version
-    ucData[ulOffset] = (int)this->uiVersion / 256;
-    ucData[ulOffset + 1] = this->uiVersion - ((int)this->uiVersion / 256) * 256;
     ulOffset += 2;
 
     unsigned long int ulBuffer = this->strMapname.length();
