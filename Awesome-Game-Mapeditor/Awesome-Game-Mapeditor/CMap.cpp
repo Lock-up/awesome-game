@@ -59,6 +59,11 @@ CMap::CMap(std::string strMapName)
     std::cout << "CMap::CMap(string)" << std::endl;
 }
 
+sf::Texture& CMap::getChunkTexture(std::uint64_t uiChunkID)
+{
+    return this->cAwesomeChunkContainer->getChunk(uiChunkID)->getTexture();
+}
+
 /*
 static const Textures::ID aIDtoTexture[] =
 {

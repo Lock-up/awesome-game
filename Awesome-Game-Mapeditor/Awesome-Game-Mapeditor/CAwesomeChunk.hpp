@@ -33,7 +33,8 @@ public:
     bool                    generateTexture();
 
     sf::Image               getImage(){ return *this->cChunkImage; };
-    sf::Texture             getTexture() { return *this->cChunkTexture; };
+    //sf::Texture             getTexture() { return *this->cChunkTexture; };
+    sf::Texture&            getTexture() { return *this->cChunkTexture; };
 
     bool                    getTexture(sf::Texture&);
 

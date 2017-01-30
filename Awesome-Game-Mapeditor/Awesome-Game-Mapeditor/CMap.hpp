@@ -19,7 +19,7 @@ public:
     //bool                        generateTexture();
     //sf::Image                   getImage();
     //sf::Texture                 getTexture();
-
+    sf::Texture&                getChunkTexture(std::uint64_t);
 
     //Constructor
                                 CMap();

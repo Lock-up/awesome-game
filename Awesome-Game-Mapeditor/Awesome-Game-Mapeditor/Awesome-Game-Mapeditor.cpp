@@ -85,8 +85,11 @@ int main()
     //sf::Sprite mapTextured(texture);
 
 
-    sf::Texture texture2 = map->getCAwesomeChunkContainer()->getChunk(0)->getTexture();
-    sf::Sprite chunk(texture2);
+    ////sf::Texture texture2 = map->getCAwesomeChunkContainer()->getChunk(0)->getTexture();
+    ////sf::Sprite chunk(texture2);
+    ////chunk.setPosition(0.f, 0.f);
+    //sf::Sprite chunk(map->getCAwesomeChunkContainer()->getChunk(0)->getTexture());
+    sf::Sprite chunk(map->getChunkTexture(0));
     chunk.setPosition(0.f, 0.f);
 
     /*
