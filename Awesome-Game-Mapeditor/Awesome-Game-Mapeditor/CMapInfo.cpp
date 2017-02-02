@@ -140,7 +140,7 @@ std::uint8_t* CMapInfo::serialize()
     }
 
     std::fstream tempmapsave;
-    char savestring[60] = "Maps\\mapfile.awf";
+    char savestring[60] = "Maps\\CMapInfo.awf";
     //strncat_s(savestring, ".\Maps\mapfile.awf", 29);
     tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
     for (unsigned long int j = 0; j <= ulData - 1; j++)
