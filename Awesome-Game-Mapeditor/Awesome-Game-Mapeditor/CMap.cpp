@@ -35,6 +35,8 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
     this->cMapInfo = new CMapInfo();
     this->cMapInfo->setMapSizes(std::uint16_t(uiSizeX), std::uint16_t(uiSizeY));
 
+    this->cMapPlayerInfo = new CMapPlayerInfo();
+
     //this->cMapImage = new sf::Image();
 }
 
@@ -52,6 +54,8 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
 
     this->cMapInfo = new CMapInfo();
     this->cMapInfo->setMapSizes(std::uint16_t(uiSizeX), std::uint16_t(uiSizeY));
+
+    this->cMapPlayerInfo = new CMapPlayerInfo();
 }
 
 CMap::CMap(std::string strMapName)
