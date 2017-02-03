@@ -88,6 +88,8 @@ public:
     bool            setFlag(Flag_Type, std::uint8_t);
     bool            letFlag(Flag_Type, std::uint8_t);
 
+    std::uint8_t*   serialize();
+
     //TODO: Konstructor
                     CMapPoint();
                     CMapPoint(Textures::ID);

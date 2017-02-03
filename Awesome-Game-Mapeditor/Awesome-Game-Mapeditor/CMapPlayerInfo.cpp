@@ -144,26 +144,24 @@ std::uint8_t* CMapPlayerInfo::serialize()
     // Data length = 1 Bytes (255 players max)
     ulData += 1;
 
-
-
     // PlayerPosition = 4 Bytes (2x uint16)
     ulData += this->getPlayerCount() * 4;
 
     std::cout << "Data(Player): " << ulData << std::endl;
 
-    // Datalength
+    // Datalength (= PlayerCount (no need to save 16Bit))
     unsigned char* ucData = new unsigned char[ulData];
     ucData[ulOffset] = (int)this->getPlayerCount();
     ulOffset += 1;
 
     for (int i = 0; i < this->getPlayerCount(); i++)
     {
-        std::cout << "Player" << std::endl;
-
+        // PositionX
         ucData[ulOffset] = (int)this->getPlayerPosition(i).uiX / 256;
         ucData[ulOffset + 1] = this->getPlayerPosition(i).uiX - ((int)this->getPlayerPosition(i).uiX / 256) * 256;
         ulOffset += 2;
 
+        //PositionY
         ucData[ulOffset] = (int)this->getPlayerPosition(i).uiY / 256;
         ucData[ulOffset + 1] = this->getPlayerPosition(i).uiY - ((int)this->getPlayerPosition(i).uiY / 256) * 256;
         ulOffset += 2;
@@ -171,7 +169,6 @@ std::uint8_t* CMapPlayerInfo::serialize()
 
     std::fstream tempmapsave;
     char savestring[60] = "Maps\\CMapPlayerInfo.awf";
-    //strncat_s(savestring, ".\Maps\mapfile.awf", 29);
     tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
     for (unsigned long int j = 0; j <= ulData - 1; j++)
     {

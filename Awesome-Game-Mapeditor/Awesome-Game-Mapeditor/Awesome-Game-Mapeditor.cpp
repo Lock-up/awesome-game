@@ -52,6 +52,8 @@ int main()
     map->getMapPlayerInfo()->pushPlayer(13, 37);
     map->getMapPlayerInfo()->serialize();
 
+    map->getCAwesomeChunkContainer()->getChunk(0)->getMapPoint(0)->serialize();
+
     //map->generateImage(rhImages);
 
     sf::Sprite chunk(map->getChunkTexture(0));

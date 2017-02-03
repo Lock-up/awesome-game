@@ -308,7 +308,7 @@ CMapPoint::CMapPoint(Textures::ID texID)
     // looks like it working at this point
     // std::cout << "Mappoint Textures: " << int(uiTextureIDs[0]) << " and " << int(uiTextureIDs[1]) << std::endl;
 
-    this->uiHeight = 0;
+    this->uiHeight = 128;
 
     this->uiResource[0] = 0;
     this->uiResource[1] = 0;
@@ -337,4 +337,64 @@ CMapPoint::CMapPoint(std::uint8_t uiFlag, std::uint8_t uiTextureID_World, std::u
 
     this->GUIDBuilding = GUIDBuilding;
     this->GUIDUnit = GUIDUnit;
+}
+
+std::uint8_t* CMapPoint::serialize()
+{
+    // Mapinfo block size
+    unsigned long int ulData = 0;
+    unsigned long int ulOffset = 0;
+
+    // Data length =
+    //std::bitset<8>  bsSpecial;        -> 1Byte
+    //std::uint8_t    uiTextureIDs[2];  -> 2Byte
+    //std::uint8_t    uiHeight;         -> 1Byte
+    //std::uint8_t    uiResource[2];    -> 2Byte
+    //std::uint8_t    uiAmount[2];      -> 2Byte
+    //                                  -> 8Byte
+
+    ulData += 8;
+
+    // Data Array
+    unsigned char* ucData = new unsigned char[ulData];
+    
+    // Bitflags
+    ucData[ulOffset] = (int)this->bsSpecial.to_ulong();
+    ulOffset++;
+
+    // Textures
+    ucData[ulOffset] = (int)this->uiTextureIDs[0];
+    ulOffset++;
+
+    ucData[ulOffset] = (int)this->uiTextureIDs[1];
+    ulOffset++;
+
+    // Height
+    ucData[ulOffset] = (int)this->uiHeight;
+    ulOffset++;
+
+    // Resources
+    ucData[ulOffset] = (int)this->uiResource[0];
+    ulOffset++;
+
+    ucData[ulOffset] = (int)this->uiResource[1];
+    ulOffset++;
+
+    // Amounts
+    ucData[ulOffset] = (int)this->uiAmount[0];
+    ulOffset++;
+
+    ucData[ulOffset] = (int)this->uiAmount[1];
+
+    std::fstream tempmapsave;
+    char savestring[60] = "Maps\\CMapPoint.awf";
+    //strncat_s(savestring, ".\Maps\mapfile.awf", 29);
+    tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
+    for (unsigned long int j = 0; j <= ulData - 1; j++)
+    {
+        tempmapsave << ucData[j];
+    }
+    tempmapsave.close();
+
+    return nullptr;
 }
