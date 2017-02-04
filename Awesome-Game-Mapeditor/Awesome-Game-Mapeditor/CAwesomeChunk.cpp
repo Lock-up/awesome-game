@@ -143,3 +143,29 @@ bool CAwesomeChunk::getTexture(sf::Texture& pTexture)
     pTexture = *this->cChunkTexture;
     return true;
 }
+
+unsigned char* CAwesomeChunk::serialize()
+{
+    // Mapinfo block size
+    unsigned long int ulData = CHUNK_SIZE * CHUNK_SIZE * 8;
+    unsigned long int ulOffset = 0;
+    unsigned char* ucData = new unsigned char[ulData];
+
+    for (int i = 0; i < (CHUNK_SIZE * CHUNK_SIZE); i++)
+    {
+        unsigned char* ucDataPoint = new unsigned char[8];
+        ucDataPoint = this->getMapPoint(i)->serialize();
+    }
+
+    std::fstream tempmapsave;
+    char savestring[60] = "Maps\\CMapInfo.awf";
+    //strncat_s(savestring, ".\Maps\mapfile.awf", 29);
+    tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
+    for (unsigned long int j = 0; j <= ulData - 1; j++)
+    {
+        tempmapsave << ucData[j];
+    }
+    tempmapsave.close();
+
+    return ucData;
+}

@@ -88,7 +88,7 @@ public:
     bool            setFlag(Flag_Type, std::uint8_t);
     bool            letFlag(Flag_Type, std::uint8_t);
 
-    std::uint8_t*   serialize();
+    unsigned char*  serialize();
 
     //TODO: Konstructor
                     CMapPoint();

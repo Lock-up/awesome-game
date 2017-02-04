@@ -37,6 +37,7 @@ public:
     sf::Texture&            getTexture() { return *this->cChunkTexture; };
 
     bool                    getTexture(sf::Texture&);
+    unsigned char*          serialize();
 
     //TODO: Konstructor
     CAwesomeChunk();

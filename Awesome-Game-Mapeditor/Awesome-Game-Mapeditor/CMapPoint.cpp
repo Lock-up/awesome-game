@@ -339,7 +339,7 @@ CMapPoint::CMapPoint(std::uint8_t uiFlag, std::uint8_t uiTextureID_World, std::u
     this->GUIDUnit = GUIDUnit;
 }
 
-std::uint8_t* CMapPoint::serialize()
+unsigned char* CMapPoint::serialize()
 {
     // Mapinfo block size
     unsigned long int ulData = 0;
@@ -386,15 +386,15 @@ std::uint8_t* CMapPoint::serialize()
 
     ucData[ulOffset] = (int)this->uiAmount[1];
 
-    std::fstream tempmapsave;
-    char savestring[60] = "Maps\\CMapPoint.awf";
-    //strncat_s(savestring, ".\Maps\mapfile.awf", 29);
-    tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
-    for (unsigned long int j = 0; j <= ulData - 1; j++)
-    {
-        tempmapsave << ucData[j];
-    }
-    tempmapsave.close();
+    //std::fstream tempmapsave;
+    //char savestring[60] = "Maps\\CMapPoint.awf";
+    ////strncat_s(savestring, ".\Maps\mapfile.awf", 29);
+    //tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
+    //for (unsigned long int j = 0; j <= ulData - 1; j++)
+    //{
+    //    tempmapsave << ucData[j];
+    //}
+    //tempmapsave.close();
 
-    return nullptr;
+    return ucData;
 }
