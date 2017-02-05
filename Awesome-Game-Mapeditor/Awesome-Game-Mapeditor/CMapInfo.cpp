@@ -83,7 +83,7 @@ CMapInfo::CMapInfo()
     this->uiVersion = 1;
 }
 
-std::uint8_t* CMapInfo::serialize()
+unsigned char* CMapInfo::serialize(char name[])
 {
     // Mapinfo block size
     unsigned long int ulData = 0;
@@ -94,7 +94,7 @@ std::uint8_t* CMapInfo::serialize()
 
     // Mapnamelength = length
     // no sizeof here!
-    ulData += this->strMapname.length();
+    ulData += (unsigned long)this->strMapname.length();
 
     // sizeof sizex = 2 Bytes
     ulData += sizeof(this->uiSize[0]);
@@ -109,7 +109,7 @@ std::uint8_t* CMapInfo::serialize()
     // Datalength
     unsigned char* ucData = new unsigned char[ulData];
     ucData[ulOffset] = (int)ulData / 256;
-    ucData[ulOffset + 1] = ulData - ((int)ulData / 256) * 256;
+    ucData[ulOffset + 1] = (unsigned char)(ulData - ((int)ulData / 256) * 256);
     ulOffset += 2;
 
     //Version
@@ -127,7 +127,7 @@ std::uint8_t* CMapInfo::serialize()
     ucData[ulOffset + 1] = this->uiSize[1] - ((int)this->uiSize[1] / 256) * 256;
     ulOffset += 2;
 
-    unsigned long int ulBuffer = this->strMapname.length();
+    unsigned long int ulBuffer = (unsigned long)this->strMapname.length();
     unsigned char* trap = new unsigned char[this->strMapname.length()];
 
     char* destString = new char[this->strMapname.length()];
@@ -140,8 +140,9 @@ std::uint8_t* CMapInfo::serialize()
     }
 
     std::fstream tempmapsave;
-    char savestring[60] = "Maps\\CMapInfo.awf";
-    //strncat_s(savestring, ".\Maps\mapfile.awf", 29);
+    char savestring[60] = "Maps\\";
+    strncat_s(savestring, name, 29);
+    strncat_s(savestring, ".awf", 29);
     tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
     for (unsigned long int j = 0; j <= ulData - 1; j++)
     {

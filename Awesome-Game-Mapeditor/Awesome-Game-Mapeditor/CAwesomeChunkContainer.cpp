@@ -93,3 +93,39 @@ std::uint64_t CAwesomeChunkContainer::getChunkCount()
 
 // TODO: Konstructor
 // TODO: Destructor
+
+unsigned char* CAwesomeChunkContainer::serialize(char name[])
+{
+    // Mapinfo block size
+    unsigned long int ulData = (unsigned long)(CHUNK_SIZE * CHUNK_SIZE * 8 * this->getChunkCount());
+    unsigned long int ulOffset = 0;
+    unsigned char* ucData = new unsigned char[ulData];
+
+    for (int i = 0; i < this->getChunkCount(); i++)
+    {
+        std::cout << "Serializing Chunk for Container (ID: " << i << ")" << std::endl;
+
+        unsigned char* ucDataChunk = new unsigned char[CHUNK_SIZE * CHUNK_SIZE * 8];
+        ucDataChunk = this->getChunk(i)->serialize();
+
+        for (int j = 0; j < CHUNK_SIZE * CHUNK_SIZE * 8; j++)
+        {
+            ucData[ulOffset + j] = ucDataChunk[j];
+        }
+        
+        ulOffset += CHUNK_SIZE * CHUNK_SIZE * 8;
+    }
+
+    std::fstream tempmapsave;
+    char savestring[60] = "Maps\\";
+    strncat_s(savestring, name, 29);
+    strncat_s(savestring, ".awf", 29);
+    tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out | std::ios_base::app);
+    for (unsigned long int j = 0; j <= ulData - 1; j++)
+    {
+        tempmapsave << ucData[j];
+    }
+    tempmapsave.close();
+
+    return ucData;
+}

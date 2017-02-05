@@ -36,7 +36,7 @@ public:
     bool            updatePlayerMarkerPixels(CMapInfo, SPosition, bool);
     sf::Uint8*      getPlayerMarker();
 
-    std::uint8_t*   serialize();
+    unsigned char*  serialize(char name[]);
 
 };
 

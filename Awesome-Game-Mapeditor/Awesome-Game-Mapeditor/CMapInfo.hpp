@@ -22,7 +22,7 @@ public:
     bool            setVersion(std::uint16_t, bool bForce = true);
     std::uint16_t   getVersion();
     bool            hasVersion();
-    std::uint8_t*   serialize();
+    unsigned char*  serialize(char name[]);
 
                     CMapInfo();
 

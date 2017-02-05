@@ -20,6 +20,7 @@ public:
     //sf::Image                   getImage();
     //sf::Texture                 getTexture();
     sf::Texture&                getChunkTexture(std::uint64_t);
+    bool                        saveMapWithFilename(char []);
 
     //Constructor
                                 CMap();

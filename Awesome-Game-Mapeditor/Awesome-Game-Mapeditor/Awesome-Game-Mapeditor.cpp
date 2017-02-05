@@ -46,13 +46,22 @@ int main()
         return 1;
     }
 
-    CMap *map = new CMap(2, 2, rhImages, Textures::DESERT_01);
+    // Bei 10gb ramauslastung hab ich mal aufgehört
+    //CMap *map = new CMap(1024, 1024, rhImages, Textures::DESERT_01);
+    //CMap *map = new CMap(256, 256, rhImages, Textures::DESERT_01);
+    CMap *map = new CMap(16, 16, rhImages, Textures::DESERT_01);
     std::cout << "Chunks in Container: " << map->getCAwesomeChunkContainer()->getChunkCount() << std::endl;
-    map->getMapInfo()->serialize();
-    map->getMapPlayerInfo()->pushPlayer(13, 37);
-    map->getMapPlayerInfo()->serialize();
 
-    map->getCAwesomeChunkContainer()->getChunk(0)->getMapPoint(0)->serialize();
+    map->getMapPlayerInfo()->pushPlayer(13, 37);
+    map->saveMapWithFilename("SpikesMap_BIGAF");
+
+    //map->getMapInfo()->serialize();
+    //map->getMapPlayerInfo()->pushPlayer(13, 37);
+    //map->getMapPlayerInfo()->serialize();
+
+    //map->getCAwesomeChunkContainer()->getChunk(0)->getMapPoint(0)->serialize();
+    //map->getCAwesomeChunkContainer()->getChunk(0)->serialize();
+    //map->getCAwesomeChunkContainer()->serialize();
 
     //map->generateImage(rhImages);
 

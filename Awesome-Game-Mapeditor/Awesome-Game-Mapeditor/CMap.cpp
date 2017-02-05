@@ -68,6 +68,14 @@ sf::Texture& CMap::getChunkTexture(std::uint64_t uiChunkID)
     return this->cAwesomeChunkContainer->getChunk(uiChunkID)->getTexture();
 }
 
+bool CMap::saveMapWithFilename(char name[])
+{
+    this->cMapInfo->serialize(name);
+    this->cMapPlayerInfo->serialize(name);
+    this->cAwesomeChunkContainer->serialize(name);
+    return true;
+}
+
 /*
 static const Textures::ID aIDtoTexture[] =
 {

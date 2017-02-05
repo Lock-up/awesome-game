@@ -135,7 +135,7 @@ sf::Uint8* CMapPlayerInfo::getPlayerMarker()
     return this->pPlayerMarkerPixels;
 }
 
-std::uint8_t* CMapPlayerInfo::serialize()
+unsigned char* CMapPlayerInfo::serialize(char name[])
 {
     // Mapinfo block size
     unsigned long int ulData = 0;
@@ -168,8 +168,10 @@ std::uint8_t* CMapPlayerInfo::serialize()
     }
 
     std::fstream tempmapsave;
-    char savestring[60] = "Maps\\CMapPlayerInfo.awf";
-    tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
+    char savestring[60] = "Maps\\";
+    strncat_s(savestring, name, 29);
+    strncat_s(savestring, ".awf", 29);
+    tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out | std::ios_base::app);
     for (unsigned long int j = 0; j <= ulData - 1; j++)
     {
         tempmapsave << ucData[j];

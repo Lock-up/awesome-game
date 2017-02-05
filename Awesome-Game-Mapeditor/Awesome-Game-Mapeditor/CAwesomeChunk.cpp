@@ -155,17 +155,27 @@ unsigned char* CAwesomeChunk::serialize()
     {
         unsigned char* ucDataPoint = new unsigned char[8];
         ucDataPoint = this->getMapPoint(i)->serialize();
+
+        ucData[ulOffset + 0] = ucDataPoint[0];
+        ucData[ulOffset + 1] = ucDataPoint[1];
+        ucData[ulOffset + 2] = ucDataPoint[2];
+        ucData[ulOffset + 3] = ucDataPoint[3];
+        ucData[ulOffset + 4] = ucDataPoint[4];
+        ucData[ulOffset + 5] = ucDataPoint[5];
+        ucData[ulOffset + 6] = ucDataPoint[6];
+        ucData[ulOffset + 7] = ucDataPoint[7];
+        ulOffset += 8;
     }
 
-    std::fstream tempmapsave;
-    char savestring[60] = "Maps\\CMapInfo.awf";
-    //strncat_s(savestring, ".\Maps\mapfile.awf", 29);
-    tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
-    for (unsigned long int j = 0; j <= ulData - 1; j++)
-    {
-        tempmapsave << ucData[j];
-    }
-    tempmapsave.close();
+    //std::fstream tempmapsave;
+    //char savestring[60] = "Maps\\CMapInfo_Chunk.awf";
+    ////strncat_s(savestring, ".\Maps\mapfile.awf", 29);
+    //tempmapsave.open(savestring, std::ios_base::binary | std::ios_base::out);
+    //for (unsigned long int j = 0; j <= ulData - 1; j++)
+    //{
+    //    tempmapsave << ucData[j];
+    //}
+    //tempmapsave.close();
 
     return ucData;
 }
