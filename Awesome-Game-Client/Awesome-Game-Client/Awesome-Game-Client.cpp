@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "Screens\Menu\Main.h"
 
 int main()
 {
@@ -56,16 +57,18 @@ int main()
 	//render_window.setFramerateLimit(60);
 
 	tgui::Gui gui{ window };
-	
-	tgui::Button::Ptr button = std::make_shared<tgui::Button>();
-	button->setText("Asdf");
-	gui.add(button);
 
-	tgui::ChildWindow::Ptr c_window = std::make_shared<tgui::ChildWindow>();
+	Screens::Menu::Main::LoadWidgets(gui);
+	
+	/*tgui::Button::Ptr button = std::make_shared<tgui::Button>();
+	button->setText("Asdf");
+	gui.add(button);*/
+
+	/*tgui::ChildWindow::Ptr c_window = std::make_shared<tgui::ChildWindow>();
 	c_window->keepInParent(true);
 	c_window->setResizable(true);
 	c_window->setTitleButtons((tgui::ChildWindow::TitleButtons)(tgui::ChildWindow::TitleButtons::Minimize | tgui::ChildWindow::TitleButtons::Close));
-	gui.add(c_window);
+	gui.add(c_window);*/
 	
 	sf::Event event;
 
