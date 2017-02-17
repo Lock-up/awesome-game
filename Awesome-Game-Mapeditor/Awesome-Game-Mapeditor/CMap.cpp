@@ -48,6 +48,7 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
     for (std::uint64_t i = 0; i < uiSizeX*uiSizeY; i++)
     {
         CAwesomeChunk *tmpChunk = new CAwesomeChunk(texID);
+        std::cout << "ChunkID: " << i << std::endl;
         tmpChunk->generateImageAndTexture(rhImages);
         this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
     }
@@ -58,9 +59,61 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
     this->cMapPlayerInfo = new CMapPlayerInfo();
 }
 
-CMap::CMap(std::string strMapName)
+CMap::CMap(std::string strMapName, ResourceHolder<sf::Image, Textures::ID>& rhImages)
 {
     std::cout << "CMap::CMap(string)" << std::endl;
+}
+
+CMap::CMap(char name[], ResourceHolder<sf::Image, Textures::ID>& rhImages)
+{
+    std::cout << "CMap::CMap(char[])" << std::endl;
+
+    FILE *mapfile = NULL;
+    unsigned long Buffer = 0;
+
+    char loadstring[60] = "Maps\\";
+    strncat_s(loadstring, name, 29);
+    strncat_s(loadstring, ".awf", 29);
+
+
+    //strcpy(mapname, entered);
+    fopen_s(&mapfile, loadstring, "rb");
+
+    if (mapfile == NULL)
+    {
+        std::cout << "Mapfile " << name << "(" << loadstring << ") couldn't be loaded!" << std::endl;
+        return;
+    }
+    else
+    {
+        std::cout << "Mapfile " << name << "(" << loadstring << ") loaded!" << std::endl;
+    }
+
+    fseek(mapfile, 0, SEEK_END);    //to the end of the file
+    Buffer = ftell(mapfile);	    //save as Buffer
+    fseek(mapfile, 0, SEEK_SET);    //to the start of the file
+
+    unsigned char *tempmapfile = new unsigned char[Buffer]; //My array for the mapdata
+
+    fread(tempmapfile, Buffer, 1, mapfile);
+
+    std::uint16_t uiFileVersion = (std::uint16_t)(tempmapfile[0] * 256 + tempmapfile[1]);
+
+    switch (uiFileVersion)
+    {
+    case 1:
+    {
+        deserializeVersion_1(tempmapfile, (std::uint64_t) Buffer);
+    }break;
+    default:
+    {
+        std::cout << "Invalid fileversion!" << std::endl;
+    }
+    }
+
+    // avoid memleak
+    tempmapfile = NULL;
+    mapfile = NULL;
 }
 
 sf::Texture& CMap::getChunkTexture(std::uint64_t uiChunkID)
@@ -75,6 +128,104 @@ bool CMap::saveMapWithFilename(char name[])
     this->cAwesomeChunkContainer->serialize(name);
     return true;
 }
+
+bool CMap::deserializeVersion_1(unsigned char* tempmapfile, std::uint64_t uiBuffer)
+{
+    // MapInfo
+    std::uint16_t uiFileVersion = (std::uint16_t)(tempmapfile[0] * 256 + tempmapfile[1]);
+    std::uint64_t uiMapInfoSize = (std::uint64_t)(tempmapfile[2] * 256 + tempmapfile[3]);
+    std::uint16_t uiMapInfoSize_X = (std::uint16_t)(tempmapfile[4] * 256 + tempmapfile[5]);
+    std::uint16_t uiMapInfoSize_Y = (std::uint16_t)(tempmapfile[6] * 256 + tempmapfile[7]);
+
+    char *name = new char[(int)uiMapInfoSize - 8 + 1];
+
+    for (int i = 0; i < (int)uiMapInfoSize - 8; i++)
+        name[i] = tempmapfile[i + 8];
+
+    name[(int)uiMapInfoSize - 8] = '\0';
+
+    std::string strMapName = std::string(reinterpret_cast<const char*>(name));
+
+    this->cMapInfo = new CMapInfo(strMapName, uiMapInfoSize_X, uiMapInfoSize_Y, uiFileVersion);
+
+    name = NULL;
+    // MapInfo loaded
+
+    // MapPlayerInfo
+    this->cMapPlayerInfo = new CMapPlayerInfo();
+
+    std::uint8_t uiPlayerCount = (int)(tempmapfile[uiMapInfoSize]);
+    std::uint64_t uiMapPlayerInfoSize = 1 + (int)(tempmapfile[uiMapInfoSize]) * 4;
+    
+
+    for (int j = 0; j < uiPlayerCount; j++)
+    {
+        // 1 + j * 4 = Offset
+        std::uint64_t uiOffsetPlayer = uiMapInfoSize + 1 + j * 4;
+
+        std::uint16_t uiPosX = tempmapfile[uiOffsetPlayer    ] * 256 + tempmapfile[uiOffsetPlayer + 1];
+        std::uint16_t uiPosY = tempmapfile[uiOffsetPlayer + 2] * 256 + tempmapfile[uiOffsetPlayer + 3];
+
+        //std::cout << "Loading player at: " << (int)uiPosX << ":" << (int)uiPosY << std::endl;
+
+        this->cMapPlayerInfo->pushPlayer(uiPosX, uiPosY);
+    }
+    // MapPlayerInfo loaded
+
+    // Chunks
+    std::uint64_t uiChunksLength = uiBuffer - uiMapInfoSize - uiMapPlayerInfoSize;
+    std::uint32_t uiChunkCount = uiChunksLength / 8 / 32 / 32;
+
+    this->cAwesomeChunkContainer = new CAwesomeChunkContainer();
+
+    for (int k = 0; k < uiChunkCount; k++)
+    {
+        CAwesomeChunk *tmpChunk = new CAwesomeChunk();
+        // tmpChunk->generateImageAndTexture(rhImages);
+        this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
+    }
+
+    //std::cout << "Chunks: " << (int)(uiChunksLength / 8 / 32 / 32) << std::endl;
+
+    // Chunks loaded
+
+    return true;
+}
+
+/*
+bool CMap::loadMapByFilename(char name[]){
+    FILE *mapfile = NULL;
+    unsigned long Buffer = 0;
+
+    char loadstring[60] = "Maps\\";
+    strncat_s(loadstring, name, 29);
+    strncat_s(loadstring, ".awf", 29);
+
+
+    //strcpy(mapname, entered);
+    fopen_s(&mapfile, loadstring, "rb");
+
+    if (mapfile == NULL)
+    {
+        std::cout << "Mapfile " << name << "(" << loadstring << ") couldn't be loaded!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Mapfile " << name << "(" << loadstring << ") loaded!" << std::endl;
+    }
+
+    fseek(mapfile, 0, SEEK_END);    //to the end of the file
+    Buffer = ftell(mapfile);	    //save as Buffer
+    fseek(mapfile, 0, SEEK_SET);    //to the start of the file
+
+    unsigned char *tempmapfile = new unsigned char[Buffer]; //My array for the mapdata
+
+    fread(tempmapfile, Buffer, 1, mapfile);
+
+    std::uint16_t uiFileVersion = (std::uint16_t)(tempmapfile[0] * 256 + tempmapfile[1]);
+
+    return true;
+}*/
 
 /*
 static const Textures::ID aIDtoTexture[] =

@@ -49,11 +49,16 @@ int main()
     // Bei 10gb ramauslastung hab ich mal aufgehört
     //CMap *map = new CMap(1024, 1024, rhImages, Textures::DESERT_01);
     //CMap *map = new CMap(256, 256, rhImages, Textures::DESERT_01);
-    CMap *map = new CMap(16, 16, rhImages, Textures::DESERT_01);
+    CMap *map = new CMap(2, 2, rhImages, Textures::DESERT_01);
     std::cout << "Chunks in Container: " << map->getCAwesomeChunkContainer()->getChunkCount() << std::endl;
 
     map->getMapPlayerInfo()->pushPlayer(13, 37);
+    map->getMapPlayerInfo()->pushPlayer(12, 27);
     map->saveMapWithFilename("SpikesMap_BIGAF");
+    CMap *map2 = new CMap("SpikesMap_BIGAF", rhImages);
+    //map->loadMapByFilename("SpikesMap");
+
+    std::cout << "Mapname2: " << map2->getMapInfo()->getMapName() << std::endl;
 
     //map->getMapInfo()->serialize();
     //map->getMapPlayerInfo()->pushPlayer(13, 37);

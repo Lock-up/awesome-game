@@ -25,6 +25,7 @@ public:
     unsigned char*  serialize(char name[]);
 
                     CMapInfo();
+                    CMapInfo(std::string, std::uint16_t, std::uint16_t, std::uint16_t);
 
 private:
     bool            setMapSize(std::uint8_t, std::uint16_t);

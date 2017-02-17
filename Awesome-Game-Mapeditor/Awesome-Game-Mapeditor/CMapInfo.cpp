@@ -83,6 +83,17 @@ CMapInfo::CMapInfo()
     this->uiVersion = 1;
 }
 
+CMapInfo::CMapInfo(std::string strName, std::uint16_t size_x, std::uint16_t size_y, std::uint16_t uiVersion)
+{
+    std::cout << "CMapInfo(" << strName << ", " << (int)size_x << ", " << (int)size_y << ", " << (int)uiVersion << ")" << std::endl;
+
+    this->strMapname = strName;
+    this->uiSize[0] = size_x;
+    this->uiSize[1] = size_y;
+
+    this->uiVersion = uiVersion;
+}
+
 unsigned char* CMapInfo::serialize(char name[])
 {
     // Mapinfo block size
@@ -106,15 +117,15 @@ unsigned char* CMapInfo::serialize(char name[])
     ulData += sizeof(this->uiVersion);
     std::cout << "Data: " << ulData << std::endl;
 
-    // Datalength
-    unsigned char* ucData = new unsigned char[ulData];
-    ucData[ulOffset] = (int)ulData / 256;
-    ucData[ulOffset + 1] = (unsigned char)(ulData - ((int)ulData / 256) * 256);
-    ulOffset += 2;
-
     //Version
+    unsigned char* ucData = new unsigned char[ulData];
     ucData[ulOffset] = (int)this->uiVersion / 256;
     ucData[ulOffset + 1] = this->uiVersion - ((int)this->uiVersion / 256) * 256;
+    ulOffset += 2;
+
+    // Datalength
+    ucData[ulOffset] = (int)ulData / 256;
+    ucData[ulOffset + 1] = (unsigned char)(ulData - ((int)ulData / 256) * 256);
     ulOffset += 2;
 
     // SizeX

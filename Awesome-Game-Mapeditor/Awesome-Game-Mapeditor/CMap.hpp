@@ -8,25 +8,28 @@ private:
     CMapInfo                *cMapInfo;
     CMapPlayerInfo          *cMapPlayerInfo;
     CAwesomeChunkContainer  *cAwesomeChunkContainer;
-    //sf::Image               *cMapImage;
-    //sf::Texture             *cMapTexture;
+    //sf::Image             *cMapImage;
+    //sf::Texture           *cMapTexture;
 public:
-    CMapInfo*                   getMapInfo();
-    CMapPlayerInfo*             getMapPlayerInfo();
-    CAwesomeChunkContainer*     getCAwesomeChunkContainer();
+    CMapInfo*               getMapInfo();
+    CMapPlayerInfo*         getMapPlayerInfo();
+    CAwesomeChunkContainer* getCAwesomeChunkContainer();
     
-    //bool                        generateImage(ResourceHolder<sf::Image, Textures::ID>&);
-    //bool                        generateTexture();
-    //sf::Image                   getImage();
-    //sf::Texture                 getTexture();
-    sf::Texture&                getChunkTexture(std::uint64_t);
-    bool                        saveMapWithFilename(char []);
+    //bool                  generateImage(ResourceHolder<sf::Image, Textures::ID>&);
+    //bool                  generateTexture();
+    //sf::Image             getImage();
+    //sf::Texture           getTexture();
+    sf::Texture&            getChunkTexture(std::uint64_t);
+    bool                    saveMapWithFilename(char []);
+    //bool                    loadMapByFilename(char[]);
+    bool                    deserializeVersion_1(unsigned char*, std::uint64_t);
 
     //Constructor
-                                CMap();
-                                CMap(std::uint64_t, std::uint64_t, ResourceHolder<sf::Image, Textures::ID>&);
-                                CMap(std::uint64_t, std::uint64_t, ResourceHolder<sf::Image, Textures::ID>&, Textures::ID);
-                                CMap(std::string);
+                            CMap();
+                            CMap(std::uint64_t, std::uint64_t, ResourceHolder<sf::Image, Textures::ID>&);
+                            CMap(std::uint64_t, std::uint64_t, ResourceHolder<sf::Image, Textures::ID>&, Textures::ID);
+                            CMap(std::string, ResourceHolder<sf::Image, Textures::ID>&);
+                            CMap(char[], ResourceHolder<sf::Image, Textures::ID>&);
 };
 
 #endif
