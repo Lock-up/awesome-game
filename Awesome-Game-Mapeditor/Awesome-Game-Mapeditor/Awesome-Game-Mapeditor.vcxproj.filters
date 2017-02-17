@@ -45,6 +45,9 @@
     <ClInclude Include="ResourceManager.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="CAwesomeBuildings.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -69,6 +72,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="CAwesomeChunkContainer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="CAwesomeBuilding.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

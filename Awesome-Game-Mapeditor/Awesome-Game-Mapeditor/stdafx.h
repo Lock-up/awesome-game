@@ -37,3 +37,6 @@
 #include "CMapInfo.hpp"
 #include "CAwesomeChunkContainer.hpp"
 #include "CMap.hpp"
+
+// Buildings
+#include "CAwesomeBuildings.hpp"
