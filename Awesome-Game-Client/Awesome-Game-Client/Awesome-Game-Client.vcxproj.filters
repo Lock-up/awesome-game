@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Screens">
-      <UniqueIdentifier>{e64ff2ed-5e51-488d-b6a3-70173114f8e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Screens\Menu">
-      <UniqueIdentifier>{089d5f2d-2fff-49a1-aaa0-d9bd09801e4a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -30,8 +24,11 @@
     <ClInclude Include="targetver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Screens\Menu\Main.h">
-      <Filter>Screens\Menu</Filter>
+    <ClInclude Include="Menu\Menu_Main.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Navigation_Manager.hpp">
+      <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +36,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Awesome-Game-Client.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\Menu_Main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\Navigation_Manager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

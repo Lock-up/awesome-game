@@ -88,7 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)TGUI-0.7_x86\include;$(SolutionDir)SFML-2.4.1_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client;$(SolutionDir)TGUI-0.7_x86\include;$(SolutionDir)SFML-2.4.1_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -110,7 +110,7 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7_x86\include;%(AdditionalIncludeDirectories);E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,7 +134,7 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1_x86\include;$(SolutionDir)TGUI-0.7_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1_x86\include;$(SolutionDir)TGUI-0.7_x86\include;%(AdditionalIncludeDirectories);E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,7 +160,7 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7\include;%(AdditionalIncludeDirectories);E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -181,12 +181,15 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Screens\Menu\Main.h" />
+    <ClInclude Include="Menu\Menu_Main.hpp" />
+    <ClInclude Include="Menu\Navigation_Manager.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Awesome-Game-Client.cpp" />
+    <ClCompile Include="Menu\Menu_Main.cpp" />
+    <ClCompile Include="Menu\Navigation_Manager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

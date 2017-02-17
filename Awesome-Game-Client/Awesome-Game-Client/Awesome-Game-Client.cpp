@@ -2,14 +2,14 @@
 //
 
 #include "stdafx.h"
-#include "Screens\Menu\Main.h"
+#include "Menu\Menu_Main.hpp"
 
 int main()
 {
+#ifndef _DEBUG
 	//Start the SFML display window
 	sf::RenderWindow Splash(sf::VideoMode(1024, 768, 32), "", sf::Style::None);
 	Splash.setMouseCursorVisible(false);
-	
 
 	//Load the images for each individual screen (only one for now)
 	// Load a sprite to display
@@ -18,13 +18,11 @@ int main()
 		return EXIT_FAILURE;
 	sf::Sprite sprite(texture);
 	sf::Sprite OpenALSprite(texture);
-
 	sf::Clock splash_clock;
-
 	while (Splash.isOpen())
 	{
 		auto elapsedTime = splash_clock.getElapsedTime();
-		if (elapsedTime.asSeconds() > 5) 
+		if (elapsedTime.asSeconds() > 5)
 		{
 			Splash.close();
 		}
@@ -49,8 +47,7 @@ int main()
 			Splash.display();
 		}
 	}
-
-
+#endif // _DEBUG
 
 	sf::VideoMode mode;
 	sf::RenderWindow window(mode.getFullscreenModes()[1], "SFML works!");
@@ -58,7 +55,9 @@ int main()
 
 	tgui::Gui gui{ window };
 
-	Screens::Menu::Main::LoadWidgets(gui);
+	// Load main menu
+	auto menu = Menu_Main(gui);
+	menu.LoadWidgets();
 	
 	/*tgui::Button::Ptr button = std::make_shared<tgui::Button>();
 	button->setText("Asdf");
