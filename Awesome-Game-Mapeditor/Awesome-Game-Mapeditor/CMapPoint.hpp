@@ -59,6 +59,7 @@ private:
 public:
     bool            setResource(std::uint8_t, bool bForce = true);
     std::uint8_t    getResource();
+    bool            setResources(std::uint8_t, std::uint8_t);
 
     bool            setMineralResource(std::uint8_t, bool bForce = true);
     std::uint8_t    getMineralResource();
@@ -69,6 +70,7 @@ public:
 
     bool            addAmount(std::uint8_t, bool bForce = true);
     bool            setAmount(std::uint8_t);
+    bool            setAmounts(std::uint8_t, std::uint8_t);
     bool            letAmount(std::uint8_t, bool bForce = true);
     std::uint8_t    getAmount();
 
@@ -86,6 +88,7 @@ public:
     bool            testFlag(Flag_Type, std::uint8_t);
     std::bitset<8>  getFlag(Flag_Type);
     bool            setFlag(Flag_Type, std::uint8_t);
+    bool            setFlag(Flag_Type, unsigned long);
     bool            letFlag(Flag_Type, std::uint8_t);
 
     unsigned char*  serialize();

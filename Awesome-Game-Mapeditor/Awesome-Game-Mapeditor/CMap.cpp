@@ -174,16 +174,54 @@ bool CMap::deserializeVersion_1(unsigned char* tempmapfile, std::uint64_t uiBuff
 
     // Chunks
     std::uint64_t uiChunksLength = uiBuffer - uiMapInfoSize - uiMapPlayerInfoSize;
-    std::uint32_t uiChunkCount = uiChunksLength / 8 / 32 / 32;
+    std::uint32_t uiChunkCount = (std::uint32_t)(uiChunksLength / 8 / 32 / 32);
 
     this->cAwesomeChunkContainer = new CAwesomeChunkContainer();
 
-    for (int k = 0; k < uiChunkCount; k++)
+    std::uint64_t uiChunkOffset = uiMapInfoSize + uiMapPlayerInfoSize;
+
+    for (std::uint32_t k = 0; k < uiChunkCount; k++)
     {
         CAwesomeChunk *tmpChunk = new CAwesomeChunk();
         // tmpChunk->generateImageAndTexture(rhImages);
+        
+
+        for (std::uint16_t l = 0; l < (CHUNK_SIZE * CHUNK_SIZE); l++)
+        {
+            // std::bitset<8>  bsSpecial;
+            // std::uint8_t    uiTextureIDs[2];
+            // std::uint8_t    uiHeight;
+            // std::uint8_t    uiResource[2];
+            // std::uint8_t    uiAmount[2];
+            // tmpChunk->getMapPoint(l)->setTexture()
+
+            // // Bitflags
+            // ucData[ulOffset] = (int)this->bsSpecial.to_ulong();
+            // // Textures
+            // ucData[ulOffset] = (int)this->uiTextureIDs[0];
+            // ucData[ulOffset] = (int)this->uiTextureIDs[1];
+            // // Height
+            // ucData[ulOffset] = (int)this->uiHeight;
+            // // Resources
+            // ucData[ulOffset] = (int)this->uiResource[0];
+            // ucData[ulOffset] = (int)this->uiResource[1];
+            // // Amounts
+            // ucData[ulOffset] = (int)this->uiAmount[0];
+            // ucData[ulOffset] = (int)this->uiAmount[1];
+
+            tmpChunk->getMapPoint(l)->setFlag(Flag_Type::FLAG_SPECIAL, (unsigned long)tempmapfile[uiChunkOffset]);
+            tmpChunk->getMapPoint(l)->setTextures((std::uint8_t)(tempmapfile[uiChunkOffset + 1]), (std::uint8_t)(tempmapfile[uiChunkOffset + 2]));
+            tmpChunk->getMapPoint(l)->setHeight((std::uint8_t)tempmapfile[uiChunkOffset + 3]);
+            tmpChunk->getMapPoint(l)->setResources((std::uint8_t)tempmapfile[uiChunkOffset + 4], (std::uint8_t)tempmapfile[uiChunkOffset + 5]);
+            tmpChunk->getMapPoint(l)->setAmounts((std::uint8_t)tempmapfile[uiChunkOffset + 6], (std::uint8_t)tempmapfile[uiChunkOffset + 7]);
+
+            uiChunkOffset += 8;
+        }
+
         this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
     }
+
+
 
     //std::cout << "Chunks: " << (int)(uiChunksLength / 8 / 32 / 32) << std::endl;
 

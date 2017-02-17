@@ -56,9 +56,10 @@ int main()
     map->getMapPlayerInfo()->pushPlayer(12, 27);
     map->saveMapWithFilename("SpikesMap_BIGAF");
     CMap *map2 = new CMap("SpikesMap_BIGAF", rhImages);
+    map2->saveMapWithFilename("SpikesMap_BIGAF2");
     //map->loadMapByFilename("SpikesMap");
 
-    std::cout << "Mapname2: " << map2->getMapInfo()->getMapName() << std::endl;
+    //std::cout << "Mapname2: " << map2->getMapInfo()->getMapName() << std::endl;
 
     //map->getMapInfo()->serialize();
     //map->getMapPlayerInfo()->pushPlayer(13, 37);

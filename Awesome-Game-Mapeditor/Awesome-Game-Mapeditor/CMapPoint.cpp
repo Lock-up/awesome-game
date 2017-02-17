@@ -31,6 +31,12 @@ std::bitset<8> CMapPoint::getFlag(Flag_Type eFlagType)
     }
 }
 
+bool CMapPoint::setFlag(Flag_Type eFlagType, unsigned long ulValue)
+{
+    bsSpecial = std::bitset<8>(ulValue);
+    return true;
+}
+
 bool CMapPoint::setFlag(Flag_Type eFlagType, std::uint8_t uiIndex)
 {
     switch (eFlagType)
@@ -39,7 +45,7 @@ bool CMapPoint::setFlag(Flag_Type eFlagType, std::uint8_t uiIndex)
     {
         if (bsSpecial.test(uiIndex))
             return false;
-        
+
         bsSpecial.set(uiIndex, 1);
         return true;
     }break;
@@ -91,6 +97,13 @@ bool CMapPoint::setResource(std::uint8_t uiNewResource, std::uint8_t uiIndex, bo
     return true;
 }
 
+bool CMapPoint::setResources(std::uint8_t uiResource1, std::uint8_t uiResource2)
+{
+    this->uiResource[0] = uiResource1;
+    this->uiResource[1] = uiResource2;
+    return true;
+}
+
 std::uint8_t CMapPoint::getResource(std::uint8_t uiIndex)
 {
     if (uiIndex > 1)
@@ -122,6 +135,13 @@ bool CMapPoint::setAmount(std::uint8_t uiNewAmount, std::uint8_t uiIndex)
         return false;
 
     this->uiAmount[uiIndex] = uiNewAmount;
+    return true;
+}
+
+bool CMapPoint::setAmounts(std::uint8_t uiNewAmount1, std::uint8_t uiNewAmount2)
+{
+    this->uiAmount[0] = uiNewAmount1;
+    this->uiAmount[1] = uiNewAmount2;
     return true;
 }
 
