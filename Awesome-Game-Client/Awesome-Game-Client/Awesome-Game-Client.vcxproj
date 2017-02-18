@@ -119,11 +119,13 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
       <AdditionalLibraryDirectories>$(SolutionDir)SFML-2.4.1\lib;$(SolutionDir)TGUI-0.7\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy ..\SFML-2.3.2\binaries\* $(OutputPath) /i /d /y
+      <Command>xcopy $(SolutionDir)SFML-2.4.1\binaries\* $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
+xcopy $(SolutionDir)tgui-0.7\lib\tgui-d.dll $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Assets\Images\*.png $(OutputPath)\Assets\  /i /d /y
 cmd /x /c mkdir "$(OutputPath)\Maps"
-xcopy ..\Assets\*.awf $(OutputPath)\Maps\ /i /d /y
-xcopy ..\Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
-xcopy ..\Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
+xcopy  $(SolutionDir)Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
+xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -172,11 +174,13 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
       <AdditionalLibraryDirectories>$(SolutionDir)SFML-2.4.1\lib;$(SolutionDir)TGUI-0.7\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy ..\SFML-2.3.2\binaries\* $(OutputPath) /i /d /y
+      <Command>xcopy $(SolutionDir)SFML-2.4.1\binaries\* $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
+xcopy $(SolutionDir)tgui-0.7\lib\tgui-d.dll $(OutputPath)  /i /d /y
+xcopy $(SolutionDir)Assets\Images\*.png $(OutputPath)\Assets\  /i /d /y
 cmd /x /c mkdir "$(OutputPath)\Maps"
-xcopy ..\Assets\*.awf $(OutputPath)\Maps\ /i /d /y
-xcopy ..\Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
-xcopy ..\Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
+xcopy  $(SolutionDir)Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
+xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
