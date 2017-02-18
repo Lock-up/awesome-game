@@ -100,7 +100,10 @@
       <Command>xcopy $(SolutionDir)SFML-2.4.1_x86\binaries\* $(OutputPath)  /i /d /y
 xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
 xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui-d.dll $(OutputPath)  /i /d /y
-xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
+xcopy $(SolutionDir)Assets\Images\*.png $(OutputPath)\Assets\  /i /d /y
+cmd /x /c mkdir "$(OutputPath)\Maps"
+xcopy  $(SolutionDir)Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
+xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -151,7 +154,10 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
       <Command>xcopy $(SolutionDir)SFML-2.4.1_x86\binaries\* $(OutputPath)  /i /d /y
 xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
 xcopy $(SolutionDir)tgui-0.7_x86\lib\tgui.dll $(OutputPath)  /i /d /y
-xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
+xcopy $(SolutionDir)Assets\Images\*.png $(OutputPath)\Assets\  /i /d /y
+cmd /x /c mkdir "$(OutputPath)\Maps"
+xcopy  $(SolutionDir)Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
+xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
