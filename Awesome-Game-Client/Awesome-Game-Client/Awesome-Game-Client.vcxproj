@@ -119,10 +119,11 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
       <AdditionalLibraryDirectories>$(SolutionDir)SFML-2.4.1\lib;$(SolutionDir)TGUI-0.7\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)SFML-2.4.1\binaries\* $(OutputPath)  /i /d /y
-xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
-xcopy $(SolutionDir)tgui-0.7\lib\tgui-d.dll $(OutputPath)  /i /d /y
-xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
+      <Command>xcopy ..\SFML-2.3.2\binaries\* $(OutputPath) /i /d /y
+cmd /x /c mkdir "$(OutputPath)\Maps"
+xcopy ..\Assets\*.awf $(OutputPath)\Maps\ /i /d /y
+xcopy ..\Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
+xcopy ..\Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -171,23 +172,38 @@ xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
       <AdditionalLibraryDirectories>$(SolutionDir)SFML-2.4.1\lib;$(SolutionDir)TGUI-0.7\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)SFML-2.4.1\binaries\* $(OutputPath)  /i /d /y
-xcopy $(SolutionDir)Fonts\* $(OutputPath)\Fonts\  /i /d /y
-xcopy $(SolutionDir)tgui-0.7\lib\tgui.dll $(OutputPath)  /i /d /y
-xcopy $(SolutionDir)Assets\* $(OutputPath)\Assets\  /i /d /y</Command>
+      <Command>xcopy ..\SFML-2.3.2\binaries\* $(OutputPath) /i /d /y
+cmd /x /c mkdir "$(OutputPath)\Maps"
+xcopy ..\Assets\*.awf $(OutputPath)\Maps\ /i /d /y
+xcopy ..\Assets\Textures\*.png $(OutputPath)\Assets\Textures\ /i /d /y
+xcopy ..\Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /d /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Map\CAwesomeChunk.hpp" />
+    <ClInclude Include="Map\CAwesomeChunkContainer.hpp" />
+    <ClInclude Include="Map\CAwesomeChunkImageContainer.hpp" />
+    <ClInclude Include="Map\CMap.hpp" />
+    <ClInclude Include="Map\CMapInfo.hpp" />
+    <ClInclude Include="Map\CMapPlayerInfo.hpp" />
+    <ClInclude Include="Map\CMapPoint.hpp" />
     <ClInclude Include="Menu\Menu_Main.hpp" />
     <ClInclude Include="Menu\Navigation_Manager.hpp" />
+    <ClInclude Include="ResourceManager\ResourceManager.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Awesome-Game-Client.cpp" />
+    <ClCompile Include="Map\CAwesomeChunk.cpp" />
+    <ClCompile Include="Map\CAwesomeChunkContainer.cpp" />
+    <ClCompile Include="Map\CMap.cpp" />
+    <ClCompile Include="Map\CMapInfo.cpp" />
+    <ClCompile Include="Map\CMapPlayerInfo.cpp" />
+    <ClCompile Include="Map\CMapPoint.cpp" />
     <ClCompile Include="Menu\Menu_Main.cpp" />
     <ClCompile Include="Menu\Navigation_Manager.cpp" />
     <ClCompile Include="stdafx.cpp">

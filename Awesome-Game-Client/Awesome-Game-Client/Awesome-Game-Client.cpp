@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "Menu\Menu_Main.hpp"
 
 int main()
 {
@@ -14,7 +13,7 @@ int main()
 	//Load the images for each individual screen (only one for now)
 	// Load a sprite to display
 	sf::Texture texture;
-	if (!texture.loadFromFile("assets/splash.png"))
+	if (!texture.loadFromFile("assets/images/splash.png"))
 		return EXIT_FAILURE;
 	sf::Sprite sprite(texture);
 	sf::Sprite OpenALSprite(texture);
@@ -69,6 +68,39 @@ int main()
 	c_window->setTitleButtons((tgui::ChildWindow::TitleButtons)(tgui::ChildWindow::TitleButtons::Minimize | tgui::ChildWindow::TitleButtons::Close));
 	gui.add(c_window);*/
 	
+    // Try to load resources
+    ResourceHolder<sf::Image, Textures::ID> rhImages;
+    try
+    {
+        rhImages.load(Textures::DESERT_01, "Assets/Textures/DESERT_01.png");
+        rhImages.load(Textures::GREENLAND_01, "Assets/Textures/GREENLAND_01.png");
+        rhImages.load(Textures::SNOW_01, "Assets/Textures/SNOW_01.png");
+    }
+    catch (std::runtime_error& e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+        //assert(e.what() == NULL);
+        return 1;
+    }
+
+    ResourceHolder<sf::Texture, Buildings::ID> rhBuildings;
+    try
+    {
+        rhBuildings.load(Buildings::BLD_LUMBERJACK, "Assets/Buildings/bld_lumberjack.png");
+    }
+    catch (std::runtime_error& e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+        //assert(e.what() == NULL);
+        return 1;
+    }
+
+    CMap *map = new CMap(2, 2, rhImages, Textures::DESERT_01);
+    map->getMapPlayerInfo()->pushPlayer(12, 34);
+    map->getMapPlayerInfo()->pushPlayer(56, 78);
+    map->saveMapWithFilename("SpikesMap_BIGAF");
+    CMap *map2 = new CMap("SpikesMap_BIGAF", rhImages);
+
 	sf::Event event;
 
 	while (window.isOpen())
