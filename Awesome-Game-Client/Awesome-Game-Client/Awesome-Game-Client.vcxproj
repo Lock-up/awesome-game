@@ -88,7 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client;$(SolutionDir)TGUI-0.7_x86\include;$(SolutionDir)SFML-2.4.1_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Awesome-Game-Client;$(SolutionDir)TGUI-0.7_x86\include;$(SolutionDir)SFML-2.4.1_x86\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,7 +113,7 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7_x86\include;%(AdditionalIncludeDirectories);E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7_x86\include;$(SolutionDir)Awesome-Game-Client;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,7 +140,7 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1_x86\include;$(SolutionDir)TGUI-0.7_x86\include;%(AdditionalIncludeDirectories);E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1_x86\include;$(SolutionDir)TGUI-0.7_x86\include;$(SolutionDir)Awesome-Game-Client;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,7 +169,7 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7\include;%(AdditionalIncludeDirectories);E:\Projects\awesome-game\Awesome-Game-Client\Awesome-Game-Client</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SFML-2.4.1\include;$(SolutionDir)TGUI-0.7\include;$(SolutionDir)Awesome-Game-Client;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
