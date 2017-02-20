@@ -230,6 +230,24 @@ bool CMap::deserializeVersion_1(unsigned char* tempmapfile, std::uint64_t uiBuff
     return true;
 }
 
+bool CMap::increaseSize(std::uint8_t uiSizeIndex)
+{
+    if (uiSizeIndex > 1)
+        return false;
+
+    cMapInfo->setMapSize(uiSizeIndex, cMapInfo->getMapSize(uiSizeIndex) + 1);
+    return true;
+}
+
+bool CMap::decreaseSize(std::uint8_t uiSizeIndex)
+{
+    if (uiSizeIndex > 1)
+        return false;
+
+    cMapInfo->setMapSize(uiSizeIndex, cMapInfo->getMapSize(uiSizeIndex) - 1);
+    return true;
+}
+
 /*
 bool CMap::loadMapByFilename(char name[]){
     FILE *mapfile = NULL;

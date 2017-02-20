@@ -23,13 +23,14 @@ public:
     std::uint16_t   getVersion();
     bool            hasVersion();
     unsigned char*  serialize(char name[]);
+    bool            setMapSize(std::uint8_t, std::uint16_t);
+    std::uint16_t   getMapSize(std::uint8_t);
 
                     CMapInfo();
                     CMapInfo(std::string, std::uint16_t, std::uint16_t, std::uint16_t);
 
 private:
-    bool            setMapSize(std::uint8_t, std::uint16_t);
-    std::uint16_t   getMapSize(std::uint8_t);
+    
 };
 
 #endif

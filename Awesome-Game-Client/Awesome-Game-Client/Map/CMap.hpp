@@ -21,8 +21,11 @@ public:
     //sf::Texture           getTexture();
     sf::Texture&            getChunkTexture(std::uint64_t);
     bool                    saveMapWithFilename(char []);
-    //bool                    loadMapByFilename(char[]);
+    //bool                  loadMapByFilename(char[]);
     bool                    deserializeVersion_1(unsigned char*, std::uint64_t);
+
+    bool                    increaseSize(std::uint8_t /* uiSizeIndex */);
+    bool                    decreaseSize(std::uint8_t /* uiSizeIndex */);
 
     //Constructor
                             CMap();

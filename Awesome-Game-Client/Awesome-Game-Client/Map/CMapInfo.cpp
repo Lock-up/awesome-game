@@ -36,7 +36,7 @@ bool CMapInfo::getMapSizes(std::uint16_t& uiSizeX, std::uint16_t& uiSizeY)
 
 bool CMapInfo::setMapSize(std::uint8_t uiIndex, std::uint16_t uiNewSize)
 {
-    if (uiIndex > 2)
+    if (uiIndex > 1)
         return false;
 
     this->uiSize[uiIndex] = uiNewSize;
@@ -45,7 +45,7 @@ bool CMapInfo::setMapSize(std::uint8_t uiIndex, std::uint16_t uiNewSize)
 
 std::uint16_t CMapInfo::getMapSize(std::uint8_t uiIndex)
 {
-    if (uiIndex > 2)
+    if (uiIndex > 1)
         return 0;
 
     return this->uiSize[uiIndex];
