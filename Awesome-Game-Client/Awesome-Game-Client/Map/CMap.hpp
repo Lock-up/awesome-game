@@ -23,9 +23,9 @@ public:
     bool                    saveMapWithFilename(char []);
     //bool                  loadMapByFilename(char[]);
     bool                    deserializeVersion_1(unsigned char*, std::uint64_t);
+    bool                    changeMapSizeXBy(std::int32_t /* uiBy */);
 
-    bool                    increaseSize(std::uint8_t /* uiSizeIndex */);
-    bool                    decreaseSize(std::uint8_t /* uiSizeIndex */);
+    bool                    changeMapSizeBy(std::uint8_t, std::int32_t);
 
     //Constructor
                             CMap();

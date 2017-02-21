@@ -230,23 +230,24 @@ bool CMap::deserializeVersion_1(unsigned char* tempmapfile, std::uint64_t uiBuff
     return true;
 }
 
-bool CMap::increaseSize(std::uint8_t uiSizeIndex)
+bool CMap::changeMapSizeXBy(std::int32_t uiBy)
 {
-    if (uiSizeIndex > 1)
+    // Check if it's a valid new size
+    if (cMapInfo->getMapSizeX() + uiBy < 0 || cMapInfo->getMapSizeX() + uiBy > std::numeric_limits<std::uint16_t>::max())
         return false;
 
-    cMapInfo->setMapSize(uiSizeIndex, cMapInfo->getMapSize(uiSizeIndex) + 1);
+    for (std::uint16_t i = 0; i < (std::uint16_t)uiBy; i++)
+    {
+        for (std::uint16_t j = 0; j < cMapInfo->getMapSizeX(); j++)
+        {
+            CAwesomeChunk *tmpChunk = new CAwesomeChunk();
+            //tmpChunk->generateImageAndTexture(rhImages);
+            this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
+        }
+    }
     return true;
 }
 
-bool CMap::decreaseSize(std::uint8_t uiSizeIndex)
-{
-    if (uiSizeIndex > 1)
-        return false;
-
-    cMapInfo->setMapSize(uiSizeIndex, cMapInfo->getMapSize(uiSizeIndex) - 1);
-    return true;
-}
 
 /*
 bool CMap::loadMapByFilename(char name[]){

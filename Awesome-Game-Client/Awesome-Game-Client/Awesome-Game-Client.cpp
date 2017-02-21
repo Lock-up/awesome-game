@@ -95,7 +95,7 @@ int main()
         return 1;
     }
 
-    CMap *map = new CMap(2, 2, rhImages, Textures::DESERT_01);
+    CMap *map = new CMap(16, 16, rhImages, Textures::DESERT_01);
     map->getMapPlayerInfo()->pushPlayer(12, 34);
     map->getMapPlayerInfo()->pushPlayer(56, 78);
     map->saveMapWithFilename("SpikesMap_BIGAF");
