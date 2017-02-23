@@ -28,7 +28,7 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
     for (std::uint64_t i = 0; i < uiSizeX*uiSizeY; i++)
     {
         CAwesomeChunk *tmpChunk = new CAwesomeChunk();
-        tmpChunk->generateImageAndTexture(rhImages);
+        tmpChunk->generateImageAndTexture();
         this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
     }
 
@@ -40,7 +40,7 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
     //this->cMapImage = new sf::Image();
 }
 
-CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Image, Textures::ID>& rhImages, Textures::ID texID)
+CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, Textures::ID texID)
 {
     std::cout << "CMap::CMap(uint64_t, uint64_t, Texture)" << std::endl;
     this->cAwesomeChunkContainer = new CAwesomeChunkContainer();
@@ -49,7 +49,7 @@ CMap::CMap(std::uint64_t uiSizeX, std::uint64_t uiSizeY, ResourceHolder<sf::Imag
     {
         CAwesomeChunk *tmpChunk = new CAwesomeChunk(texID);
         std::cout << "ChunkID: " << i << std::endl;
-        tmpChunk->generateImageAndTexture(rhImages);
+        tmpChunk->generateImageAndTexture();
         this->getCAwesomeChunkContainer()->pushChunk(tmpChunk);
     }
 

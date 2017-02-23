@@ -32,6 +32,15 @@ template <typename Resource, typename Identifier>
 class ResourceHolder
 {
 public:
+    // Singleton
+    static ResourceHolder& instance()
+    {
+        static ResourceHolder _instance;
+        return _instance;
+    }
+
+    ~ResourceHolder() {}
+
     void						load(Identifier id, const std::string& filename);
 
     template <typename Parameter>
@@ -40,9 +49,30 @@ public:
     Resource&					get(Identifier id);
     const Resource&				get(Identifier id) const;
 
+    bool                        init()
+    {
+        try
+        {
+            load(Textures::DESERT_01, "Assets/Textures/DESERT_01.png");
+            load(Textures::GREENLAND_01, "Assets/Textures/GREENLAND_01.png");
+            load(Textures::SNOW_01, "Assets/Textures/SNOW_01.png");
+        }
+        catch (std::runtime_error& e)
+        {
+            std::cout << "Exception: " << e.what() << std::endl;
+            //assert(e.what() == NULL);
+            return 1;
+        }
+    }
+
 
 private:
     void						insertResource(Identifier id, std::unique_ptr<Resource> resource);
+    
+    // Singleton
+    ResourceHolder() {}
+    ResourceHolder(const ResourceHolder&);
+    ResourceHolder &operator = (const ResourceHolder &);
 
 
 private:

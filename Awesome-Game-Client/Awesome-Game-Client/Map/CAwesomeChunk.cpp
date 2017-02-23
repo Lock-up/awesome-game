@@ -99,7 +99,7 @@ bool CAwesomeChunk::generateTexture()
     return false;
 }
 
-bool CAwesomeChunk::generateImage(ResourceHolder<sf::Image, Textures::ID>& rhImages)
+bool CAwesomeChunk::generateImage()
 {
     std::cout << "CAwesomeChunk::generateImage" << std::endl;
 
@@ -115,17 +115,18 @@ bool CAwesomeChunk::generateImage(ResourceHolder<sf::Image, Textures::ID>& rhIma
 
             int uiTextureID = int(cTempMapPoint->getTexture(Texture_Type::TEXTURE_WORLD));
 
-            this->cChunkImage->setPixel(pointx, pointy, rhImages.get(aIDToTexture[uiTextureID]).getPixel(pointx, pointy));
+            //this->cChunkImage->setPixel(pointx, pointy, rhImages.get(aIDToTexture[uiTextureID]).getPixel(pointx, pointy));
+            this->cChunkImage->setPixel(pointx, pointy, ResourceHolder<sf::Image, Textures::ID>::instance().get(aIDToTexture[uiTextureID]).getPixel(pointx, pointy));
         }
     }
 
     return true;
 }
 
-bool CAwesomeChunk::generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>& rhImages)
+bool CAwesomeChunk::generateImageAndTexture()
 {
     std::cout << "CAwesomeChunk::generateImageAndTexture" << std::endl;
-    this->generateImage(rhImages);
+    this->generateImage();
     this->generateTexture();
     return true;
 }

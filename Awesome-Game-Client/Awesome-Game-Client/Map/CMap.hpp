@@ -30,7 +30,7 @@ public:
     //Constructor
                             CMap();
                             CMap(std::uint64_t, std::uint64_t, ResourceHolder<sf::Image, Textures::ID>&);
-                            CMap(std::uint64_t, std::uint64_t, ResourceHolder<sf::Image, Textures::ID>&, Textures::ID);
+                            CMap(std::uint64_t, std::uint64_t, Textures::ID);
                             CMap(std::string, ResourceHolder<sf::Image, Textures::ID>&);
                             CMap(char[], ResourceHolder<sf::Image, Textures::ID>&);
 };

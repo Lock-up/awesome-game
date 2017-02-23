@@ -25,10 +25,10 @@ public:
     bool                    delMapPointData(std::uint8_t, std::uint8_t);
     bool                    delMapPointData(std::uint16_t);
 
-    bool                    generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>&);
+    bool                    generateImageAndTexture();
     //bool                    generateImageAndTexture(ResourceHolder<sf::Image, Textures::ID>&, Textures::ID);
 
-    bool                    generateImage(ResourceHolder<sf::Image, Textures::ID>&);
+    bool                    generateImage();
     //bool                    generateImage(ResourceHolder<sf::Image, Textures::ID>&, Textures::ID);
     bool                    generateTexture();
 
