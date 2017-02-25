@@ -3,7 +3,7 @@
 const sf::Time Game::TimePerFrame = sf::seconds(1.f / 60.f);
 
 Game::Game()
-    : mWindow(sf::VideoMode(640, 480), "World", sf::Style::Close)
+    : mWindow(sf::VideoMode(1024, 768), "World", sf::Style::Close)
 {
     //sf::VideoMode mode;
     //mWindow = sf::RenderWindow(mode.getFullscreenModes()[1], "SFML works!");
@@ -84,7 +84,23 @@ void Game::render()
     mWindow.display();
 }
 
-void Game::handlePlayerInput(sf::Keyboard::Key, bool)
+void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
 {
-
+    switch (key)
+    {
+    case sf::Keyboard::Key::Add:
+    case sf::Keyboard::Key::Equal:
+    {
+        std::cout << "Handle zoom in" << std::endl;
+    }break;
+    case sf::Keyboard::Key::Subtract:
+    case sf::Keyboard::Key::Dash:
+    {
+        std::cout << "Handle zoom out" << std::endl;
+    }break;
+    default:
+    {
+        std::cout << "Key '" << key << "' was pressed but has no function!" << std::endl;
+    }
+    }
 }
