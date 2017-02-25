@@ -202,6 +202,8 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
     <ClInclude Include="Map\CMapPoint.hpp" />
     <ClInclude Include="Menu\Menu_Main.hpp" />
     <ClInclude Include="Menu\Navigation_Manager.hpp" />
+    <ClInclude Include="Node\SceneNode.hpp" />
+    <ClInclude Include="Node\SpriteNode.hpp" />
     <ClInclude Include="ResourceManager\ResourceManager.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -216,6 +218,8 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
     <ClCompile Include="Map\CMapPoint.cpp" />
     <ClCompile Include="Menu\Menu_Main.cpp" />
     <ClCompile Include="Menu\Navigation_Manager.cpp" />
+    <ClCompile Include="Node\SceneNode.cpp" />
+    <ClCompile Include="Node\SpriteNode.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

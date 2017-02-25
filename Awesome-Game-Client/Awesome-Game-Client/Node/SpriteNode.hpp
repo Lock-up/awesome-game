@@ -18,4 +18,4 @@ private:
     sf::Sprite          mSprite;
 };
 
-#endif // BOOK_SPRITENODE_HPP
+#endif // SPRITENODE_HPP

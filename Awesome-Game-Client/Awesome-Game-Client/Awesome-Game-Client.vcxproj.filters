@@ -54,6 +54,12 @@
     <ClInclude Include="ResourceManager\ResourceManager.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Node\SceneNode.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Node\SpriteNode.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -84,6 +90,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Map\CMapPoint.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Node\SceneNode.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Node\SpriteNode.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

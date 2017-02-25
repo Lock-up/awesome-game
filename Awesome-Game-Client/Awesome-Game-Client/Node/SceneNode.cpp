@@ -36,7 +36,7 @@ void SceneNode::updateCurrent(sf::Time)
 
 void SceneNode::updateChildren(sf::Time dt)
 {
-    for each (Ptr& child in mChildren)
+    for each (auto& child in mChildren)
     {
         child->update(dt);
     }
@@ -59,7 +59,7 @@ void SceneNode::drawCurrent(sf::RenderTarget&, sf::RenderStates) const
 
 void SceneNode::drawChildren(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    for each (Ptr& child in mChildren)
+    for each (const auto& child in mChildren)
     {
         child->draw(target, states);
     }
