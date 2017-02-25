@@ -129,4 +129,4 @@ void ResourceHolder<Resource, Identifier>::insertResource(Identifier id, std::un
     auto inserted = mResourceMap.insert(std::make_pair(id, std::move(resource)));
     assert(inserted.second);
 }
-#endif // BOOK_RESOURCEHOLDER_HPP
+#endif // RESOURCEHOLDER_HPP

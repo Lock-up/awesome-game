@@ -12,20 +12,38 @@
 
 // SFML
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+
+#include <SFML/System/NonCopyable.hpp>
+#include <SFML/System/Time.hpp>
 
 // STL
-#include <cstdint>
-#include <bitset>
-#include <list>
-#include <vector>
 #include <algorithm>
-#include <iostream>
-#include <fstream>
-#include <map>
-#include <string>
-#include <memory>
-#include <stdexcept>
+#include <array>
+
+#include <bitset>
+
+#include <cstdint>
 #include <cassert>
+
+#include <fstream>
+
+#include <iostream>
+
+#include <list>
+
+#include <map>
+#include <memory>
+
+#include <string>
+#include <stdexcept>
+
+#include <vector>
 
 // TGUI
 #include <TGUI/TGUI.hpp>
@@ -44,3 +62,7 @@
 #include "Map\CMapInfo.hpp"
 #include "Map\CAwesomeChunkContainer.hpp"
 #include "Map\CMap.hpp"
+
+// Node
+#include "Node\SceneNode.hpp"
+
