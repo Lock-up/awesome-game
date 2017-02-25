@@ -60,6 +60,9 @@
     <ClInclude Include="Node\SpriteNode.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Game.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -96,6 +99,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Node\SpriteNode.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

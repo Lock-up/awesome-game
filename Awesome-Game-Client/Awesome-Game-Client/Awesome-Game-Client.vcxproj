@@ -193,6 +193,7 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Game.hpp" />
     <ClInclude Include="Map\CAwesomeChunk.hpp" />
     <ClInclude Include="Map\CAwesomeChunkContainer.hpp" />
     <ClInclude Include="Map\CAwesomeChunkImageContainer.hpp" />
@@ -210,6 +211,7 @@ xcopy  $(SolutionDir)Assets\Buildings\*.png $(OutputPath)\Assets\Buildings\ /i /
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Awesome-Game-Client.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Map\CAwesomeChunk.cpp" />
     <ClCompile Include="Map\CAwesomeChunkContainer.cpp" />
     <ClCompile Include="Map\CMap.cpp" />

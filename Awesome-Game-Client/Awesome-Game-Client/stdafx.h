@@ -20,6 +20,8 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <SFML/Window/Event.hpp>
+
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/System/Time.hpp>
 
@@ -67,3 +69,6 @@
 // Node
 #include "Node\SceneNode.hpp"
 #include "Node\SpriteNode.hpp"
+
+// Game
+#include "Game\Game.hpp"
